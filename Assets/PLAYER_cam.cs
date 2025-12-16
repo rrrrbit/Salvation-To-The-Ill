@@ -13,8 +13,6 @@ public class PLAYER_cam : MonoBehaviour
 
     public float targetPitch;
 
-    public float targetYaw;
-
     public Camera cameraObj;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,11 +32,10 @@ public class PLAYER_cam : MonoBehaviour
     void Update()
     {
         var md = Mouse.current.delta.ReadValue() * mouseSensitivity * mouseSensitivityMult;
-        targetYaw += md.x;
         targetPitch = Mathf.Clamp(targetPitch - md.y, pitchClamp.x, pitchClamp.y) % 360;
 
         var r = transform.rotation; 
-        transform.rotation = Quaternion.Euler(r.eulerAngles.x, targetYaw, r.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(r.eulerAngles.x, r.eulerAngles.y + md.x, r.eulerAngles.z);
         cameraObj.transform.localRotation = Quaternion.Euler(targetPitch, 0, 0);
     }
 

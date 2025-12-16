@@ -14,8 +14,13 @@ public class player_movement : MonoBehaviour
     [SerializeField] float xMvtLerpK;
     [SerializeField] float xMvtLerpT;
 
-    [SerializeField]
-    public Rigidbody groundCheck;
+	public float jumpTime;
+	public float jumpHeight;
+
+	float jumpForce;
+	float grav;
+
+	public Rigidbody groundCheck;
     public bool grounded;
 
     public TextMeshProUGUI debug;
@@ -24,7 +29,10 @@ public class player_movement : MonoBehaviour
 
     void Start()
     {
-        var inp = new InpActions();
+		jumpForce = 4f / jumpTime * jumpHeight;
+		grav = -8f / jumpTime / jumpTime * jumpHeight;
+
+		var inp = new InpActions();
         inp.Enable();
         actions = inp.Player;
         actions.Enable();
@@ -35,7 +43,8 @@ public class player_movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        var mvtIn = actions.move.ReadValue<Vector2>();
+		rb.AddForce(Vector3.up * grav, ForceMode.Force);
+		var mvtIn = actions.move.ReadValue<Vector2>();
         var targetVel = transform.rotation * new Vector3(mvtIn.x, 0, mvtIn.y) * xSpeed;
         horizontalVel = GLOBAL.Lerpd(horizontalVel, targetVel, xMvtLerpK, xMvtLerpT, Time.deltaTime) ;
         rb.linearVelocity = new Vector3(horizontalVel.x, rb.linearVelocity.y, horizontalVel.z);
@@ -52,7 +61,7 @@ public class player_movement : MonoBehaviour
 
         if(actions.Jump.IsPressed() && grounded)
         {
-            //jump
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 }

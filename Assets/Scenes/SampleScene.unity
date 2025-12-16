@@ -246,9 +246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2422e7b78e87145959939630140387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSpeed: 10
+  xSpeed: 7.5
   xMvtLerpK: 0.75
-  xMvtLerpT: 0.1
+  xMvtLerpT: 0.05
+  jumpTime: 1
+  jumpHeight: 2
   groundCheck: {fileID: 2039528999}
   grounded: 0
   debug: {fileID: 536312679}
@@ -274,7 +276,7 @@ Rigidbody:
     m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -291,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60fa16faca75b04a80d6c6e39beeafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivityMult: 0.2
+  mouseSensitivityMult: 0.15
   mouseSensitivity: {x: 1, y: 1.25}
   pitchClamp: {x: -90, y: 90}
   targetPitch: 0
@@ -603,10 +605,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -626,7 +628,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
