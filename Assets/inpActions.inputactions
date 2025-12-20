@@ -538,6 +538,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "shoot",
+                    "type": "Button",
+                    "id": "9007b0af-00b6-42d4-b982-b9acec75144d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -604,6 +613,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1eaf17f3-1c7a-4f36-81c4-f8d1dadc6113",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

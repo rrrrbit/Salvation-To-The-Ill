@@ -13,7 +13,7 @@ public class PLAYER_cam : MonoBehaviour
 
     public float targetPitch;
 
-    public Camera cameraObj;
+    public Camera cam;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,7 +37,7 @@ public class PLAYER_cam : MonoBehaviour
 
         var r = transform.rotation; 
         transform.rotation = Quaternion.Euler(r.eulerAngles.x, r.eulerAngles.y + md.x, r.eulerAngles.z);
-        cameraObj.transform.localRotation = Quaternion.Euler(targetPitch, 0, 0);
+		cam.transform.localRotation = Quaternion.Euler(targetPitch, 0, 0);
     }
 
 

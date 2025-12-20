@@ -55,7 +55,6 @@ public class player_movement : MonoBehaviour
         debug.text = "grounded: "+grounded.ToString() + "\n";
         if(grounded)
         {
-            print(hitInfo.distance);
             debug.text += hitInfo.distance.ToString();
         }
 
