@@ -202,6 +202,7 @@ MonoBehaviour:
     m_Bits: 257
   stats: {fileID: 11400000, guid: 59883982e41329045a6d0ad798957cc5, type: 2}
   lifetime: 10
+  penetrationLeft: 0
 --- !u!33 &7404381645702883373
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -295,7 +296,7 @@ Rigidbody:
     m_Bits: 257
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
