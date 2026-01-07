@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c02dfa275be5e3645beea4137bad4701, type: 3}
-  m_Name: Rifle
+  m_Name: Explosion
   m_EditorClassIdentifier: 
-  dmg: 5
-  penetration: 1
+  dmg: 50
+  penetration: -1

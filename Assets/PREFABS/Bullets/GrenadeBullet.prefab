@@ -157,13 +157,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5133021870212034948}
-  - component: {fileID: 6820553065219387506}
+  - component: {fileID: -8158491107599834387}
   - component: {fileID: 7404381645702883373}
   - component: {fileID: 616989870203962759}
   - component: {fileID: 8106723087089768463}
   - component: {fileID: 4422864243213154318}
   m_Layer: 11
-  m_Name: RifleBullet
+  m_Name: GrenadeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ Transform:
   - {fileID: 943454160334604862}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6820553065219387506
+--- !u!114 &-8158491107599834387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,14 +194,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2639847300945711334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da367cd1781d9004c99a589d34bdae15, type: 3}
+  m_Script: {fileID: 11500000, guid: 585f7e36afd54d443a9501ed5cb74303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideWith:
-    serializedVersion: 2
-    m_Bits: 257
-  stats: {fileID: 11400000, guid: 6abc42ea8313ef949b40478ea9e5deea, type: 2}
-  lifetime: 10
+  lifetime: 5
+  explosion: {fileID: 2639847300945711334, guid: 06a680f60dbd21f438732d847abd500d, type: 3}
+  gravityMult: 3
 --- !u!33 &7404381645702883373
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -270,7 +268,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -284,7 +282,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2639847300945711334}
   serializedVersion: 5
-  m_Mass: 0.0000001
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -292,13 +290,13 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 1025
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112

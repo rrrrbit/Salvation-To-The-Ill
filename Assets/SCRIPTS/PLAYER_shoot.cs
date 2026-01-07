@@ -33,13 +33,13 @@ public class PLAYER_shoot : MonoBehaviour
 				PLYR.stats.ammo -= costAmmo;
 				PLYR.stats.health -= costHealth;
 				
-				Shoot();
+				ShootRifle();
 				shootTimer = shootInterval;
 			}
 		}
     }
 
-	void Shoot()
+	void ShootRifle()//temp, item switching is fully developed at home but i forgor to push >:(
 	{
 		GameObject thisBullet = Instantiate(bullet);
 		thisBullet.transform.position = origin.position;
@@ -48,5 +48,19 @@ public class PLAYER_shoot : MonoBehaviour
 		{
 			thisBullet.GetComponent<Rigidbody>().AddForce(speed * origin.forward, ForceMode.VelocityChange);
 		}
+	}
+
+	void ShootShotgun()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+            GameObject thisBullet = Instantiate(bullet);
+            thisBullet.transform.position = origin.position;
+            thisBullet.transform.forward = Quaternion.AngleAxis(Random.Range(-10,10f),origin.up) * Quaternion.AngleAxis(Random.Range(-10, 10f), origin.right) * origin.forward;
+            if (thisBullet.GetComponent<Rigidbody>() != null)
+            {
+                thisBullet.GetComponent<Rigidbody>().AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
+            }
+        }
 	}
 }

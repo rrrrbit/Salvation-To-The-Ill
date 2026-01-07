@@ -313,12 +313,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21f905f8630f324680995cb08be44ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2639847300945711334, guid: 30cdbb2b58b2c0149bf84b9f80cecaf3, type: 3}
-  speed: 50
+  bullet: {fileID: 2639847300945711334, guid: 4e13842552dcf3b4abe85268f001a7a6, type: 3}
+  speed: 20
   origin: {fileID: 561079588}
   costAmmo: 1
   costHealth: 0
-  shootInterval: 0.1
+  shootInterval: 1
 --- !u!114 &53540807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +488,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2007
+    m_Bits: 4055
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
