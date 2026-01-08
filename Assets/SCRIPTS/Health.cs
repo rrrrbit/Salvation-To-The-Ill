@@ -6,7 +6,7 @@ public class Health : MonoBehaviour, IAttackable
 	public float maxHealth;
 	public virtual void Attack(AttackContext ctx)
 	{
-		print("OW FUCKING DICKHEAD ("+ctx.dmg.ToString()+")");
+		print("i really dont appreciate you dealing ("+ctx.dmg.ToString()+") damage to me");
 	}
 
 	public virtual void Die()

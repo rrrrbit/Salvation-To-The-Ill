@@ -5,4 +5,5 @@ public class AttackStats : ScriptableObject
 {
 	public float minDmg;
 	public float maxDmg;
+    public int penetration;
 }

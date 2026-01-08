@@ -8,11 +8,12 @@ public class OBJ_Projectile : MonoBehaviour
 	public LayerMask collideWith;
 	public AttackStats stats;
 	public float lifetime;
+	public int penetrationLeft;
 	
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+		penetrationLeft = stats.penetration;
     }
 
     // Update is called once per frame
@@ -41,6 +42,7 @@ public class OBJ_Projectile : MonoBehaviour
 				ctx.gameObject = gameObject;
 				ctx.dmg = Random.Range(stats.minDmg, stats.maxDmg);
 				other.gameObject.GetComponent<IAttackable>().Attack(ctx);
+				
 
 				MGR.vfx.DmgText(ctx.dmg, transform.position, false);
 			}
@@ -48,7 +50,8 @@ public class OBJ_Projectile : MonoBehaviour
 			{
 
 			}
-			Destroy(gameObject);
+            penetrationLeft -= 1;
+			if(penetrationLeft == 0) Destroy(gameObject);
 		}
 	}
 }
