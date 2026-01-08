@@ -27,25 +27,18 @@ public class VFX_dmgText : MonoBehaviour
     void Update()
     {
         lifetime -= Time.deltaTime;
-		if(lifetime <= 0 )
-		{
-			fadeTimer -= Time.deltaTime;
-		}
+		if(lifetime <= 0 ) fadeTimer -= Time.deltaTime;
 
-		if(fadeTimer <= 0 && destroyAfter)
-		{
-			Destroy(gameObject);
-		}
+		if(fadeTimer <= 0 && destroyAfter) Destroy(gameObject);
 
-
-		flashTimer -= Time.deltaTime;
-		if(flashTimer <= 0)
+		if(flashing) flashTimer -= Time.deltaTime;
+		if (flashTimer <= 0)
 		{
 			c = !c;
 			flashTimer = flashInterval;
 		}
 
-		var C = c ? c2 : c1;
+		var C = c ? c1 : c2;
 		tmp.color = new(C.r, C.g, C.b, fadeTimer / fadeTime);
 
 		transform.forward = PLYR.cam.cam.transform.forward;

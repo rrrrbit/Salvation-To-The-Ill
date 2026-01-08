@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Rifle
-  m_EditorClassIdentifier: Assembly-CSharp::AttackStats
-  dmg: 5
+  m_Script: {fileID: 11500000, guid: 3f12fbb8ac0600e479561d05906564c9, type: 3}
+  m_Name: DmgRifle
+  m_EditorClassIdentifier: 
+  minDmg: 3
+  maxDmg: 8

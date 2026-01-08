@@ -57,7 +57,7 @@ MonoBehaviour:
   c2: {r: 1, g: 0.5, b: 0.5, a: 1}
   flashInterval: 0.03
   destroyAfter: 1
-  lifetime: 0
+  lifetime: 0.1
 --- !u!23 &5291683360258294828
 MeshRenderer:
   m_ObjectHideFlags: 0

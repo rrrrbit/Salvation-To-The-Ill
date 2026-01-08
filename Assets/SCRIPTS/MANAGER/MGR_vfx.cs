@@ -9,7 +9,7 @@ public class MGR_vfx : MonoBehaviour
 	{
 		var thisText = Instantiate(dmgText);
 		thisText.transform.position = position;
-		thisText.GetComponent<TextMeshPro>().text = n.ToString();
+		thisText.GetComponent<TextMeshPro>().text = Mathf.Round(n).ToString();
 		thisText.GetComponent<VFX_dmgText>().flashing = flash;
 
 		Vector3 d = new Vector3(Random.Range(-1f, 1), Random.Range(0f, 1), Random.Range(-1f, 1)).normalized

@@ -1,16 +1,16 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PLAYER_shoot : MonoBehaviour
 {
 	InpActions.PlayerActions actions;
-	public GameObject bullet;
-	public float speed;
 	public Transform origin;
-	public float costAmmo;
-	public float costHealth;
+	public float shootTimer;
+	public float useTimer;
+	public UseBehaviour weapon;
 
-	public float shootInterval;
-	float shootTimer;
+	public GameObject[] inventory;
+	public int currentItem;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,34 +19,24 @@ public class PLAYER_shoot : MonoBehaviour
 		inp.Enable();
 		actions = inp.Player;
 		actions.Enable();
+
+		inventory = new GameObject[5];
 	}
 
     // Update is called once per frame
     void Update()
     {
 		shootTimer = Mathf.Max(0, shootTimer - Time.deltaTime);
-		
+		useTimer = Mathf.Max(0, useTimer - Time.deltaTime);
+
+
 		if (actions.shoot.IsPressed() && shootTimer <= 0)
 		{
-			if(PLYR.stats.ammo >= costAmmo)
+			UseBehaviour useBehaviour;
+			if (inventory[currentItem].TryGetComponent<UseBehaviour>(out useBehaviour))
 			{
-				PLYR.stats.ammo -= costAmmo;
-				PLYR.stats.health -= costHealth;
-				
-				Shoot();
-				shootTimer = shootInterval;
+				useBehaviour.TryUse();
 			}
 		}
     }
-
-	void Shoot()
-	{
-		GameObject thisBullet = Instantiate(bullet);
-		thisBullet.transform.position = origin.position;
-		thisBullet.transform.forward = origin.forward;
-		if(thisBullet.GetComponent<Rigidbody>() != null)
-		{
-			thisBullet.GetComponent<Rigidbody>().AddForce(speed * origin.forward, ForceMode.VelocityChange);
-		}
-	}
 }

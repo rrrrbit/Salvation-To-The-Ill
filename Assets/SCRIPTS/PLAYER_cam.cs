@@ -35,10 +35,11 @@ public class PLAYER_cam : MonoBehaviour
         var md = Mouse.current.delta.ReadValue() * mouseSensitivity * mouseSensitivityMult;
         targetPitch = Mathf.Clamp(targetPitch - md.y, pitchClamp.x, pitchClamp.y) % 360;
 
-        var r = transform.rotation; 
-        transform.rotation = Quaternion.Euler(r.eulerAngles.x, r.eulerAngles.y + md.x, r.eulerAngles.z);
+        var r = transform.rotation;
+		GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(r.eulerAngles.x, r.eulerAngles.y + md.x, r.eulerAngles.z));
 		cam.transform.localRotation = Quaternion.Euler(targetPitch, 0, 0);
     }
+	
 
 
 }

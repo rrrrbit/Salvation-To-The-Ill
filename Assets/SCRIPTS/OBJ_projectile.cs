@@ -39,10 +39,10 @@ public class OBJ_Projectile : MonoBehaviour
 			{
 				AttackContext ctx = new();
 				ctx.gameObject = gameObject;
-				ctx.dmg = stats.dmg;
+				ctx.dmg = Random.Range(stats.minDmg, stats.maxDmg);
 				other.gameObject.GetComponent<IAttackable>().Attack(ctx);
 
-				MGR.vfx.DmgText(stats.dmg, transform.position, false);
+				MGR.vfx.DmgText(ctx.dmg, transform.position, false);
 			}
 			else
 			{
