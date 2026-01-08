@@ -6,7 +6,7 @@ public class PLYR : MonoBehaviour
 	public static Transform t;
 	public static PLAYER_cam cam;
 	public static PLAYER_stats stats;
-	public static PLAYER_shoot shoot;
+	public static PLAYER_item item;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,6 +14,6 @@ public class PLYR : MonoBehaviour
 		t = transform;
 		cam = GetComponent<PLAYER_cam>();
 		stats = GetComponent<PLAYER_stats>();
-		shoot = GetComponent<PLAYER_shoot>();
+		item = GetComponent<PLAYER_item>();
     }
 }

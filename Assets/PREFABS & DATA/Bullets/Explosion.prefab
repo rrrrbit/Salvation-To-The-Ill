@@ -52,7 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   stats: {fileID: 11400000, guid: 23c739e4a0e7dd44190dd038ec3d1758, type: 2}
-  lifetime: 0.01
+  lifetime: 0.05
   penetrationLeft: 0
 --- !u!33 &7404381645702883373
 MeshFilter:

@@ -10,15 +10,15 @@ public class WEAPON_singleShot : UseBehaviour
 
 	public override bool TryUse()
 	{
-		PLYR.shoot.shootTimer = shootInterval;
+		PLYR.item.shootTimer = shootInterval;
 		if (PLYR.stats.ammo < costAmmo) return false;
 		PLYR.stats.ammo -= costAmmo;
 		GameObject thisBullet = Instantiate(bullet);
-		thisBullet.transform.position = PLYR.shoot.origin.position;
-		thisBullet.transform.forward = PLYR.shoot.origin.forward;
+		thisBullet.transform.position = PLYR.item.useOrigin.position;
+		thisBullet.transform.forward = PLYR.item.useOrigin.forward;
 		if (thisBullet.GetComponent<Rigidbody>() != null)
 		{
-			thisBullet.GetComponent<Rigidbody>().AddForce(speed * PLYR.shoot.origin.forward, ForceMode.VelocityChange);
+			thisBullet.GetComponent<Rigidbody>().AddForce(speed * PLYR.item.useOrigin.forward, ForceMode.VelocityChange);
 		}
 		return true;
 	}

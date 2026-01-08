@@ -10,19 +10,18 @@ public class WEAPON_spreadShot : UseBehaviour
 
 	public override bool TryUse()
 	{
-		PLYR.shoot.shootTimer = shootInterval;
+		PLYR.item.shootTimer = shootInterval;
 		if (PLYR.stats.ammo < costAmmo) return false;
 		PLYR.stats.ammo -= costAmmo;
 
 		for (int i = 0; i < 10; i++)
 		{
-
 			GameObject thisBullet = Instantiate(bullet);
-			thisBullet.transform.position = PLYR.shoot.origin.position;
-			thisBullet.transform.forward = Quaternion.AngleAxis(Random.Range(-10, 10f), PLYR.shoot.origin.up) * Quaternion.AngleAxis(Random.Range(-10, 10f), PLYR.shoot.origin.right) * PLYR.shoot.origin.forward;
+			thisBullet.transform.position = PLYR.item.useOrigin.position;
+			thisBullet.transform.forward = Quaternion.AngleAxis(Random.Range(-10, 10f), PLYR.item.useOrigin.up) * Quaternion.AngleAxis(Random.Range(-10, 10f), PLYR.item.useOrigin.right) * PLYR.item.useOrigin.forward;
 			if (thisBullet.GetComponent<Rigidbody>() != null)
 			{
-				thisBullet.GetComponent<Rigidbody>().AddForce(speed * PLYR.shoot.origin.forward, ForceMode.VelocityChange);
+				thisBullet.GetComponent<Rigidbody>().AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 			}
 		}
 		

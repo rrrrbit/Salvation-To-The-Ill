@@ -28,8 +28,11 @@ public class OBJ_Projectile : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		transform.GetChild(0).SetParent(transform.parent);
-	}
+        foreach (var obj in GetComponentsInChildren<Transform>())
+        {
+            obj.SetParent(transform.parent);
+        }
+    }
 
 	private void OnTriggerEnter(Collider other)
 	{

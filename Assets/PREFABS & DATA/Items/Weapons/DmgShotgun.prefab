@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9025143853443110767}
+  - component: {fileID: -6056376324031881638}
   - component: {fileID: -3328410107639793659}
   m_Layer: 0
   m_Name: DmgShotgun
@@ -32,6 +33,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6056376324031881638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455337122672803234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e581970267cd0c74081cc076bace500f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: 27c5301f30aa08c418927e370b4c0dab, type: 3}
+  itemModel: {fileID: 0}
+  itemName: dmg shotgun
+  quality: 1
+  amt: 1
 --- !u!114 &-3328410107639793659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9309fed73e33af44f827b4d83359c898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costAmmo: 2
+  costAmmo: 5
   bullet: {fileID: 2639847300945711334, guid: 5bbf1e3d95bd4434b997e292df83fc5d, type: 3}
-  shootInterval: 1
+  shootInterval: 0.75
   speed: 50

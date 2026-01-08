@@ -636,21 +636,21 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""scrollForward"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""386432e3-05e8-4997-854d-c39ab01dcae7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""scrollBackward"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""9a66c959-e63b-434c-bd24-fcdbfc0c4097"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -671,7 +671,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -682,7 +682,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -693,7 +693,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -704,7 +704,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -715,7 +715,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -726,7 +726,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -734,10 +734,10 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""65b18780-a32b-4543-821a-78aea227517d"",
-                    ""path"": ""<Mouse>/forwardButton"",
+                    ""path"": ""<Mouse>/scroll/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""scrollForward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -745,10 +745,10 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2db10aaf-6b40-4ccc-8a75-1d638cb21fd5"",
-                    ""path"": ""<Mouse>/backButton"",
+                    ""path"": ""<Mouse>/scroll/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""scrollBackward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
