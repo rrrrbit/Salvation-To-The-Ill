@@ -633,6 +633,24 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""scrollForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""386432e3-05e8-4997-854d-c39ab01dcae7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""scrollBackward"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a66c959-e63b-434c-bd24-fcdbfc0c4097"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -710,6 +728,28 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65b18780-a32b-4543-821a-78aea227517d"",
+                    ""path"": ""<Mouse>/forwardButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrollForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2db10aaf-6b40-4ccc-8a75-1d638cb21fd5"",
+                    ""path"": ""<Mouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrollBackward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -796,6 +836,8 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
         m_Player_move = m_Player.FindAction("move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_shoot = m_Player.FindAction("shoot", throwIfNotFound: true);
+        m_Player_scrollForward = m_Player.FindAction("scrollForward", throwIfNotFound: true);
+        m_Player_scrollBackward = m_Player.FindAction("scrollBackward", throwIfNotFound: true);
     }
 
     ~@InpActions()
@@ -1075,6 +1117,8 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_shoot;
+    private readonly InputAction m_Player_scrollForward;
+    private readonly InputAction m_Player_scrollBackward;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1098,6 +1142,14 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/shoot".
         /// </summary>
         public InputAction @shoot => m_Wrapper.m_Player_shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/scrollForward".
+        /// </summary>
+        public InputAction @scrollForward => m_Wrapper.m_Player_scrollForward;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/scrollBackward".
+        /// </summary>
+        public InputAction @scrollBackward => m_Wrapper.m_Player_scrollBackward;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1133,6 +1185,12 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
             @shoot.started += instance.OnShoot;
             @shoot.performed += instance.OnShoot;
             @shoot.canceled += instance.OnShoot;
+            @scrollForward.started += instance.OnScrollForward;
+            @scrollForward.performed += instance.OnScrollForward;
+            @scrollForward.canceled += instance.OnScrollForward;
+            @scrollBackward.started += instance.OnScrollBackward;
+            @scrollBackward.performed += instance.OnScrollBackward;
+            @scrollBackward.canceled += instance.OnScrollBackward;
         }
 
         /// <summary>
@@ -1153,6 +1211,12 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
             @shoot.started -= instance.OnShoot;
             @shoot.performed -= instance.OnShoot;
             @shoot.canceled -= instance.OnShoot;
+            @scrollForward.started -= instance.OnScrollForward;
+            @scrollForward.performed -= instance.OnScrollForward;
+            @scrollForward.canceled -= instance.OnScrollForward;
+            @scrollBackward.started -= instance.OnScrollBackward;
+            @scrollBackward.performed -= instance.OnScrollBackward;
+            @scrollBackward.canceled -= instance.OnScrollBackward;
         }
 
         /// <summary>
@@ -1357,5 +1421,19 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "scrollForward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollForward(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "scrollBackward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollBackward(InputAction.CallbackContext context);
     }
 }

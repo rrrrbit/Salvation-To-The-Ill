@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
-public class WEAPON_dmgRifle : UseBehaviour
+public class WEAPON_singleShot : UseBehaviour
 {
 	public float costAmmo;
 	public GameObject bullet;

@@ -7,7 +7,6 @@ public class PLAYER_shoot : MonoBehaviour
 	public Transform origin;
 	public float shootTimer;
 	public float useTimer;
-	public UseBehaviour weapon;
 
 	public GameObject[] inventory;
 	public int currentItem;
@@ -20,7 +19,7 @@ public class PLAYER_shoot : MonoBehaviour
 		actions = inp.Player;
 		actions.Enable();
 
-		inventory = new GameObject[5];
+		//inventory = new GameObject[5];
 	}
 
     // Update is called once per frame

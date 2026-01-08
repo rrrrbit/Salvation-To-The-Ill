@@ -315,7 +315,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 561079588}
   shootTimer: 0
-  weapon: {fileID: 2706256929464789928, guid: f1d468116bfbf85459126fcc5c2c05c8, type: 3}
+  useTimer: 0
+  inventory:
+  - {fileID: 7455337122672803234, guid: f1d468116bfbf85459126fcc5c2c05c8, type: 3}
+  - {fileID: 7455337122672803234, guid: d872e81f6e4ee144abc0f270e09c064e, type: 3}
+  - {fileID: 7455337122672803234, guid: 1ec4629dd4906b149a78f2d042328e37, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentItem: 0
 --- !u!114 &53540807
 MonoBehaviour:
   m_ObjectHideFlags: 0
