@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9025143853443110767}
-  - component: {fileID: -5157683598175717310}
-  - component: {fileID: 2706256929464789928}
+  - component: {fileID: -6056376324031881638}
+  - component: {fileID: -881022305418278295}
   m_Layer: 0
-  m_Name: DmgGrenadeLauncher
+  m_Name: DmgKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5157683598175717310
+--- !u!114 &-6056376324031881638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e581970267cd0c74081cc076bace500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 7bf93634aa115e84d8f346e82e44585f, type: 3}
+  itemSprite: {fileID: 21300000, guid: 1ff7d061e20ac8d4a8e6e12916565882, type: 3}
   itemModel: {fileID: 0}
-  itemName: dmg grenade
+  itemName: dmg knife
   quality: 1
   amt: 1
---- !u!114 &2706256929464789928
+--- !u!114 &-881022305418278295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,11 +59,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7455337122672803234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696c32d648af92f4da0d5166fd8db9aa, type: 3}
+  m_Script: {fileID: 11500000, guid: bd98d7eb4954c1d4cb68c34505c3d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costAmmo: 5
-  bullet: {fileID: 2639847300945711334, guid: 4e13842552dcf3b4abe85268f001a7a6, type: 3}
-  shootInterval: 1.5
-  spread: {x: 2, y: 2}
-  speed: 10
+  shootInterval: 0.25
+  range: 2
+  target:
+    serializedVersion: 2
+    m_Bits: 256
+  collideWith:
+    serializedVersion: 2
+    m_Bits: 1280
+  stats: {fileID: 11400000, guid: ee214c257c501b648acab8ab42dfe59a, type: 2}

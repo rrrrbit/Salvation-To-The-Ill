@@ -4,6 +4,8 @@ using UnityEngine;
 public class VFX_dmgText : MonoBehaviour
 {
 	TextMeshPro tmp;
+	public float value;
+	public Health wasHit;
 	public bool flashing;
 	public float fadeTime;
 	public Color c1;

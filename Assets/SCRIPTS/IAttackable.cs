@@ -7,6 +7,8 @@ public interface IAttackable
 
 public class AttackContext
 {
-	public GameObject gameObject;
-	public float dmg;
+	public GameObject attacker;
+	public GameObject target;
+	public float baseDmg;
+	public float finalDmg;
 }

@@ -6,7 +6,8 @@ public class WEAPON_singleShot : UseBehaviour
 	public float costAmmo;
 	public GameObject bullet;
 	public float shootInterval;
-	public float speed;
+    public Vector2 spread;
+    public float speed;
 
 	public override bool TryUse()
 	{
@@ -15,10 +16,14 @@ public class WEAPON_singleShot : UseBehaviour
 		PLYR.stats.ammo -= costAmmo;
 		GameObject thisBullet = Instantiate(bullet);
 		thisBullet.transform.position = PLYR.item.useOrigin.position;
-		thisBullet.transform.forward = PLYR.item.useOrigin.forward;
+        Vector2 angle = Random.insideUnitCircle;
+        angle.Scale(new(spread.x / 2, spread.y / 2));
+
+
+        thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, PLYR.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, PLYR.item.useOrigin.right) * PLYR.item.useOrigin.forward;
 		if (thisBullet.GetComponent<Rigidbody>() != null)
 		{
-			thisBullet.GetComponent<Rigidbody>().AddForce(speed * PLYR.item.useOrigin.forward, ForceMode.VelocityChange);
+			thisBullet.GetComponent<Rigidbody>().AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 		}
 		return true;
 	}

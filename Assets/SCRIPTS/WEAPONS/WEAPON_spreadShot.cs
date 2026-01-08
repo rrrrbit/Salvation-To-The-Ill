@@ -7,6 +7,8 @@ public class WEAPON_spreadShot : UseBehaviour
 	public GameObject bullet;
 	public float shootInterval;
 	public float speed;
+	public Vector2 spread;
+	public int bullets;
 
 	public override bool TryUse()
 	{
@@ -14,15 +16,25 @@ public class WEAPON_spreadShot : UseBehaviour
 		if (PLYR.stats.ammo < costAmmo) return false;
 		PLYR.stats.ammo -= costAmmo;
 
-		for (int i = 0; i < 10; i++)
+		ProjectileGroup group = new();
+
+		for (int i = 0; i < bullets; i++)
 		{
 			GameObject thisBullet = Instantiate(bullet);
 			thisBullet.transform.position = PLYR.item.useOrigin.position;
-			thisBullet.transform.forward = Quaternion.AngleAxis(Random.Range(-10, 10f), PLYR.item.useOrigin.up) * Quaternion.AngleAxis(Random.Range(-10, 10f), PLYR.item.useOrigin.right) * PLYR.item.useOrigin.forward;
+
+			Vector2 angle = Random.insideUnitCircle;
+			angle.Scale(new(spread.x / 2, spread.y / 2));
+
+
+            thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, PLYR.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, PLYR.item.useOrigin.right) * PLYR.item.useOrigin.forward;
 			if (thisBullet.GetComponent<Rigidbody>() != null)
 			{
 				thisBullet.GetComponent<Rigidbody>().AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 			}
+			thisBullet.GetComponent<OBJ_Projectile>().group = group;
+
+
 		}
 		
 		return true;

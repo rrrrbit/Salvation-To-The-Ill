@@ -65,4 +65,5 @@ MonoBehaviour:
   costAmmo: 1
   bullet: {fileID: 2639847300945711334, guid: 30cdbb2b58b2c0149bf84b9f80cecaf3, type: 3}
   shootInterval: 0.125
+  spread: {x: 1, y: 1}
   speed: 50

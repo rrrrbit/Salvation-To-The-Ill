@@ -26,6 +26,6 @@ public class HUD : MonoBehaviour
                 itemSprites[i].sprite = PLYR.item.inventory[i].itemSprite;
             }
         }
-        itemSelect.transform.position = itemSprites[PLYR.item.CurrentItem].transform.position;
+        itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.item.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
 	}
 }

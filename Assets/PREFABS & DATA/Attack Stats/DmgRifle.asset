@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DmgRifle
   m_EditorClassIdentifier: 
   minDmg: 3
-  maxDmg: 8
+  maxDmg: 5
   penetration: 1
