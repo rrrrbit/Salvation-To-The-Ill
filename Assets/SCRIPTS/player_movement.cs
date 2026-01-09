@@ -13,6 +13,8 @@ public class player_movement : MonoBehaviour
     [SerializeField] float xSpeed;
     [SerializeField] float xMvtLerpK;
     [SerializeField] float xMvtLerpT;
+	[SerializeField] float maxStepHeight;
+	[SerializeField] float minStepDepth;
 
 	public float jumpTime;
 	public float jumpHeight;
@@ -22,6 +24,8 @@ public class player_movement : MonoBehaviour
 
 	public Rigidbody groundCheck;
     public bool grounded;
+
+	public bool stairSnap;
 
     public TextMeshProUGUI debug;
 
@@ -63,4 +67,9 @@ public class player_movement : MonoBehaviour
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
+
+	void StairSnap()
+	{
+
+	}
 }
