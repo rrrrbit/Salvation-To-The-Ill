@@ -66,5 +66,5 @@ MonoBehaviour:
   bullet: {fileID: 2639847300945711334, guid: 5bbf1e3d95bd4434b997e292df83fc5d, type: 3}
   shootInterval: 0.75
   speed: 50
-  spread: {x: 10, y: 10}
-  bullets: 10
+  spread: {x: 20, y: 20}
+  bullets: 20

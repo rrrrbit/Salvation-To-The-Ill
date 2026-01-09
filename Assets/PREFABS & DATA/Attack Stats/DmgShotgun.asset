@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f12fbb8ac0600e479561d05906564c9, type: 3}
   m_Name: DmgShotgun
   m_EditorClassIdentifier: 
-  minDmg: 1
+  minDmg: 1.5
   maxDmg: 2
   penetration: 1

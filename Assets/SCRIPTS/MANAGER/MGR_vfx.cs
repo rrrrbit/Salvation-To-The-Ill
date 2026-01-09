@@ -9,10 +9,10 @@ public class MGR_vfx : MonoBehaviour
 	public List<VFX_dmgText> dmgTexts;
 
 	public void DmgText(AttackContext ctx, Vector3 position, bool flash)
-	{
+	{		
 		var t = dmgTexts.Where(x =>
-			x.ctx.target == ctx.target &&
-			x.ctx.attackGroup.Equals(ctx.attackGroup));
+			x.ctx.attackGroup.Equals(ctx.attackGroup) &&
+			x.ctx.target == ctx.target);
 
         if (t.Count() > 0)
 		{

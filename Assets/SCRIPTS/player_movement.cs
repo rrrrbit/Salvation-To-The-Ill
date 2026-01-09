@@ -27,8 +27,6 @@ public class player_movement : MonoBehaviour
 
 	public bool stairSnap;
 
-    public TextMeshProUGUI debug;
-
     Vector3 horizontalVel;
 
     void Start()
@@ -56,11 +54,6 @@ public class player_movement : MonoBehaviour
         RaycastHit hitInfo;
         
         grounded = groundCheck.SweepTest(-transform.up, out hitInfo, 1f) && hitInfo.distance <= 0.501f;
-        debug.text = "grounded: "+grounded.ToString() + "\n";
-        if(grounded)
-        {
-            debug.text += hitInfo.distance.ToString();
-        }
 
         if(actions.Jump.IsPressed() && grounded)
         {

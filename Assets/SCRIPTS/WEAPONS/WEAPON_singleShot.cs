@@ -25,6 +25,7 @@ public class WEAPON_singleShot : UseBehaviour
 		{
 			thisBullet.GetComponent<Rigidbody>().AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 		}
-		return true;
+        thisBullet.GetComponent<OBJ_Projectile>().group = new();
+        return true;
 	}
 }

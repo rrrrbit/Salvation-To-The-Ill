@@ -16,9 +16,6 @@ public class PLAYER_item : MonoBehaviour
         set { currentItem = (value + 5) % inventory.Length; }
     }
 	int currentItem;
-	
-
-	public TextMeshProUGUI debugItemText;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,8 +46,5 @@ public class PLAYER_item : MonoBehaviour
 
 		if (actions.scrollForward.WasPerformedThisFrame()) CurrentItem--;
 		if (actions.scrollBackward.WasPerformedThisFrame()) CurrentItem++;
-
-        if (inventory[CurrentItem]) debugItemText.text = "currently selected item (" + CurrentItem.ToString() + "): " + inventory[CurrentItem].itemName;
-		else debugItemText.text = "currently selected item (" + CurrentItem.ToString() + "): none";
     }
 }
