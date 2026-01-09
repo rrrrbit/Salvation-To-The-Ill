@@ -16,7 +16,7 @@ public class WEAPON_spreadShot : UseBehaviour
 		if (PLYR.stats.ammo < costAmmo) return false;
 		PLYR.stats.ammo -= costAmmo;
 
-		ProjectileGroup group = new();
+		AttackGroup group = new();
 
 		for (int i = 0; i < bullets; i++)
 		{

@@ -17,22 +17,18 @@ public class WEAPON_melee : UseBehaviour
 		PLYR.item.shootTimer = shootInterval;
 		Debug.DrawRay(PLYR.item.useOrigin.position, PLYR.item.useOrigin.forward * range);
 		RaycastHit hit;
-		if(Physics.Raycast(new Ray(PLYR.item.useOrigin.position, PLYR.item.useOrigin.forward), out hit, range, collideWith))
+		if(Physics.Raycast(new Ray(PLYR.item.useOrigin.position, PLYR.item.useOrigin.forward), out hit, range, collideWith) &&
+            target.Contains(hit.collider.gameObject) &&
+            hit.collider.gameObject.TryGetComponent(out IAttackable a))
 		{
-			print("hit");
-			if ((target & (1 << hit.collider.gameObject.layer)) != 0)
+            AttackContext ctx = new()
             {
-                if (hit.collider.gameObject.GetComponent<IAttackable>() != null)
-                {
-                    AttackContext ctx = new();
-                    ctx.attacker = gameObject;
-                    ctx.baseDmg = Random.Range(stats.minDmg, stats.maxDmg);
-                    hit.collider.gameObject.GetComponent<IAttackable>().Attack(ctx);
-
-
-                    MGR.vfx.DmgText(ctx, hit.point, false);
-                }
-            }
+                attackGroup = null,
+                target = hit.collider.gameObject,
+                baseDmg = Random.Range(stats.minDmg, stats.maxDmg)
+            };
+            a.Attack(ctx);
+            MGR.vfx.DmgText(ctx, hit.point, false);
         }
 		
 		

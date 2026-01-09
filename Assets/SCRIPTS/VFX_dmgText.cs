@@ -13,9 +13,10 @@ public class VFX_dmgText : MonoBehaviour
 	public float flashInterval;
 	public bool destroyAfter;
 	public float lifetime;
+	public AttackContext ctx;
+	public float fadeTimer;
 
 	float flashTimer;
-	float fadeTimer;
 	bool c;
 	
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,10 +29,17 @@ public class VFX_dmgText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		tmp.text = Mathf.Round(value).ToString();
+
+
         lifetime -= Time.deltaTime;
 		if(lifetime <= 0 ) fadeTimer -= Time.deltaTime;
 
-		if(fadeTimer <= 0 && destroyAfter) Destroy(gameObject);
+		if(fadeTimer <= 0 && destroyAfter)
+		{
+			MGR.vfx.dmgTexts.Remove(this);
+			Destroy(gameObject);
+        }
 
 		if(flashing) flashTimer -= Time.deltaTime;
 		if (flashTimer <= 0)

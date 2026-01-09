@@ -9,7 +9,7 @@ public class OBJ_Projectile : MonoBehaviour
 	public AttackStats stats;
 	public float lifetime;
 	public int penetrationLeft;
-	public ProjectileGroup group;
+	public AttackGroup group;
 	
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,30 +38,25 @@ public class OBJ_Projectile : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		
-		if ((collideWith & (1 << other.gameObject.layer)) != 0)
+		if (collideWith.Contains(other.gameObject))
 		{
-			if(other.gameObject.GetComponent<IAttackable>() != null)
+			if(other.gameObject.TryGetComponent(out IAttackable a))
 			{
-				AttackContext ctx = new();
-				ctx.attacker = gameObject;
-				ctx.target = other.gameObject;
-				ctx.baseDmg = Random.Range(stats.minDmg, stats.maxDmg);
-				other.gameObject.GetComponent<IAttackable>().Attack(ctx);
-				
-
+                AttackContext ctx = new()
+                {
+                    attackGroup = group,
+                    target = other.gameObject,
+                    baseDmg = Random.Range(stats.minDmg, stats.maxDmg)
+                };
+                a.Attack(ctx);
 				MGR.vfx.DmgText(ctx, transform.position, false);
 			}
 			else
 			{
 
 			}
-            penetrationLeft -= 1;
+			penetrationLeft--; ;
 			if(penetrationLeft == 0) Destroy(gameObject);
 		}
 	}
-}
-
-public class ProjectileGroup
-{
-
 }

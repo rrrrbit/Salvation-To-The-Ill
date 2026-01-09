@@ -253,10 +253,13 @@ MonoBehaviour:
   xSpeed: 7.5
   xMvtLerpK: 0.75
   xMvtLerpT: 0.15
+  maxStepHeight: 0
+  minStepDepth: 0
   jumpTime: 0.65
   jumpHeight: 1.5
   groundCheck: {fileID: 2039528999}
   grounded: 0
+  stairSnap: 0
   debug: {fileID: 536312679}
 --- !u!54 &53540804
 Rigidbody:
@@ -1541,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 506.73096, y: 17.706116}
+  m_AnchoredPosition: {x: 506.73096, y: 17.706055}
   m_SizeDelta: {x: 571.638, y: 128.084}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &661506374
@@ -1716,8 +1719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11e896ec90c27e449359da5318bb4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 1000
+  maxHealth: 1000
 --- !u!4 &665549525
 Transform:
   m_ObjectHideFlags: 0
@@ -2575,7 +2578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 78.46399, y: 210.64917}
+  m_AnchoredPosition: {x: 78.46387, y: 210.64917}
   m_SizeDelta: {x: 60.8919, y: 381.2983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1548291412
@@ -2660,6 +2663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmgText: {fileID: 2387962869840751042, guid: d46e6146236d1f945a10694636dc496c, type: 3}
+  dmgTexts: []
 --- !u!114 &1559355783
 MonoBehaviour:
   m_ObjectHideFlags: 0

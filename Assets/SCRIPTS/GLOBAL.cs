@@ -96,4 +96,9 @@ public static class GLOBAL
         Debug.DrawLine(new(bounds.min.x, bounds.min.y), new(bounds.max.x, bounds.min.y), (Color)color);
         Debug.DrawLine(new(bounds.min.x, bounds.max.y), new(bounds.max.x, bounds.max.y), (Color)color);
     }
+
+    public static bool Contains(this LayerMask mask, GameObject gameObject)
+    {
+        return (mask & (1 << gameObject.layer)) != 0;
+    }
 }

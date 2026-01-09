@@ -7,8 +7,10 @@ public interface IAttackable
 
 public class AttackContext
 {
-	public GameObject attacker;
+	public AttackGroup attackGroup;
 	public GameObject target;
 	public float baseDmg;
 	public float finalDmg;
 }
+
+public class AttackGroup { }
