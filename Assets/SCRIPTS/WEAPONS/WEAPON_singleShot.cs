@@ -9,18 +9,18 @@ public class WEAPON_singleShot : UseBehaviour
     public Vector2 spread;
     public float speed;
 
-	public override bool TryUse()
+	public override bool TryUse(ENTITY entity)
 	{
-		PLYR.item.shootTimer = shootInterval;
-		if (PLYR.stats.ammo < costAmmo) return false;
-		PLYR.stats.ammo -= costAmmo;
+		entity.item.shootTimer = shootInterval;
+		if (entity.stats.ammo < costAmmo) return false;
+        entity.stats.ammo -= costAmmo;
 		GameObject thisBullet = Instantiate(bullet);
-		thisBullet.transform.position = PLYR.item.useOrigin.position;
+		thisBullet.transform.position = entity.item.useOrigin.position;
         Vector2 angle = Random.insideUnitCircle;
         angle.Scale(new(spread.x / 2, spread.y / 2));
 
 
-        thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, PLYR.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, PLYR.item.useOrigin.right) * PLYR.item.useOrigin.forward;
+        thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, entity.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, entity.item.useOrigin.right) * entity.item.useOrigin.forward;
 		if (thisBullet.TryGetComponent(out Rigidbody r))
 		{
 			r.AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);

@@ -16,16 +16,16 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		health.GetComponent<Slider>().value = PLYR.stats.health / PLYR.stats.maxHealth;
-		ammo.GetComponent<Slider>().value = PLYR.stats.ammo / PLYR.stats.maxAmmo;
+		health.GetComponent<Slider>().value = PLYR.player.stats.health / PLYR.player.stats.maxHealth;
+		ammo.GetComponent<Slider>().value = PLYR.player.stats.ammo / PLYR.player.stats.maxAmmo;
 
-        for(int i = 0; i < PLYR.item.inventory.Length; i++)
+        for(int i = 0; i < PLYR.player.item.inventory.Length; i++)
         {
-            if(PLYR.item.inventory[i] && PLYR.item.inventory[i].itemSprite)
+            if(PLYR.player.item.inventory[i] && PLYR.player.item.inventory[i].itemSprite)
             {
-                itemSprites[i].sprite = PLYR.item.inventory[i].itemSprite;
+                itemSprites[i].sprite = PLYR.player.item.inventory[i].itemSprite;
             }
         }
-        itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.item.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
+        itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.item.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
 	}
 }

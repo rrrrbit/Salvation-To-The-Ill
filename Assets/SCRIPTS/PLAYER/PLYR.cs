@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class PLYR : ENTITY
 {
-	public static PLAYER_cam cam;
+	public PLAYER_cam cam;
+    public static PLYR player;
     public override void Start()
     {
 		base.Start();
+        player = this;
 		cam = GetComponent<PLAYER_cam>();
     }
 }

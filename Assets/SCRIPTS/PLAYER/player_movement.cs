@@ -22,5 +22,7 @@ public class PLAYER_movement : Movement
     {
         mvtIn = actions.move.ReadValue<Vector2>();
 		jump = actions.Jump.IsPressed();
+
+        base.FixedUpdate();
     }
 }

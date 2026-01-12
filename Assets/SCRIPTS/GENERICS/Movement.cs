@@ -25,11 +25,11 @@ public class Movement : MonoBehaviour
 	public bool stairSnap;
 	public bool enterCollisionTrigger;
     Vector3 horizontalVel;
-	protected Vector2 mvtIn;
+	[SerializeField] protected Vector2 mvtIn;
 	protected bool jump;
+    public ENTITY entity;
 
-
-	public virtual void Start()
+    public virtual void Start()
     {
 		jumpForce = 4f / jumpTime * jumpHeight;
 		grav = -8f / jumpTime / jumpTime * jumpHeight;
@@ -71,8 +71,7 @@ public class Movement : MonoBehaviour
 		if(shouldSnap)
 		{
 			var height = r.point.y - transform.position.y + 1;
-			print(height);
-			rb.MovePosition(rb.position + Vector3.up * height/2);
+			if(height < 0 ) rb.MovePosition(rb.position + Vector3.up * height/2);
 		}
 		else
 		{
@@ -84,12 +83,11 @@ public class Movement : MonoBehaviour
 	{
 		List<ContactPoint> points = new();
 		collision.GetContacts(points);
-		if(points.All(x => transform.position.y - 1 < x.point.y && x.point.y <= transform.position.y - 1 + maxStepHeight) && new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).sqrMagnitude <= 1)
+		if(points.All(x => transform.position.y - 1 < x.point.y && x.point.y <= transform.position.y - 1 + maxStepHeight) && new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).sqrMagnitude >= 1)
 		{
 			var height = points.Select(x => x.point.y).Max() - transform.position.y + 1;
-			print(height);
 			rb.MovePosition(transform.position + Vector3.up * height);
+			StairSnapDown();
 		}
-		StairSnapDown();
 	}
 }

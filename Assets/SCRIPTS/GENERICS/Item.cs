@@ -18,8 +18,10 @@ public class Item : MonoBehaviour
 	int currentItem;
 
 	protected bool shoot;
+	public ENTITY entity;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	
     public virtual void Start()
     {
 		inventory = new ItemData[invSize];
@@ -37,7 +39,7 @@ public class Item : MonoBehaviour
 			UseBehaviour useBehaviour;
 			if (inventory[CurrentItem] && inventory[CurrentItem].TryGetComponent(out useBehaviour))
 			{
-				useBehaviour.TryUse();
+				useBehaviour.TryUse(entity);
 			}
 		}
     }

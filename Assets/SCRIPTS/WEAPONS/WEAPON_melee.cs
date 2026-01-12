@@ -12,12 +12,12 @@ public class WEAPON_melee : UseBehaviour
 
 	public AttackStats stats;
 
-	public override bool TryUse()
+	public override bool TryUse(ENTITY entity)
 	{
-		PLYR.item.shootTimer = shootInterval;
-		Debug.DrawRay(PLYR.item.useOrigin.position, PLYR.item.useOrigin.forward * range);
+		entity.item.shootTimer = shootInterval;
+		Debug.DrawRay(entity.item.useOrigin.position, entity.item.useOrigin.forward * range);
 		RaycastHit hit;
-		if(Physics.Raycast(new Ray(PLYR.item.useOrigin.position, PLYR.item.useOrigin.forward), out hit, range, collideWith) &&
+		if(Physics.Raycast(new Ray(entity.item.useOrigin.position, entity.item.useOrigin.forward), out hit, range, collideWith) &&
             target.Contains(hit.collider.gameObject) &&
             hit.collider.gameObject.TryGetComponent(out IAttackable a))
 		{

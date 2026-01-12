@@ -6,8 +6,8 @@ public class Stats : MonoBehaviour, IAttackable
 	public float maxHealth;
     public float ammo;
     public float maxAmmo;
-    
-	public virtual void Start()
+    public ENTITY entity;
+    public virtual void Start()
 	{
 		ammo = maxAmmo;
 		health = maxHealth;

@@ -51,6 +51,6 @@ public class VFX_dmgText : MonoBehaviour
 		var C = c ? c1 : c2;
 		tmp.color = new(C.r, C.g, C.b, fadeTimer / fadeTime);
 
-		transform.forward = PLYR.cam.cam.transform.forward;
+		transform.forward = PLYR.player.cam.cam.transform.forward;
     }
 }
