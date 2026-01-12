@@ -1,4 +1,8 @@
+using Mono.Cecil.Cil;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,8 +28,11 @@ public class player_movement : MonoBehaviour
 
 	public Rigidbody groundCheck;
     public bool grounded;
+	public bool lastFrameGrounded;
 
 	public bool stairSnap;
+
+	public bool enterCollisionTrigger;
 
     Vector3 horizontalVel;
 
@@ -53,16 +60,50 @@ public class player_movement : MonoBehaviour
 
         RaycastHit hitInfo;
         
+		if(!grounded && stairSnap) StairSnapDown();
+
+		if (enterCollisionTrigger)
+		{
+			enterCollisionTrigger = false;
+		}
+
+		lastFrameGrounded = grounded;
         grounded = groundCheck.SweepTest(-transform.up, out hitInfo, 1f) && hitInfo.distance <= 0.501f;
+
 
         if(actions.Jump.IsPressed() && grounded)
         {
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			stairSnap = false;
         }
+		if(!lastFrameGrounded && grounded)stairSnap = true;
+
     }
 
-	void StairSnap()
+	void StairSnapDown()
 	{
+		bool shouldSnap = rb.SweepTest(Vector3.down, out var r, maxStepHeight);
+		if(shouldSnap)
+		{
+			var height = r.point.y - transform.position.y + 1;
+			print(height);
+			rb.MovePosition(rb.position + Vector3.up * height/2);
+		}
+		else
+		{
+			stairSnap = false;
+		}
+	}
 
+	private void OnCollisionEnter(Collision collision)
+	{
+		List<ContactPoint> points = new();
+		collision.GetContacts(points);
+		if(points.All(x => transform.position.y - 1 < x.point.y && x.point.y <= transform.position.y - 1 + maxStepHeight) && new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).sqrMagnitude <= 1)
+		{
+			var height = points.Select(x => x.point.y).Max() - transform.position.y + 1;
+			rb.MovePosition(transform.position + Vector3.up * height);
+		}
+		StairSnapDown();
 	}
 }

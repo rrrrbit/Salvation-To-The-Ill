@@ -28,11 +28,11 @@ public class WEAPON_spreadShot : UseBehaviour
 
 
             thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, PLYR.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, PLYR.item.useOrigin.right) * PLYR.item.useOrigin.forward;
-			if (thisBullet.GetComponent<Rigidbody>() != null)
+			if (thisBullet.TryGetComponent(out Rigidbody r))
 			{
-				thisBullet.GetComponent<Rigidbody>().AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
+				r.AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 			}
-			thisBullet.GetComponent<OBJ_Projectile>().group = group;
+			if(thisBullet.TryGetComponent(out OBJ_Projectile p))p.group = group;
 
 
 		}
