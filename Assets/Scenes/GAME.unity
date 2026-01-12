@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53540802}
   - component: {fileID: 53540807}
-  - component: {fileID: 53540803}
+  - component: {fileID: 53540809}
   - component: {fileID: 53540806}
   - component: {fileID: 53540805}
   - component: {fileID: 53540808}
@@ -238,30 +238,6 @@ Transform:
   - {fileID: 1425250555}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &53540803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53540798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca2422e7b78e87145959939630140387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xSpeed: 7.5
-  xMvtLerpK: 0.75
-  xMvtLerpT: 0.15
-  maxStepHeight: 0.5
-  minStepDepth: 0
-  jumpTime: 0.65
-  jumpHeight: 1.5
-  groundCheck: {fileID: 2039528999}
-  grounded: 0
-  lastFrameGrounded: 0
-  stairSnap: 0
-  enterCollisionTrigger: 0
 --- !u!54 &53540804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -321,6 +297,7 @@ MonoBehaviour:
   useOrigin: {fileID: 561079588}
   shootTimer: 0
   useTimer: 0
+  invSize: 5
   inventory:
   - {fileID: 7455337122672803234, guid: f1d468116bfbf85459126fcc5c2c05c8, type: 3}
   - {fileID: 7455337122672803234, guid: d872e81f6e4ee144abc0f270e09c064e, type: 3}
@@ -355,6 +332,30 @@ MonoBehaviour:
   maxHealth: 200
   ammo: 200
   maxAmmo: 200
+--- !u!114 &53540809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53540798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaaa7b00cc94e848b8e968907624cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSpeed: 7.5
+  xMvtLerpK: 0.75
+  xMvtLerpT: 0.15
+  maxStepHeight: 0.5
+  minStepDepth: 0
+  jumpTime: 0.65
+  jumpHeight: 1.5
+  groundCheck: {fileID: 2039528999}
+  grounded: 0
+  lastFrameGrounded: 0
+  stairSnap: 0
+  enterCollisionTrigger: 0
 --- !u!1 &166568997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,7 +1218,7 @@ Transform:
   m_GameObject: {fileID: 653303282}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.5, z: 7}
+  m_LocalPosition: {x: -2, y: -0.25, z: 5.5}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2128,7 +2129,7 @@ Transform:
   m_GameObject: {fileID: 876653213}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 6}
+  m_LocalPosition: {x: -2, y: -0.5, z: 5.25}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2311,7 +2312,7 @@ Transform:
   m_GameObject: {fileID: 1250920991}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -0.5, z: 5}
+  m_LocalPosition: {x: -2, y: -0.75, z: 5}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2986,7 +2987,7 @@ Transform:
   m_GameObject: {fileID: 2026625223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: 8}
+  m_LocalPosition: {x: -2, y: 0, z: 5.75}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
