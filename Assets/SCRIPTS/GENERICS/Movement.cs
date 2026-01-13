@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
 	public float jumpTime;
 	public float jumpHeight;
 	float jumpForce;
-	float grav;
+	[SerializeField] float grav;
 	public Rigidbody groundCheck;
     public bool grounded;
 	public bool lastFrameGrounded;

@@ -8,8 +8,7 @@ public class NPC_movement : Movement
     {
         NavMeshPath path = new();
         NavMesh.CalculatePath(transform.position, targetPos.position, NavMesh.AllAreas, path);
-        print(path.status);
-        mvtIn = (path.corners[0].xz() - transform.position.xz()).normalized;
+        if(path.status != NavMeshPathStatus.PathInvalid)mvtIn = (path.corners[1].xz() - transform.position.xz()).normalized;
         for (int i = 0; i < path.corners.Length - 1; i++)
             Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
         base.FixedUpdate();
