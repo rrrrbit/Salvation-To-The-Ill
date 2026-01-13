@@ -21,7 +21,6 @@ public class Stats : MonoBehaviour, IAttackable
 	
 	public virtual void Attack(AttackContext ctx)
 	{
-		print("i really dont appreciate you dealing ("+ctx.baseDmg.ToString()+") damage to me");
 		health -= ctx.baseDmg;
 		ctx.finalDmg = ctx.baseDmg;
 
