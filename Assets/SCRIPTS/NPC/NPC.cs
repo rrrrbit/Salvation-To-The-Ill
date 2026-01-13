@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class NPC : ENTITY
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public GameObject currentTarget;
     public override void Start()
     {
         base.Start();

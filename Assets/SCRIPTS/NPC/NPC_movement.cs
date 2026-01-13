@@ -3,7 +3,8 @@ using UnityEngine.AI;
 
 public class NPC_movement : Movement
 {
-    public Transform targetPos;
+    public Vector3 targetPos;
+    public float sufficientRange;
     NavMeshPath path;
 
     public override void Start()
@@ -14,10 +15,18 @@ public class NPC_movement : Movement
 
     public override void FixedUpdate()
     {
-        
-        if(path.status != NavMeshPathStatus.PathInvalid)
+        targetPos = ((NPC)entity).currentTarget.transform.position;
+        if (path.status != NavMeshPathStatus.PathInvalid)
         {
-            mvtIn = (path.corners[1].xz() - transform.position.xz()).normalized;
+            
+            if((transform.position - targetPos).sqrMagnitude > Mathf.Pow(sufficientRange, 2))
+            {
+                mvtIn = (Quaternion.Inverse(transform.rotation) * (path.corners[1] - transform.position)).xz().normalized;
+            }
+            else
+            {
+                mvtIn = Vector3.zero;
+            }
         } 
         else
         {
@@ -35,6 +44,6 @@ public class NPC_movement : Movement
 
     public void RecalcPath()
     {
-        NavMesh.CalculatePath(transform.position, targetPos.position, NavMesh.AllAreas, path);
+        NavMesh.CalculatePath(transform.position, targetPos, NavMesh.AllAreas, path);
     }
 }

@@ -304,7 +304,7 @@ MonoBehaviour:
   - {fileID: 7455337122672803234, guid: 1ec4629dd4906b149a78f2d042328e37, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  entity: {fileID: 0}
+  entity: {fileID: 53540807}
 --- !u!114 &53540807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   maxHealth: 200
   ammo: 200
   maxAmmo: 200
-  entity: {fileID: 0}
+  entity: {fileID: 53540807}
 --- !u!114 &53540809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
   stairSnap: 0
   enterCollisionTrigger: 0
   mvtIn: {x: 0, y: 0}
-  entity: {fileID: 0}
+  entity: {fileID: 53540807}
 --- !u!1 &166568997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1564,7 @@ MonoBehaviour:
     m_Bits: 1024
   m_UseGeometry: 1
   m_DefaultArea: 0
-  m_GenerateLinks: 0
+  m_GenerateLinks: 1
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
@@ -2005,14 +2005,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665549520}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 4.67, y: 0.5, z: 0.97817}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1977073664}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &665549526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2040,7 +2040,8 @@ MonoBehaviour:
   enterCollisionTrigger: 0
   mvtIn: {x: 0, y: 0}
   entity: {fileID: 665549528}
-  targetPos: {fileID: 53540802}
+  targetPos: {x: 0, y: 0, z: 0}
+  sufficientRange: 3
 --- !u!54 &665549527
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2066,7 +2067,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &665549528
 MonoBehaviour:
@@ -2088,6 +2089,7 @@ MonoBehaviour:
   item: {fileID: 0}
   movement: {fileID: 0}
   team: 0
+  currentTarget: {fileID: 53540798}
 --- !u!114 &665549529
 MonoBehaviour:
   m_ObjectHideFlags: 0
