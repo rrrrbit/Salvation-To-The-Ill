@@ -11,8 +11,9 @@ public class NPC_look : Look
     // Update is called once per frame
     public override void Update()
     {
-        var r = Quaternion.LookRotation((((NPC)entity).currentTarget.transform.position - transform.position).normalized, Vector3.up).eulerAngles;
-        look = new(r.y,-r.x);
+        print(Quaternion.LookRotation((((NPC)entity).currentTarget.transform.position - transform.position).normalized).eulerAngles);
+        var r = Quaternion.LookRotation((((NPC)entity).currentTarget.transform.position - transform.position).normalized).eulerAngles;
+        look = new(r.y, Mathf.Clamp(-r.x, pitchClamp.x, pitchClamp.y) % 360);
         base.Update();
     }
 }
