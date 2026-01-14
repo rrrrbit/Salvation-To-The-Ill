@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
     }
 	int currentItem;
 
-	protected bool shoot;
+	protected bool use;
 	public ENTITY entity;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,7 +34,7 @@ public class Item : MonoBehaviour
 		useTimer = Mathf.Max(0, useTimer - Time.deltaTime);
 
 
-		if (shoot && shootTimer <= 0 && useTimer <= 0)
+		if (use && shootTimer <= 0 && useTimer <= 0)
 		{
 			UseBehaviour useBehaviour;
 			if (inventory[CurrentItem] && inventory[CurrentItem].TryGetComponent(out useBehaviour))

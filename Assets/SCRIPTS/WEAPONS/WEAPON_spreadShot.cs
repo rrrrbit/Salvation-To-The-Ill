@@ -32,7 +32,11 @@ public class WEAPON_spreadShot : UseBehaviour
 			{
 				r.AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 			}
-			if(thisBullet.TryGetComponent(out OBJ_Projectile p))p.group = group;
+			if(thisBullet.TryGetComponent(out OBJ_Projectile p))
+			{
+                p.group = group;
+				p.originLayer = entity.obj.layer;
+            }
 
 
 		}

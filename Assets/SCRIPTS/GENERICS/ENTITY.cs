@@ -10,6 +10,7 @@ public class ENTITY : MonoBehaviour
 	public Stats stats;
 	public Item item;
 	public Movement movement;
+	public Look look;
 	public enum Teams {
 		HUMAN,
 		ZOMBIE,
@@ -25,9 +26,11 @@ public class ENTITY : MonoBehaviour
 		stats = GetComponent<Stats>();
 		item = GetComponent<Item>();
 		movement = GetComponent<Movement>();
+		look = GetComponent<Look>();
 
 		stats.entity = this;
 		item.entity = this;
 		movement.entity = this;
+		look.entity = this;
     }
 }

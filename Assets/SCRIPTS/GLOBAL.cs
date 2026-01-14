@@ -102,4 +102,10 @@ public static class GLOBAL
         return (mask & (1 << gameObject.layer)) != 0;
     }
     public static Vector2 xz(this Vector3 v) => new(v.x, v.z);
+
+    public static Vector2 ComponentWiseMult(this Vector2 v, Vector2 other)
+    {
+        v.Scale(other);
+        return v;
+    }
 }

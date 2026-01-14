@@ -6,6 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class OBJ_Projectile : MonoBehaviour
 {
 	public LayerMask collideWith;
+	public int originLayer;
 	public AttackStats stats;
 	public float lifetime;
 	public int penetrationLeft;
@@ -37,8 +38,8 @@ public class OBJ_Projectile : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		
-		if (collideWith.Contains(other.gameObject))
+
+		if (collideWith.Contains(other.gameObject) && other.gameObject.layer != originLayer)
 		{
 			if(other.gameObject.TryGetComponent(out IAttackable a))
 			{

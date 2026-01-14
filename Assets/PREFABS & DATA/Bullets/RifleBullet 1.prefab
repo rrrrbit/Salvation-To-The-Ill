@@ -199,9 +199,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collideWith:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 321
+  originLayer: 0
   stats: {fileID: 11400000, guid: 6abc42ea8313ef949b40478ea9e5deea, type: 2}
   lifetime: 10
+  penetrationLeft: 0
 --- !u!33 &7404381645702883373
 MeshFilter:
   m_ObjectHideFlags: 0

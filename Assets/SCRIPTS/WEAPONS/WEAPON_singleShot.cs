@@ -25,7 +25,11 @@ public class WEAPON_singleShot : UseBehaviour
 		{
 			r.AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);
 		}
-        if(thisBullet.TryGetComponent(out OBJ_Projectile p))p.group = new();
+        if(thisBullet.TryGetComponent(out OBJ_Projectile p))
+		{ 
+			p.group = new(); 
+			p.originLayer = entity.obj.layer;
+		}
         return true;
 	}
 }

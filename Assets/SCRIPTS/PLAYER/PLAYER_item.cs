@@ -15,7 +15,7 @@ public class PLAYER_item : Item
 	}
     public override void Update()
     {
-		shoot = actions.shoot.IsPressed();
+		use = actions.shoot.IsPressed();
 		base.Update();
 
 
