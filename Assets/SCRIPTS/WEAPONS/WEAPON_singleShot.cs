@@ -1,26 +1,25 @@
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
-public class WEAPON_singleShot : UseBehaviour
+public class WEAPON_singleShot : WEAPON
 {
-	public float costAmmo;
 	public GameObject bullet;
-	public float shootInterval;
     public Vector2 spread;
     public float speed;
 
 	public override bool TryUse(ENTITY entity)
 	{
-		entity.item.shootTimer = shootInterval;
-		if (entity.stats.ammo < costAmmo) return false;
-        entity.stats.ammo -= costAmmo;
+		if(!Consume(entity)) return false;
+
 		GameObject thisBullet = Instantiate(bullet);
 		thisBullet.transform.position = entity.item.useOrigin.position;
-        Vector2 angle = Random.insideUnitCircle;
-        angle.Scale(new(spread.x / 2, spread.y / 2));
+        Vector2 angle = Random.insideUnitCircle.Scaled(new(spread.x / 2, spread.y / 2));
 
 
-        thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, entity.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, entity.item.useOrigin.right) * entity.item.useOrigin.forward;
+        thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, entity.item.useOrigin.up) * 
+									   Quaternion.AngleAxis(angle.y, entity.item.useOrigin.right) * 
+									   entity.item.useOrigin.forward;
+
 		if (thisBullet.TryGetComponent(out Rigidbody r))
 		{
 			r.AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);

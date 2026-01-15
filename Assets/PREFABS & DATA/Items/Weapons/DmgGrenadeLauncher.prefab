@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9025143853443110767}
   - component: {fileID: -5157683598175717310}
   - component: {fileID: 2706256929464789928}
+  - component: {fileID: -4100775909567386826}
   m_Layer: 0
   m_Name: DmgGrenadeLauncher
   m_TagString: Untagged
@@ -62,8 +63,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696c32d648af92f4da0d5166fd8db9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costAmmo: 5
+  item: {fileID: 0}
+  stats: {fileID: 0}
   bullet: {fileID: 2639847300945711334, guid: 4e13842552dcf3b4abe85268f001a7a6, type: 3}
-  shootInterval: 1.5
   spread: {x: 2, y: 2}
   speed: 10
+--- !u!114 &-4100775909567386826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455337122672803234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9309fed73e33af44f827b4d83359c898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  stats: {fileID: 11400000, guid: 669f3a5352a3bdb4bbd15a7250e326e3, type: 2}
+  bullet: {fileID: 2639847300945711334, guid: 4e13842552dcf3b4abe85268f001a7a6, type: 3}

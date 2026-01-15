@@ -103,7 +103,7 @@ public static class GLOBAL
     }
     public static Vector2 xz(this Vector3 v) => new(v.x, v.z);
 
-    public static Vector2 ComponentWiseMult(this Vector2 v, Vector2 other)
+    public static Vector2 Scaled(this Vector2 v, Vector2 other)
     {
         v.Scale(other);
         return v;

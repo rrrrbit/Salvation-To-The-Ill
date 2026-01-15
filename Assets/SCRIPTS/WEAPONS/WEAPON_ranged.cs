@@ -1,20 +1,18 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
-public class WEAPON_spreadShot : UseBehaviour
+public class WEAPON_ranged : WEAPON
 {
-	public float costAmmo;
 	public GameObject bullet;
-	public float shootInterval;
-	public float speed;
-	public Vector2 spread;
-	public int bullets;
 
 	public override bool TryUse(ENTITY entity)
 	{
-		entity.item.shootTimer = shootInterval;
-		if (entity.stats.ammo < costAmmo) return false;
-		entity.stats.ammo -= costAmmo;
+		if(!Consume(entity)) return false;
+
+		var spread = stats.spread[Quality()];
+		var speed = stats.bulletSpeed[Quality()];
+		var bullets = stats.bullets[Quality()];
 
 		AttackGroup group = new();
 
@@ -23,9 +21,7 @@ public class WEAPON_spreadShot : UseBehaviour
 			GameObject thisBullet = Instantiate(bullet);
 			thisBullet.transform.position = entity.item.useOrigin.position;
 
-			Vector2 angle = Random.insideUnitCircle;
-			angle.Scale(new(spread.x / 2, spread.y / 2));
-
+			Vector2 angle = Random.insideUnitCircle.Scaled(new(spread.x / 2, spread.y / 2));
 
             thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, entity.item.useOrigin.up) * Quaternion.AngleAxis(angle.y, entity.item.useOrigin.right) * entity.item.useOrigin.forward;
 			if (thisBullet.TryGetComponent(out Rigidbody r))
@@ -36,6 +32,8 @@ public class WEAPON_spreadShot : UseBehaviour
 			{
                 p.group = group;
 				p.originLayer = entity.obj.layer;
+				p.originStats = stats;
+				p.originQuality = Quality();
             }
 
 

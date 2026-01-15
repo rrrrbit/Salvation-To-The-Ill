@@ -7,6 +7,9 @@ public class OBJ_Projectile : MonoBehaviour
 {
 	public LayerMask collideWith;
 	public int originLayer;
+	public WeaponStats originStats;
+	public int originQuality;
+
 	public AttackStats stats;
 	public float lifetime;
 	public int penetrationLeft;
@@ -15,7 +18,7 @@ public class OBJ_Projectile : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-		penetrationLeft = stats.penetration;
+		penetrationLeft = originStats.penetration[originQuality];
     }
 
     // Update is called once per frame
@@ -41,16 +44,16 @@ public class OBJ_Projectile : MonoBehaviour
 
 		if (collideWith.Contains(other.gameObject) && other.gameObject.layer != originLayer)
 		{
-			if(other.gameObject.TryGetComponent(out IAttackable a))
+			if(other.TryGetComponent(out IAttackable a))
 			{
                 AttackContext ctx = new()
                 {
                     attackGroup = group,
                     target = other.gameObject,
-                    baseDmg = Random.Range(stats.minDmg, stats.maxDmg)
+                    baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y)
                 };
                 a.Attack(ctx);
-				MGR.vfx.DmgText(ctx, transform.position, false);
+				if(!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, transform.position, false);
 			}
 			else
 			{

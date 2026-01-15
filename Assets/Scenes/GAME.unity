@@ -1343,6 +1343,7 @@ MonoBehaviour:
   - {fileID: 854952487}
   - {fileID: 166568999}
   itemSelect: {fileID: 707911507}
+  placeholderSprite: {fileID: 21300000, guid: 1b85593be120f9343b68c64da9f90d85, type: 3}
 --- !u!1 &464117082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,15 +1941,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 665549525}
-  - component: {fileID: 665549523}
-  - component: {fileID: 665549522}
-  - component: {fileID: 665549521}
-  - component: {fileID: 665549527}
   - component: {fileID: 665549528}
   - component: {fileID: 665549526}
-  - component: {fileID: 665549530}
   - component: {fileID: 665549532}
+  - component: {fileID: 665549530}
   - component: {fileID: 665549531}
+  - component: {fileID: 665549527}
+  - component: {fileID: 665549521}
+  - component: {fileID: 665549523}
+  - component: {fileID: 665549522}
   m_Layer: 8
   m_Name: enemyTest
   m_TagString: Untagged
@@ -2128,6 +2129,7 @@ MonoBehaviour:
   look: {fileID: 0}
   team: 0
   currentTarget: {fileID: 53540798}
+  targetPosD: {x: 0, y: 0, z: 0}
 --- !u!114 &665549530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,7 +2182,7 @@ MonoBehaviour:
   invSize: 1
   inventory: []
   entity: {fileID: 0}
-  useRange: 20
+  useRange: 30
 --- !u!1 &707911506
 GameObject:
   m_ObjectHideFlags: 0

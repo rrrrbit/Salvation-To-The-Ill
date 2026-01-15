@@ -7,6 +7,7 @@ public class HUD : MonoBehaviour
 	public GameObject ammo;
     public Image[] itemSprites;
     public Transform itemSelect;
+    public Sprite placeholderSprite;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,9 +22,16 @@ public class HUD : MonoBehaviour
 
         for(int i = 0; i < PLYR.player.item.inventory.Length; i++)
         {
-            if(PLYR.player.item.inventory[i] && PLYR.player.item.inventory[i].itemSprite)
+            if(PLYR.player.item.inventory[i])
             {
-                itemSprites[i].sprite = PLYR.player.item.inventory[i].itemSprite;
+                if (PLYR.player.item.inventory[i].itemSprite)
+                {
+                    itemSprites[i].sprite = PLYR.player.item.inventory[i].itemSprite;
+                }
+                else
+                {
+                    itemSprites[i].sprite = placeholderSprite;
+                }
             }
         }
         itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.item.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);

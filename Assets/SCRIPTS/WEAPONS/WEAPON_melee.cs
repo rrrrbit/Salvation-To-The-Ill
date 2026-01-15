@@ -3,34 +3,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.UI.Image;
 
-public class WEAPON_melee : UseBehaviour
+public class WEAPON_melee : WEAPON
 {
-	public float shootInterval;
-	public float range;
 	public LayerMask target;
 	public LayerMask collideWith;
-
-	public AttackStats stats;
-
 	public override bool TryUse(ENTITY entity)
 	{
-		entity.item.shootTimer = shootInterval;
-		Debug.DrawRay(entity.item.useOrigin.position, entity.item.useOrigin.forward * range);
+		if(!Consume(entity)) return false;
+
+		var range = stats.effectiveRange[Quality()];
+		var dmgRange = stats.dmgRange[Quality()];
+
 		RaycastHit hit;
 		if(Physics.Raycast(new Ray(entity.item.useOrigin.position, entity.item.useOrigin.forward), out hit, range, collideWith) &&
-            target.Contains(hit.collider.gameObject) &&
+            target.Contains(hit.collider.gameObject) && hit.collider.gameObject.layer != entity.obj.layer &&
             hit.collider.gameObject.TryGetComponent(out IAttackable a))
 		{
-            AttackContext ctx = new()
-            {
-                attackGroup = null,
-                target = hit.collider.gameObject,
-                baseDmg = Random.Range(stats.minDmg, stats.maxDmg)
-            };
+			AttackContext ctx = new()
+			{
+				attackGroup = null,
+				target = hit.collider.gameObject,
+				baseDmg = Random.Range(dmgRange.x, dmgRange.y)
+			};
             a.Attack(ctx);
-            MGR.vfx.DmgText(ctx, hit.point, false);
+            if (!hit.collider.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, hit.point, false);
         }
-		
 		
 		return true;
 	}

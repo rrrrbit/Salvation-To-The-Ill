@@ -15,7 +15,7 @@ public class PLAYER_look : Look
 
     public override void Update()
     {
-        look += (Mouse.current.delta.ReadValue() * mouseSensitivity * mouseSensitivityMult).ComponentWiseMult(new(1,-1));
+        look += (Mouse.current.delta.ReadValue() * mouseSensitivity * mouseSensitivityMult).Scaled(new(1,-1));
         base.Update(); 
     }
 }
