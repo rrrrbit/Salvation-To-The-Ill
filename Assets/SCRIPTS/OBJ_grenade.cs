@@ -1,38 +1,31 @@
 using UnityEngine;
 
-public class OBJ_Grenade : MonoBehaviour
+public class OBJ_Grenade : OBJ_Projectile
 {
-    public float lifetime;
-    public GameObject explosion;
+    //public GameObject explosion;
     public float gravityMult;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        lifetime -= Time.deltaTime;
-        if (lifetime <= 0)
-        {
-            Instantiate(explosion, transform.position, transform.rotation, transform.parent);
-            Destroy(gameObject);
-        }
-    }
+    public float explosionSize;
 
     private void FixedUpdate()
     {
         GetComponent<Rigidbody>().AddForce(Vector3.down * (gravityMult - 1), ForceMode.Force);
     }
 
-    private void OnDestroy()
+    public override void OnDie()
     {
-        foreach(var obj in GetComponentsInChildren<Transform>())
+        foreach(Collider other in Physics.OverlapSphere(transform.position, explosionSize, collideWith))
         {
-            obj.SetParent(transform.parent);
+            if (other.TryGetComponent(out IAttackable a) && other.gameObject.layer != originLayer || targetOriginLayer)
+            {
+                AttackContext ctx = new()
+                {
+                    attackGroup = group,
+                    target = other.gameObject,
+                    baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y)
+                };
+                a.Attack(ctx);
+                if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, other.transform.position, false);
+            }
         }
     }
 }

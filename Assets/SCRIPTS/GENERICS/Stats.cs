@@ -3,9 +3,19 @@ using UnityEngine;
 public class Stats : MonoBehaviour, IAttackable
 {
 	public float health;
-	public float maxHealth;
     public float ammo;
+	public float conversion;
+	[Space]
+	public float maxHealth;
     public float maxAmmo;
+	public float maxConversion;
+	public float speed;
+	public float size;
+	public float defense;
+	public float convResistance;
+	public float attackSpeedMult;
+	public float ammoCnsmpMult;
+	[Space]
     public ENTITY entity;
     public virtual void Start()
 	{
@@ -17,21 +27,46 @@ public class Stats : MonoBehaviour, IAttackable
 	{
         ammo = Mathf.Clamp(ammo, 0, maxAmmo);
         health = Mathf.Clamp(health, 0, maxHealth);
+		conversion = Mathf.Clamp(conversion, 0, maxConversion);
     }
 	
 	public virtual void Attack(AttackContext ctx)
 	{
-		health -= ctx.baseDmg;
-		ctx.finalDmg = ctx.baseDmg;
+		ctx.finalDmg = ctx.baseDmg * DefenseMult(defense);
+		health -= ctx.finalDmg;
 
-		if(health <= 0)
-		{
-			Die();
-		}
+		if(health <= 0) Die(ctx);
 	}
 
-	public virtual void Die()
+	public virtual void AddConversion(AttackContext ctx)
+	{
+        ctx.finalConv = ctx.baseConv * DefenseMult(convResistance);
+		if(ctx.attackerTeam == entity.team)
+		{
+			Heal(ctx.baseConv);
+            conversion -= ctx.finalConv;
+        }
+		else conversion += ctx.finalConv;
+        if (conversion >= maxConversion) Convert(ctx);
+    }
+
+	public virtual void Heal(float amt)
+	{
+		health += amt;
+	}
+
+	public virtual void Convert(AttackContext ctx)
+	{
+
+	}
+
+	public virtual void Die(AttackContext ctx)
 	{
 		Destroy(gameObject);
+	}
+
+	float DefenseMult(float x)
+	{
+		if (x <= 0) return 1 - x; else return 1 / (x+1);
 	}
 }

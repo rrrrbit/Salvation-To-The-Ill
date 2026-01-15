@@ -13,8 +13,9 @@ public class NPC : ENTITY
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         targetPosD = currentTarget.transform.position - transform.position;
     }
 

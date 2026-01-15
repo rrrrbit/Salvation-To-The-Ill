@@ -341,9 +341,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 200
-  maxHealth: 200
   ammo: 200
+  conversion: 0
+  maxHealth: 200
   maxAmmo: 200
+  maxConversion: 200
+  speed: 7.5
+  size: 1
+  defense: 0
+  convResistance: 0
   entity: {fileID: 53540807}
 --- !u!114 &53540809
 MonoBehaviour:
@@ -364,7 +370,6 @@ MonoBehaviour:
   minStepDepth: 0
   jumpTime: 0.65
   jumpHeight: 1.5
-  grav: 0
   groundCheck: {fileID: 2039528999}
   grounded: 0
   lastFrameGrounded: 0
@@ -1944,7 +1949,7 @@ GameObject:
   - component: {fileID: 665549528}
   - component: {fileID: 665549526}
   - component: {fileID: 665549532}
-  - component: {fileID: 665549530}
+  - component: {fileID: 665549533}
   - component: {fileID: 665549531}
   - component: {fileID: 665549527}
   - component: {fileID: 665549521}
@@ -2070,7 +2075,6 @@ MonoBehaviour:
   minStepDepth: 0
   jumpTime: 0.65
   jumpHeight: 1.5
-  grav: 0
   groundCheck: {fileID: 1977073662}
   grounded: 0
   lastFrameGrounded: 0
@@ -2130,23 +2134,6 @@ MonoBehaviour:
   team: 0
   currentTarget: {fileID: 53540798}
   targetPosD: {x: 0, y: 0, z: 0}
---- !u!114 &665549530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665549520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1736e63c663062947a70fa52404c580b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1000
-  maxHealth: 1000
-  ammo: 1000
-  maxAmmo: 1000
-  entity: {fileID: 665549528}
 --- !u!114 &665549531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,6 +2170,29 @@ MonoBehaviour:
   inventory: []
   entity: {fileID: 0}
   useRange: 30
+--- !u!114 &665549533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665549520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5127c0b23ee5069499a708161018af07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200
+  ammo: 200
+  conversion: 0
+  maxHealth: 200
+  maxAmmo: 200
+  maxConversion: 200
+  speed: 2.5
+  size: 0.5
+  defense: 0
+  convResistance: 0
+  entity: {fileID: 0}
 --- !u!1 &707911506
 GameObject:
   m_ObjectHideFlags: 0

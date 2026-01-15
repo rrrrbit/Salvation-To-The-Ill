@@ -62,12 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd98d7eb4954c1d4cb68c34505c3d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 0.25
-  range: 2
+  item: {fileID: 0}
+  stats: {fileID: 11400000, guid: 5f08bc8db57ab964eac00571e8bc6022, type: 2}
   target:
     serializedVersion: 2
     m_Bits: 320
   collideWith:
     serializedVersion: 2
     m_Bits: 1344
-  stats: {fileID: 11400000, guid: ee214c257c501b648acab8ab42dfe59a, type: 2}

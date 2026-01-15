@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9025143853443110767}
   - component: {fileID: -1626081030885570591}
-  - component: {fileID: 2706256929464789928}
+  - component: {fileID: -7712205860331621500}
   m_Layer: 0
   m_Name: DmgRifle
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   itemName: dmg rifle
   quality: 1
   amt: 1
---- !u!114 &2706256929464789928
+--- !u!114 &-7712205860331621500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,11 +59,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7455337122672803234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696c32d648af92f4da0d5166fd8db9aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9309fed73e33af44f827b4d83359c898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costAmmo: 1
+  item: {fileID: -1626081030885570591}
+  stats: {fileID: 11400000, guid: a141a98cefa9fb8419194e10dd8729b5, type: 2}
   bullet: {fileID: 2639847300945711334, guid: 30cdbb2b58b2c0149bf84b9f80cecaf3, type: 3}
-  shootInterval: 0.125
-  spread: {x: 1, y: 1}
-  speed: 50

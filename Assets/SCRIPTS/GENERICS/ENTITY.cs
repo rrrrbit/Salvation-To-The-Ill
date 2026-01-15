@@ -33,4 +33,10 @@ public class ENTITY : MonoBehaviour
 		movement.entity = this;
 		look.entity = this;
     }
+
+    public virtual void Update()
+    {
+		transform.localScale = Vector3.one * stats.size;
+		movement.xSpeed = stats.speed / stats.size;
+    }
 }

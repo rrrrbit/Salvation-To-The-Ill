@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
 {
     Rigidbody rb;
     Collider col;
-    [SerializeField] float xSpeed;
+    public float xSpeed;
     [SerializeField] float xMvtLerpK;
     [SerializeField] float xMvtLerpT;
 	[SerializeField] float maxStepHeight;
@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
 	public float jumpTime;
 	public float jumpHeight;
 	float jumpForce;
-	[SerializeField] float grav;
+	float grav;
 	public Rigidbody groundCheck;
     public bool grounded;
 	public bool lastFrameGrounded;

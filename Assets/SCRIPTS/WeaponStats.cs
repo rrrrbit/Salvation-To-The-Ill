@@ -4,6 +4,7 @@ using UnityEngine;
 public class WeaponStats : ScriptableObject
 {
     public Vector2[] dmgRange;
+    public Vector2[] conversionRange;
     public Vector2[] spread;
     public int[] penetration;
     public float[] costAmmo;
@@ -13,4 +14,5 @@ public class WeaponStats : ScriptableObject
     public int[] bullets;
     public float[] effectiveRange;
     public bool gravity;
+    public bool targetOriginLayer;
 }

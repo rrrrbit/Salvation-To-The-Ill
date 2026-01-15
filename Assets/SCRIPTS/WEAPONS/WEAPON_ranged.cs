@@ -35,8 +35,6 @@ public class WEAPON_ranged : WEAPON
 				p.originStats = stats;
 				p.originQuality = Quality();
             }
-
-
 		}
 		
 		return true;
