@@ -10,7 +10,9 @@ public class OBJ_bullet : OBJ_Projectile
             {
                 attackGroup = group,
                 target = other.gameObject,
-                baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y)
+                baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y),
+                baseConv = Random.Range(originStats.conversionRange[originQuality].x, originStats.conversionRange[originQuality].y),
+                heal = originStats.heal
             };
             a.Attack(ctx);
             if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, transform.position, false);

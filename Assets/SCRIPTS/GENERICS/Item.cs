@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
     }
 	int currentItem;
 
-	protected bool use;
+	public bool use;
 	public ENTITY entity;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,4 +43,9 @@ public class Item : MonoBehaviour
 			}
 		}
     }
+	public ItemData GetCurrent()
+	{
+        if (inventory[CurrentItem]) return inventory[CurrentItem];
+		else return null;
+	}
 }

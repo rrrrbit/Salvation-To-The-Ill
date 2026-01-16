@@ -350,6 +350,8 @@ MonoBehaviour:
   size: 1
   defense: 0
   convResistance: 0
+  attackSpeedMult: 0
+  ammoCnsmpMult: 0
   entity: {fileID: 53540807}
 --- !u!114 &53540809
 MonoBehaviour:
@@ -2131,7 +2133,7 @@ MonoBehaviour:
   item: {fileID: 0}
   movement: {fileID: 0}
   look: {fileID: 0}
-  team: 0
+  team: 1
   currentTarget: {fileID: 53540798}
   targetPosD: {x: 0, y: 0, z: 0}
 --- !u!114 &665549531
@@ -2192,6 +2194,8 @@ MonoBehaviour:
   size: 0.5
   defense: 0
   convResistance: 0
+  attackSpeedMult: 0
+  ammoCnsmpMult: 0
   entity: {fileID: 0}
 --- !u!1 &707911506
 GameObject:
@@ -3877,6 +3881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmgText: {fileID: 2387962869840751042, guid: d46e6146236d1f945a10694636dc496c, type: 3}
+  healText: {fileID: 2387962869840751042, guid: 4e81cb6f34055c54a910b19efdbc5ef0, type: 3}
   dmgTexts: []
 --- !u!114 &1559355783
 MonoBehaviour:

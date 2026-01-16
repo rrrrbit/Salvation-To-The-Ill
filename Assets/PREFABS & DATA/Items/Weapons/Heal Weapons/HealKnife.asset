@@ -10,27 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d51082e057a09464fbf8ed5dab3c0233, type: 3}
-  m_Name: DmgShotgun
+  m_Name: HealKnife
   m_EditorClassIdentifier: 
   dmgRange:
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  conversionRange:
+  - {x: 2, y: 10}
+  - {x: 2, y: 10}
+  - {x: 2, y: 10}
+  - {x: 2, y: 10}
+  - {x: 2, y: 10}
   spread:
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   penetration: 0100000001000000010000000100000001000000
   costAmmo:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   costHealth:
   - 0
   - 0
@@ -38,22 +44,24 @@ MonoBehaviour:
   - 0
   - 0
   shootInterval:
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.01
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
   bulletSpeed:
-  - 30
-  - 30
-  - 30
-  - 30
-  - 30
-  bullets: 0100000001000000010000000100000001000000
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  bullets: 0000000000000000000000000000000000000000
   effectiveRange:
-  - 50
-  - 50
-  - 50
-  - 50
-  - 50
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
   gravity: 0
+  targetOriginLayer: 0
+  heal: 1

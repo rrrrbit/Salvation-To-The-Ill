@@ -21,7 +21,8 @@ public class OBJ_Grenade : OBJ_Projectile
                 {
                     attackGroup = group,
                     target = other.gameObject,
-                    baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y)
+                    baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y),
+                    heal = originStats.heal
                 };
                 a.Attack(ctx);
                 if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, other.transform.position, false);

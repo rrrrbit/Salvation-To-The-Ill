@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9025143853443110767}
-  - component: {fileID: -6056376324031881638}
-  - component: {fileID: -3328410107639793659}
+  - component: {fileID: -1626081030885570591}
+  - component: {fileID: -7712205860331621500}
   m_Layer: 0
-  m_Name: DmgShotgun
+  m_Name: HealRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6056376324031881638
+--- !u!114 &-1626081030885570591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e581970267cd0c74081cc076bace500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 27c5301f30aa08c418927e370b4c0dab, type: 3}
+  itemSprite: {fileID: 21300000, guid: 3c71f3d242d0b814cb08ad8ff38cce30, type: 3}
   itemModel: {fileID: 0}
-  itemName: dmg shotgun
+  itemName: heal rifle
   quality: 1
   amt: 1
---- !u!114 &-3328410107639793659
+--- !u!114 &-7712205860331621500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,9 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9309fed73e33af44f827b4d83359c898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costAmmo: 5
-  bullet: {fileID: 2639847300945711334, guid: 5bbf1e3d95bd4434b997e292df83fc5d, type: 3}
-  shootInterval: 0.75
-  speed: 50
-  spread: {x: 20, y: 20}
-  bullets: 20
+  item: {fileID: -1626081030885570591}
+  stats: {fileID: 11400000, guid: 5f2d05fe20761804c94e2823f2da00ac, type: 2}
+  bullet: {fileID: 2639847300945711334, guid: 2faff8db3a7c608408b311cdff74779c, type: 3}

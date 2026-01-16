@@ -32,21 +32,21 @@ public class Stats : MonoBehaviour, IAttackable
 	
 	public virtual void Attack(AttackContext ctx)
 	{
-		ctx.finalDmg = ctx.baseDmg * DefenseMult(defense);
-		health -= ctx.finalDmg;
+		if (ctx.attackerTeam == entity.team) ctx.finalDmg = 0;
+        else ctx.finalDmg = ctx.baseDmg * DefenseMult(defense);
+		print(ctx.finalDmg);
+        health -= ctx.baseDmg;
 
-		if(health <= 0) Die(ctx);
-	}
 
-	public virtual void AddConversion(AttackContext ctx)
-	{
         ctx.finalConv = ctx.baseConv * DefenseMult(convResistance);
-		if(ctx.attackerTeam == entity.team)
-		{
-			Heal(ctx.baseConv);
+        if (ctx.attackerTeam == entity.team)
+        {
+            Heal(ctx.baseConv);
             conversion -= ctx.finalConv;
         }
-		else conversion += ctx.finalConv;
+        else conversion += ctx.finalConv;
+
+		if(health <= 0) Die(ctx);
         if (conversion >= maxConversion) Convert(ctx);
     }
 

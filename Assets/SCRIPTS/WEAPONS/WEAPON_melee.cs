@@ -13,8 +13,9 @@ public class WEAPON_melee : WEAPON
 
 		var range = stats.effectiveRange[Quality()];
 		var dmgRange = stats.dmgRange[Quality()];
+		var convRange = stats.conversionRange[Quality()];
 
-		RaycastHit hit;
+        RaycastHit hit;
 		if(Physics.Raycast(new Ray(entity.item.useOrigin.position, entity.item.useOrigin.forward), out hit, range, collideWith) &&
             target.Contains(hit.collider.gameObject) && hit.collider.gameObject.layer != entity.obj.layer &&
             hit.collider.gameObject.TryGetComponent(out IAttackable a))
@@ -23,8 +24,10 @@ public class WEAPON_melee : WEAPON
 			{
 				attackGroup = null,
 				target = hit.collider.gameObject,
-				baseDmg = Random.Range(dmgRange.x, dmgRange.y)
-			};
+				baseDmg = Random.Range(dmgRange.x, dmgRange.y),
+				baseConv = Random.Range(convRange.x, convRange.y),
+				heal = stats.heal
+            };
             a.Attack(ctx);
             if (!hit.collider.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, hit.point, false);
         }

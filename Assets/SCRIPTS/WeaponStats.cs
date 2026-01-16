@@ -15,4 +15,5 @@ public class WeaponStats : ScriptableObject
     public float[] effectiveRange;
     public bool gravity;
     public bool targetOriginLayer;
+    public bool heal;
 }

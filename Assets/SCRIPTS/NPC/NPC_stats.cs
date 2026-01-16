@@ -8,5 +8,7 @@ public class NPC_stats : Stats
         else entity.team = ENTITY.Teams.HUMAN;
 
         conversion = 0;
+
+        print("i lowk just swapped teams");
     }
 }

@@ -10,27 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d51082e057a09464fbf8ed5dab3c0233, type: 3}
-  m_Name: DmgKnife
+  m_Name: DmgGrenadeLauncher
   m_EditorClassIdentifier: 
   dmgRange:
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
+  - {x: 50, y: 75}
+  - {x: 50, y: 75}
+  - {x: 50, y: 75}
+  - {x: 50, y: 75}
+  - {x: 50, y: 75}
+  conversionRange:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   spread:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  penetration: 0100000001000000010000000100000001000000
+  - {x: 2, y: 2}
+  - {x: 2, y: 2}
+  - {x: 2, y: 2}
+  - {x: 2, y: 2}
+  - {x: 2, y: 2}
+  penetration: ffffffffffffffffffffffffffffffffffffffff
   costAmmo:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
   costHealth:
   - 0
   - 0
@@ -38,22 +44,23 @@ MonoBehaviour:
   - 0
   - 0
   shootInterval:
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
-  - 0.25
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   bulletSpeed:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  bullets: 0000000000000000000000000000000000000000
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  bullets: 0100000001000000010000000100000001000000
   effectiveRange:
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  gravity: 0
+  - -1
+  - -1
+  - -1
+  - -1
+  - -1
+  gravity: 1
+  targetOriginLayer: 0

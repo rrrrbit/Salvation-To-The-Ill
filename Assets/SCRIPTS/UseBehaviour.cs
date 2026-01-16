@@ -9,7 +9,7 @@ public class UseBehaviour : MonoBehaviour
         print(item.ToString());
     }
 
-    protected int Quality()
+    public int Quality()
     {
         return (int)item.quality;
     }

@@ -3,7 +3,6 @@ using UnityEngine;
 public interface IAttackable
 {
 	void Attack(AttackContext ctx);
-	void AddConversion(AttackContext ctx);
 }
 
 public class AttackContext
@@ -16,6 +15,7 @@ public class AttackContext
 	public float finalDmg;
 	public float baseConv;
 	public float finalConv;
+	public bool heal;
 }
 
 public class AttackGroup { }
