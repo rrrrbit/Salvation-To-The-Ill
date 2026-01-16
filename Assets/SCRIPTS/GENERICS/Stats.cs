@@ -34,8 +34,7 @@ public class Stats : MonoBehaviour, IAttackable
 	{
 		if (ctx.attackerTeam == entity.team) ctx.finalDmg = 0;
         else ctx.finalDmg = ctx.baseDmg * DefenseMult(defense);
-		print(ctx.finalDmg);
-        health -= ctx.baseDmg;
+        health -= ctx.finalDmg;
 
 
         ctx.finalConv = ctx.baseConv * DefenseMult(convResistance);

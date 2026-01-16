@@ -1,18 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class MGR_npc : MonoBehaviour
+public class MGR_entity : MonoBehaviour
 {
-    public List<NPC> npcs;
+    public List<ENTITY> entities = new();
     public float recalcPathsTime = .1f;
-    public float recalcPathsTimer = 0;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        npcs = new();
-    }
+    float recalcPathsTimer = 0;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +15,7 @@ public class MGR_npc : MonoBehaviour
         if(recalcPathsTimer < 0)
         {
             recalcPathsTimer = recalcPathsTime;
-            foreach(NPC npc in npcs)
+            foreach(NPC npc in entities.Where(x => x.GetType() == typeof(NPC)))
             {
                 ((NPC_movement)npc.movement).RecalcPath();
             }

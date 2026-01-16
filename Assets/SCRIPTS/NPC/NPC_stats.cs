@@ -11,4 +11,10 @@ public class NPC_stats : Stats
 
         print("i lowk just swapped teams");
     }
+
+    public override void Update()
+    {
+        base.Update();
+        ammo = maxAmmo;
+    }
 }

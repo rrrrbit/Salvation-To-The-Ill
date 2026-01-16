@@ -32,11 +32,18 @@ public class ENTITY : MonoBehaviour
 		item.entity = this;
 		movement.entity = this;
 		look.entity = this;
+
+		MGR.entities.entities.Add(this);
     }
 
     public virtual void Update()
     {
 		transform.localScale = Vector3.one * stats.size;
 		movement.xSpeed = stats.speed / stats.size;
+    }
+
+    private void OnDestroy()
+    {
+        MGR.entities.entities.Remove(this);
     }
 }

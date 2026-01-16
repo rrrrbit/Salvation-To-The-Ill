@@ -3,10 +3,10 @@ using UnityEngine;
 public class MGR : MonoBehaviour
 {
 	public static MGR_vfx vfx;
-	public static MGR_npc npc;
+	public static MGR_entity entities;
 	private void Start()
 	{
 		vfx = GetComponent<MGR_vfx>();
-		npc = GetComponent<MGR_npc>();
+		entities = GetComponent<MGR_entity>();
 	}
 }

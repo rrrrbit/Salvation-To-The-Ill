@@ -72,6 +72,7 @@ public class Movement : MonoBehaviour
 		{
 			var height = r.point.y - transform.position.y + 1;
 			if(height < 0 ) rb.MovePosition(rb.position + Vector3.up * height/2);
+			grounded = true;
 		}
 		else
 		{

@@ -44,11 +44,11 @@ MonoBehaviour:
   - 0
   - 0
   shootInterval:
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   bulletSpeed:
   - 30
   - 30
@@ -57,11 +57,11 @@ MonoBehaviour:
   - 30
   bullets: 0100000001000000010000000100000001000000
   effectiveRange:
-  - 50
-  - 50
-  - 50
-  - 50
-  - 50
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
   gravity: 0
   targetOriginLayer: 0
   heal: 0
