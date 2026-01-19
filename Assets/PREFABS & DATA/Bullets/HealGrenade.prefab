@@ -108,8 +108,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 0, a: 1}
-      key1: {r: 1, g: 0.76862746, b: 0, a: 0}
+      key0: {r: 0, g: 1, b: 0, a: 1}
+      key1: {r: 1, g: 1, b: 0, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 8106723087089768463}
   - component: {fileID: 4422864243213154318}
   m_Layer: 11
-  m_Name: Grenade
+  m_Name: HealGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc54ff6c74eb2f744a67a782390aa57f, type: 2}
+  - {fileID: 2100000, guid: d74f03f9bf78e4b47b1aedf3df5da90a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

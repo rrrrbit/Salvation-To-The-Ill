@@ -32,17 +32,17 @@ MonoBehaviour:
   - {x: 2, y: 2}
   penetration: ffffffffffffffffffffffffffffffffffffffff
   costAmmo:
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   costHealth:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
   shootInterval:
   - 1
   - 1

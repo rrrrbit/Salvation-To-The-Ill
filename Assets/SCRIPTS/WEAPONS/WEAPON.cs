@@ -11,7 +11,7 @@ public class WEAPON : UseBehaviour
         var costAmmo = stats.costAmmo[Quality()];
         var costHealth = stats.costHealth[Quality()];
 
-        entity.item.shootTimer = shootInterval;
+        entity.inventory.shootTimer = shootInterval;
         if (entity.stats.ammo < costAmmo || entity.stats.health < costHealth) return false;
         entity.stats.ammo -= costAmmo; entity.stats.health -= costHealth;
         return true;

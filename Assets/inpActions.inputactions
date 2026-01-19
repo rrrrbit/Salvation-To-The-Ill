@@ -565,6 +565,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "swapItem",
+                    "type": "Button",
+                    "id": "6dfc8d23-0af1-4712-ae0f-1e996fc67c2e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -664,6 +673,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "scrollBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d298b14b-4434-4707-9545-f7f086030d03",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "swapItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

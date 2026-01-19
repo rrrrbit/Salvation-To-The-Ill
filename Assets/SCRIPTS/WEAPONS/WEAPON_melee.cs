@@ -9,14 +9,14 @@ public class WEAPON_melee : WEAPON
 	public LayerMask collideWith;
 	public override bool TryUse(ENTITY entity)
 	{
-		if(!Consume(entity)) return false;
+		//if(!Consume(entity)) return false;
 
 		var range = stats.effectiveRange[Quality()];
 		var dmgRange = stats.dmgRange[Quality()];
 		var convRange = stats.conversionRange[Quality()];
 
         RaycastHit hit;
-		if(Physics.Raycast(new Ray(entity.item.useOrigin.position, entity.item.useOrigin.forward), out hit, range, collideWith) &&
+		if(Physics.Raycast(new Ray(entity.inventory.useOrigin.position, entity.inventory.useOrigin.forward), out hit, range, collideWith) &&
             target.Contains(hit.collider.gameObject) && ((hit.collider.gameObject.GetComponent<ENTITY>().team != entity.team) || stats.heal) &&
             hit.collider.gameObject.TryGetComponent(out IAttackable a))
 		{
@@ -30,6 +30,7 @@ public class WEAPON_melee : WEAPON
                 attackerTeam = entity.team,
             };
             a.Attack(ctx);
+			Consume(entity);
             if (!hit.collider.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, hit.point, false);
         }
 		

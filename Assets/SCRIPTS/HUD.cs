@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
@@ -20,20 +22,31 @@ public class HUD : MonoBehaviour
 		health.GetComponent<Slider>().value = PLYR.player.stats.health / PLYR.player.stats.maxHealth;
 		ammo.GetComponent<Slider>().value = PLYR.player.stats.ammo / PLYR.player.stats.maxAmmo;
 
-        for(int i = 0; i < PLYR.player.item.inventory.Length; i++)
+        for(int i = 0; i < PLYR.player.inventory.inventory.Length; i++)
         {
-            if(PLYR.player.item.inventory[i])
+            itemSprites[i].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+            if(PLYR.player.inventory.inventory[i])
             {
-                if (PLYR.player.item.inventory[i].itemSprite)
+                var thisItem = PLYR.player.inventory.inventory[i];
+                if (thisItem.itemSprite)
                 {
-                    itemSprites[i].sprite = PLYR.player.item.inventory[i].itemSprite;
+                    itemSprites[i].sprite = thisItem.itemSprite;
                 }
                 else
                 {
                     itemSprites[i].sprite = placeholderSprite;
                 }
+                if (thisItem.amt > 1)
+                {
+                    itemSprites[i].GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+                    itemSprites[i].GetComponentInChildren<TextMeshProUGUI>().text = thisItem.amt.ToString();
+                }
+            }
+            else
+            {
+                itemSprites[i].sprite = null;
             }
         }
-        itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.item.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
+        itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.inventory.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
 	}
 }

@@ -13,7 +13,7 @@ public class OBJ_Projectile : MonoBehaviour
     public AttackGroup group;
 	public bool targetOriginLayer;
 
-	public ENTITY.Teams originTeam;
+	public GameObject origin;
 	public WeaponStats originStats;
 	public int originQuality;
 
@@ -47,7 +47,7 @@ public class OBJ_Projectile : MonoBehaviour
             OnDie();
             Destroy(gameObject);
         }
-		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != originTeam) || originStats.heal) && other.gameObject != gameObject) OnHit(other);
+		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != origin.GetComponent<ENTITY>().team) || originStats.heal) && other.gameObject != origin) OnHit(other);
 	}
 
     public virtual void OnHit(Collider other)

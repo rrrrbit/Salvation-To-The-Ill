@@ -17,4 +17,5 @@ public class ItemData : MonoBehaviour
     }
     public Qualities quality = Qualities.average;
     public int amt = 1;
+    public int maxStack = 8;
 }

@@ -29,33 +29,33 @@ public class NPC : ENTITY
             GetComponent<MeshRenderer>().material.color = Color.red;
         }
 
-        if (item.GetCurrent())
+        if (inventory.GetCurrent())
         {
-            if (item.GetCurrent().TryGetComponent(out WEAPON w))
+            if (inventory.GetCurrent().TryGetComponent(out WEAPON w))
             {
                 useRange = w.stats.effectiveRange[w.Quality()];
             }
             else
             {
-                useRange = item.GetCurrent().defaultRange;
+                useRange = inventory.GetCurrent().defaultRange;
             }
         }
         if (currentTarget)
         {
             targetPosD = currentTarget.transform.position - transform.position;
             ((NPC_movement)movement).sufficientRange = useRange - 1;
-            item.use = targetPosD.sqrMagnitude <= useRange * useRange;
+            inventory.use = targetPosD.sqrMagnitude <= useRange * useRange;
         }
         else
         {
-            targetPosD = transform.position;
-            item.use = false;
+            targetPosD = Vector3.zero;
+            inventory.use = false;
         }
     }
 
     void RecalculateTarget()
     {
-        var isHealingWeapon = item.GetCurrent() && item.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
+        var isHealingWeapon = inventory.GetCurrent() && inventory.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
         List<ENTITY> targets = new();
         if (isHealingWeapon)
         {

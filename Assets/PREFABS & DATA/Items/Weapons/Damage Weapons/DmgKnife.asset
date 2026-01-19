@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DmgKnife
   m_EditorClassIdentifier: 
   dmgRange:
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
-  - {x: 2, y: 10}
+  - {x: 5, y: 10}
+  - {x: 5, y: 10}
+  - {x: 5, y: 10}
+  - {x: 5, y: 10}
+  - {x: 5, y: 10}
   conversionRange:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
@@ -64,3 +64,4 @@ MonoBehaviour:
   - 2
   gravity: 0
   targetOriginLayer: 0
+  heal: 0

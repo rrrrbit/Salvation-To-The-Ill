@@ -1,8 +1,9 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
 	public Transform useOrigin;
 	public float shootTimer;
@@ -40,6 +41,15 @@ public class Item : MonoBehaviour
 			if (inventory[CurrentItem] && inventory[CurrentItem].TryGetComponent(out useBehaviour))
 			{
 				useBehaviour.TryUse(entity);
+			}
+		}
+
+		for (int i = 0; i < inventory.Length; i++)
+		{
+			if (inventory[i] && inventory[i].amt <= 0)
+			{
+				Destroy(inventory[i].gameObject);
+				inventory[i] = null;
 			}
 		}
     }

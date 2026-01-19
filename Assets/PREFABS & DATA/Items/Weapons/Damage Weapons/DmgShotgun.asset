@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DmgShotgun
   m_EditorClassIdentifier: 
   dmgRange:
-  - {x: 1.5, y: 2}
-  - {x: 1.5, y: 2}
-  - {x: 1.5, y: 2}
-  - {x: 1.5, y: 2}
-  - {x: 1.5, y: 2}
+  - {x: 1, y: 2}
+  - {x: 1, y: 2}
+  - {x: 1, y: 2}
+  - {x: 1, y: 2}
+  - {x: 1, y: 2}
   conversionRange:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
@@ -25,11 +25,11 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   spread:
-  - {x: 3, y: 3}
-  - {x: 3, y: 3}
-  - {x: 3, y: 3}
-  - {x: 3, y: 3}
-  - {x: 3, y: 3}
+  - {x: 5, y: 5}
+  - {x: 5, y: 5}
+  - {x: 5, y: 5}
+  - {x: 5, y: 5}
+  - {x: 5, y: 5}
   penetration: 0100000001000000010000000100000001000000
   costAmmo:
   - 5
@@ -44,11 +44,11 @@ MonoBehaviour:
   - 0
   - 0
   shootInterval:
-  - 0.3
-  - 0.3
-  - 0.3
-  - 0.3
-  - 0.3
+  - 0.75
+  - 0.75
+  - 0.75
+  - 0.75
+  - 0.75
   bulletSpeed:
   - 30
   - 30
@@ -64,3 +64,4 @@ MonoBehaviour:
   - 20
   gravity: 0
   targetOriginLayer: 0
+  heal: 0

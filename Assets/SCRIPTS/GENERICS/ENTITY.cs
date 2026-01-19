@@ -8,7 +8,7 @@ public class ENTITY : MonoBehaviour
 	public Rigidbody rb;
 	public Collider col;
 	public Stats stats;
-	public Item item;
+	public Inventory inventory;
 	public Movement movement;
 	public Look look;
 	public enum Teams {
@@ -24,12 +24,12 @@ public class ENTITY : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		col = GetComponent<Collider>();
 		stats = GetComponent<Stats>();
-		item = GetComponent<Item>();
+		inventory = GetComponent<Inventory>();
 		movement = GetComponent<Movement>();
 		look = GetComponent<Look>();
 
 		stats.entity = this;
-		item.entity = this;
+		inventory.entity = this;
 		movement.entity = this;
 		look.entity = this;
 
