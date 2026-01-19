@@ -19,6 +19,16 @@ public class NPC : ENTITY
     {
         base.Update();
         RecalculateTarget();
+
+        if(team == Teams.HUMAN)
+        {
+            GetComponent<MeshRenderer>().material.color = Color.blue;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+
         if (item.GetCurrent())
         {
             if (item.GetCurrent().TryGetComponent(out WEAPON w))
@@ -46,20 +56,29 @@ public class NPC : ENTITY
     void RecalculateTarget()
     {
         var isHealingWeapon = item.GetCurrent() && item.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
-        List<ENTITY> enemies = MGR.entities.entities.Where(x => (x.team == team) == isHealingWeapon).ToList();
-        if (enemies.Count <= 0)
+        List<ENTITY> targets = new();
+        if (isHealingWeapon)
+        {
+            targets = MGR.entities.entities.ToList();
+        }
+        else
+        {
+            targets = MGR.entities.entities.Where(x => x.team != team).ToList();
+        }
+        targets.Remove(this);
+        if (targets.Count <= 0)
         {
             currentTarget = null;
             return;
         }
-        List<ENTITY> lineOfSight = enemies.Where(x => !Physics.Linecast(transform.position, x.transform.position, walls)).ToList();
+        List<ENTITY> lineOfSight = targets.Where(x => !Physics.Linecast(transform.position, x.transform.position, walls)).ToList();
         if(lineOfSight.Count > 0)
         {
             currentTarget = lineOfSight.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First().obj;
         }
         else
         {
-            currentTarget = enemies.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First().obj;
+            currentTarget = targets.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First().obj;
         }
     }
 }

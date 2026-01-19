@@ -17,7 +17,7 @@ public class WEAPON_melee : WEAPON
 
         RaycastHit hit;
 		if(Physics.Raycast(new Ray(entity.item.useOrigin.position, entity.item.useOrigin.forward), out hit, range, collideWith) &&
-            target.Contains(hit.collider.gameObject) && hit.collider.gameObject.layer != entity.obj.layer &&
+            target.Contains(hit.collider.gameObject) && ((hit.collider.gameObject.GetComponent<ENTITY>().team != entity.team) || stats.heal) &&
             hit.collider.gameObject.TryGetComponent(out IAttackable a))
 		{
 			AttackContext ctx = new()
@@ -26,7 +26,8 @@ public class WEAPON_melee : WEAPON
 				target = hit.collider.gameObject,
 				baseDmg = Random.Range(dmgRange.x, dmgRange.y),
 				baseConv = Random.Range(convRange.x, convRange.y),
-				heal = stats.heal
+				heal = stats.heal,
+                attackerTeam = entity.team,
             };
             a.Attack(ctx);
             if (!hit.collider.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, hit.point, false);

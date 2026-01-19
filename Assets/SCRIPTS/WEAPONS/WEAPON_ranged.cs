@@ -31,7 +31,7 @@ public class WEAPON_ranged : WEAPON
 			if(thisBullet.TryGetComponent(out OBJ_Projectile p))
 			{
                 p.group = group;
-				p.originLayer = entity.obj.layer;
+				p.originTeam = entity.team;
 				p.originStats = stats;
 				p.originQuality = Quality();
             }

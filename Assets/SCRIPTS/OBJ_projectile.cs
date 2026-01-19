@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class OBJ_Projectile : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class OBJ_Projectile : MonoBehaviour
     public AttackGroup group;
 	public bool targetOriginLayer;
 
-    public int originLayer;
+	public ENTITY.Teams originTeam;
 	public WeaponStats originStats;
 	public int originQuality;
 
@@ -42,11 +43,11 @@ public class OBJ_Projectile : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		if (instakill.Contains(other.gameObject))
-		{
-			OnDie();
-			Destroy(gameObject);
-		}
-		else if (collideWith.Contains(other.gameObject) && other.gameObject.layer != originLayer || targetOriginLayer) OnHit(other);
+        {
+            OnDie();
+            Destroy(gameObject);
+        }
+		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != originTeam) || originStats.heal) && other.gameObject != gameObject) OnHit(other);
 	}
 
     public virtual void OnHit(Collider other)
