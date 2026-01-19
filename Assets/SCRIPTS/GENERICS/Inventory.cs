@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+	public GameObject hand;
 	public Transform useOrigin;
 	public float shootTimer;
 	public float useTimer;
@@ -42,14 +43,26 @@ public class Inventory : MonoBehaviour
 			{
 				useBehaviour.TryUse(entity);
 			}
+			else
+			{
+				hand.GetComponent<UseBehaviour>().TryUse(entity);
+			}
 		}
+
 
 		for (int i = 0; i < inventory.Length; i++)
 		{
-			if (inventory[i] && inventory[i].amt <= 0)
+			if (inventory[i])
 			{
-				Destroy(inventory[i].gameObject);
-				inventory[i] = null;
+				if(inventory[i].amt <= 0)
+				{
+					Destroy(inventory[i].gameObject);
+					inventory[i] = null;
+				}
+				if (inventory[i].amt > inventory[i].maxStack)
+				{
+					//logic to break up overstacks here
+				}
 			}
 		}
     }
@@ -57,5 +70,10 @@ public class Inventory : MonoBehaviour
 	{
         if (inventory[CurrentItem]) return inventory[CurrentItem];
 		else return null;
+	}
+
+	public void Drop(int slot,  int amount)
+	{
+		
 	}
 }

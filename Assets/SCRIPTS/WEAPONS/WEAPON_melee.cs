@@ -22,7 +22,7 @@ public class WEAPON_melee : WEAPON
 		{
 			AttackContext ctx = new()
 			{
-				attackGroup = null,
+				attackGroup = new(),
 				target = hit.collider.gameObject,
 				baseDmg = Random.Range(dmgRange.x, dmgRange.y),
 				baseConv = Random.Range(convRange.x, convRange.y),

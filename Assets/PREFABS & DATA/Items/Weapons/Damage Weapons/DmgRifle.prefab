@@ -48,8 +48,10 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 3c71f3d242d0b814cb08ad8ff38cce30, type: 3}
   itemModel: {fileID: 0}
   itemName: dmg rifle
+  defaultRange: 0
   quality: 1
   amt: 1
+  maxStack: 1
 --- !u!114 &-7712205860331621500
 MonoBehaviour:
   m_ObjectHideFlags: 0

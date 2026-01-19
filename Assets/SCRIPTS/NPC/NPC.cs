@@ -12,6 +12,7 @@ public class NPC : ENTITY
 
     public Vector3 targetPosD;
     public float useRange;
+	public float defaultStopRange;
 
     public LayerMask walls;
 
@@ -39,18 +40,22 @@ public class NPC : ENTITY
             {
                 useRange = inventory.GetCurrent().defaultRange;
             }
-        }
-        if (currentTarget)
-        {
-            targetPosD = currentTarget.transform.position - transform.position;
-            ((NPC_movement)movement).sufficientRange = useRange - 1;
-            inventory.use = targetPosD.sqrMagnitude <= useRange * useRange;
-        }
-        else
-        {
-            targetPosD = Vector3.zero;
-            inventory.use = false;
-        }
+		}
+		else
+		{
+			useRange = defaultStopRange;
+		}
+		if (currentTarget)
+		{
+			targetPosD = currentTarget.transform.position - transform.position;
+			((NPC_movement)movement).sufficientRange = useRange - 1;
+			inventory.use = targetPosD.sqrMagnitude <= useRange * useRange;
+		}
+		else
+		{
+			targetPosD = Vector3.zero;
+			inventory.use = false;
+		}
     }
 
     void RecalculateTarget()

@@ -48,8 +48,10 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   itemModel: {fileID: 0}
   itemName: dmg knife
+  defaultRange: 0
   quality: 1
   amt: 1
+  maxStack: 1
 --- !u!114 &-881022305418278295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,12 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd98d7eb4954c1d4cb68c34505c3d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 0.5
-  range: 2
+  item: {fileID: -6056376324031881638}
+  stats: {fileID: 11400000, guid: 91bf45fcf7753d44cb095f8712f739fb, type: 2}
   target:
     serializedVersion: 2
     m_Bits: 320
   collideWith:
     serializedVersion: 2
     m_Bits: 1344
-  stats: {fileID: 11400000, guid: 9ae0b18e70ee6f74d9d1f4121c0886ae, type: 2}

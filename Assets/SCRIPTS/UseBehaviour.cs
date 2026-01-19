@@ -6,7 +6,6 @@ public class UseBehaviour : MonoBehaviour
     private void Start()
     {
         item = GetComponent<ItemData>();
-        print(item.ToString());
     }
 
     public int Quality()

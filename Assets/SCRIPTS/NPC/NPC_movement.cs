@@ -42,6 +42,6 @@ public class NPC_movement : Movement
 
     public void RecalcPath()
     {
-        NavMesh.CalculatePath(transform.position, ((NPC)entity).currentTarget.transform.position, NavMesh.AllAreas, path);
+        NavMesh.CalculatePath(transform.position, transform.position + ((NPC)entity).targetPosD, NavMesh.AllAreas, path);
     }
 }

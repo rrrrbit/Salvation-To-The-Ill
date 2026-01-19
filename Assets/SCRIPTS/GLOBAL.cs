@@ -108,4 +108,11 @@ public static class GLOBAL
         v.Scale(other);
         return v;
     }
+
+	public static bool IsEmpty<T>(this T[] self)
+	{
+		if (self.Length == 0) return true;
+		foreach (T item in self) if (item != null) return false;
+		return true;
+	}
 }

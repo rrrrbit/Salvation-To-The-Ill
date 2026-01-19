@@ -48,8 +48,10 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 7bf93634aa115e84d8f346e82e44585f, type: 3}
   itemModel: {fileID: 0}
   itemName: dmg grenade
+  defaultRange: 0
   quality: 1
   amt: 1
+  maxStack: 1
 --- !u!114 &-4100775909567386826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9309fed73e33af44f827b4d83359c898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: -5157683598175717310}
   stats: {fileID: 11400000, guid: 669f3a5352a3bdb4bbd15a7250e326e3, type: 2}
   bullet: {fileID: 2639847300945711334, guid: 4e13842552dcf3b4abe85268f001a7a6, type: 3}

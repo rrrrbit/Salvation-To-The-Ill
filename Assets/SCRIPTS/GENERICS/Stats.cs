@@ -37,7 +37,7 @@ public class Stats : MonoBehaviour, IAttackable
         health -= ctx.finalDmg;
 
         ctx.finalConv = ctx.baseConv * DefenseMult(convResistance);
-		print(ctx.finalConv);
+
         if (ctx.attackerTeam == entity.team)
         {
             Heal(ctx.baseConv);
