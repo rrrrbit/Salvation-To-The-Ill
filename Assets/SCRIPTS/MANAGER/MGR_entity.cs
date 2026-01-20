@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MGR_entity : MonoBehaviour
 {
+    public GameObject itemPrefab;
     public List<ENTITY> entities = new();
     public float recalcPathsTime = .1f;
     float recalcPathsTimer = 0;
+    public LayerMask pickupLayer;
 
     // Update is called once per frame
     void Update()

@@ -13,11 +13,11 @@ TagManager:
   - UI
   - ally
   - groundCheck
-  - enemy
+  - npc
   - vfx
   - ground
   - bullet
-  - 
+  - pickup
   - 
   - 
   - 

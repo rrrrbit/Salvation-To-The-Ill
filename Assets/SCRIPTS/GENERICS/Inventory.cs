@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -20,6 +21,7 @@ public class Inventory : MonoBehaviour
 	int currentItem;
 
 	public bool use;
+	public bool interact;
 	public ENTITY entity;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,9 +63,24 @@ public class Inventory : MonoBehaviour
 				}
 				if (inventory[i].amt > inventory[i].maxStack)
 				{
-					//logic to break up overstacks here
+					
+					if(GetNextEmptySlot() == -1)
+					{
+						Drop(i, inventory[i].amt - inventory[i].maxStack, true);
+					}
+					else
+					{
+						var newStack = Instantiate(inventory[i].gameObject, MGR.itemParents);
+						newStack.GetComponent<ItemData>().amt = inventory[i].amt - inventory[i].maxStack;
+						inventory[i].amt = inventory[i].maxStack;
+                    }
 				}
 			}
+		}
+
+		if(Physics.Raycast(new Ray(entity.look.cam.position, entity.look.cam.forward), out var hit, 2.5f, MGR.entities.pickupLayer) && interact)
+		{
+			TryPickUp(hit.collider.gameObject);
 		}
     }
 	public ItemData GetCurrent()
@@ -72,8 +89,46 @@ public class Inventory : MonoBehaviour
 		else return null;
 	}
 
-	public void Drop(int slot,  int amount)
+	public void Drop(int slot, int amount, bool directed)
 	{
+		inventory[slot].amt -= amount;
+	}
+
+	public bool TryPickUp(GameObject obj)
+	{
+		if(!obj.TryGetComponent(out OBJ_pickup pickup) || 
+			!pickup.item.TryGetComponent(out ItemData item) ||
+            GetNextEmptySlot() == -1) return false;
+
+		print("1");
+
+        for (int i = 0; i < inventory.Length; i++)
+		{
+			if (inventory[i] && inventory[i].itemName == item.itemName)
+			{
+				inventory[i].amt += item.amt;
+                Destroy(obj);
+                Destroy(pickup.item);
+				return true;
+			}
+		}
+
+        item.transform.parent = MGR.itemParents;
+		inventory[GetNextEmptySlot()] = item;
+        Destroy(obj);
+        return true;
 		
 	}
+
+	public int GetNextEmptySlot()
+	{
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (!inventory[i])
+            {
+				return i;
+            }
+        }
+		return -1;
+    }
 }

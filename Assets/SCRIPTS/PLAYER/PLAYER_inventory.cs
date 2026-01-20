@@ -18,6 +18,7 @@ public class PLAYER_inventory : Inventory
     public override void Update()
     {
 		use = actions.shoot.IsPressed();
+        interact = actions.interact.WasPressedThisFrame();
 		base.Update();
 
 

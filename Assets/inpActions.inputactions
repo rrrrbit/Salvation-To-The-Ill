@@ -574,6 +574,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "interact",
+                    "type": "Button",
+                    "id": "19deaaad-44ac-4466-b8d7-508440248599",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -684,6 +693,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "swapItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11d78218-4f4f-49ea-9bae-baa18274924c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
