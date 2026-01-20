@@ -51,6 +51,7 @@ MonoBehaviour:
   defaultRange: 0
   quality: 1
   amt: 1
+  maxStack: 8
 --- !u!114 &-4858170252158110381
 MonoBehaviour:
   m_ObjectHideFlags: 0

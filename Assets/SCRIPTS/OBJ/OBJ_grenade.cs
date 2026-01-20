@@ -2,14 +2,7 @@ using UnityEngine;
 
 public class OBJ_Grenade : OBJ_Projectile
 {
-    //public GameObject explosion;
-    public float gravityMult;
     public float explosionSize;
-
-    private void FixedUpdate()
-    {
-        GetComponent<Rigidbody>().AddForce(Vector3.down * (gravityMult - 1), ForceMode.Force);
-    }
 
     public override void OnDie()
     {

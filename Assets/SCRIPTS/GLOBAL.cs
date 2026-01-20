@@ -109,7 +109,13 @@ public static class GLOBAL
         return v;
     }
 
-	public static bool IsEmpty<T>(this T[] self)
+    public static Vector3 Scaled(this Vector3 v, Vector2 other)
+    {
+        v.Scale(other);
+        return v;
+    }
+
+    public static bool IsEmpty<T>(this T[] self)
 	{
 		if (self.Length == 0) return true;
 		foreach (T item in self) if (item != null) return false;

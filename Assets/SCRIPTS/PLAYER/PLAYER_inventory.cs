@@ -19,6 +19,7 @@ public class PLAYER_inventory : Inventory
     {
 		use = actions.shoot.IsPressed();
         interact = actions.interact.WasPressedThisFrame();
+        drop = actions.drop.WasPressedThisFrame();
 		base.Update();
 
 

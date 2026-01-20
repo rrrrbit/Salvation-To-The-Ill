@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
 
 	public bool use;
 	public bool interact;
+	public bool drop;
 	public ENTITY entity;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +38,10 @@ public class Inventory : MonoBehaviour
 		shootTimer = Mathf.Max(0, shootTimer - Time.deltaTime);
 		useTimer = Mathf.Max(0, useTimer - Time.deltaTime);
 
+		if (drop)
+		{
+			Drop(CurrentItem, -1, true);
+		}
 
 		if (use && shootTimer <= 0 && useTimer <= 0)
 		{
@@ -56,24 +61,24 @@ public class Inventory : MonoBehaviour
 		{
 			if (inventory[i])
 			{
-				if(inventory[i].amt <= 0)
-				{
-					Destroy(inventory[i].gameObject);
-					inventory[i] = null;
-				}
 				if (inventory[i].amt > inventory[i].maxStack)
 				{
-					
 					if(GetNextEmptySlot() == -1)
 					{
 						Drop(i, inventory[i].amt - inventory[i].maxStack, true);
 					}
 					else
 					{
-						var newStack = Instantiate(inventory[i].gameObject, MGR.itemParents);
+						var newStack = Instantiate(inventory[i].gameObject, MGR.entities.itemParents);
 						newStack.GetComponent<ItemData>().amt = inventory[i].amt - inventory[i].maxStack;
+						inventory[GetNextEmptySlot()] = newStack.GetComponent<ItemData>();
 						inventory[i].amt = inventory[i].maxStack;
                     }
+				}
+				if(inventory[i].amt <= 0)
+				{
+					Destroy(inventory[i].gameObject);
+					inventory[i] = null;
 				}
 			}
 		}
@@ -91,29 +96,53 @@ public class Inventory : MonoBehaviour
 
 	public void Drop(int slot, int amount, bool directed)
 	{
+		if (!inventory[slot]) return;
+		if(amount < 0)
+		{
+			amount = inventory[slot].amt;
+		}
+
+		var newPickup = Instantiate(MGR.entities.pickupPrefab);
+		newPickup.transform.position = transform.position;
+
+        var newItem = Instantiate(inventory[slot].gameObject, newPickup.transform);
+        newItem.GetComponent<ItemData>().amt = amount;
+
+		newPickup.GetComponent<OBJ_pickup>().item = newItem;
+
 		inventory[slot].amt -= amount;
-	}
+    }
 
 	public bool TryPickUp(GameObject obj)
 	{
 		if(!obj.TryGetComponent(out OBJ_pickup pickup) || 
-			!pickup.item.TryGetComponent(out ItemData item) ||
-            GetNextEmptySlot() == -1) return false;
+			!pickup.item.TryGetComponent(out ItemData item)) return false;
 
-		print("1");
+		if(GetNextEmptySlot() == -1 && !inventory.Any(x => x.amt < x.maxStack))
+		{
+			Drop(CurrentItem, -1, false);
+		}
 
         for (int i = 0; i < inventory.Length; i++)
 		{
 			if (inventory[i] && inventory[i].itemName == item.itemName)
 			{
-				inventory[i].amt += item.amt;
-                Destroy(obj);
-                Destroy(pickup.item);
-				return true;
+				var addAmt = Mathf.Min(item.amt, inventory[i].maxStack - inventory[i].amt);
+				inventory[i].amt += addAmt;
+				item.amt -= addAmt;
 			}
+			else
+			{
+				var addAmt = Mathf.Min(item.amt, item.maxStack);
+                var newItem = Instantiate(item.gameObject, MGR.entities.itemParents.transform);
+
+                newItem.GetComponent<ItemData>().amt = addAmt;
+				inventory[i] = newItem.GetComponent<ItemData>();
+				item.amt -= addAmt;
+            }
 		}
 
-        item.transform.parent = MGR.itemParents;
+        item.transform.parent = MGR.entities.itemParents;
 		inventory[GetNextEmptySlot()] = item;
         Destroy(obj);
         return true;
