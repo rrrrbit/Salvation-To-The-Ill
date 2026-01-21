@@ -7,7 +7,7 @@ public class WEAPON_melee : WEAPON
 {
 	public LayerMask target;
 	public LayerMask collideWith;
-	public override bool TryUse(ENTITY entity)
+	public override bool TryUse(ENTITY user, ENTITY recipient)
 	{
 		//if(!Consume(entity)) return false;
 
@@ -16,8 +16,8 @@ public class WEAPON_melee : WEAPON
 		var convRange = stats.conversionRange[Quality()];
 
         RaycastHit hit;
-		if(Physics.Raycast(new Ray(entity.inventory.useOrigin.position, entity.inventory.useOrigin.forward), out hit, range, collideWith) &&
-            target.Contains(hit.collider.gameObject) && ((hit.collider.gameObject.GetComponent<ENTITY>().team != entity.team) || stats.heal) &&
+		if(Physics.Raycast(new Ray(user.inventory.useOrigin.position, user.inventory.useOrigin.forward), out hit, range, collideWith) &&
+            target.Contains(hit.collider.gameObject) && ((hit.collider.gameObject.GetComponent<ENTITY>().team != user.team) || stats.heal) &&
             hit.collider.gameObject.TryGetComponent(out IAttackable a))
 		{
 			AttackContext ctx = new()
@@ -27,10 +27,10 @@ public class WEAPON_melee : WEAPON
 				baseDmg = Random.Range(dmgRange.x, dmgRange.y),
 				baseConv = Random.Range(convRange.x, convRange.y),
 				heal = stats.heal,
-                attackerTeam = entity.team,
+                attackerTeam = user.team,
             };
             a.Attack(ctx);
-			Consume(entity);
+			Consume(user);
             if (!hit.collider.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, hit.point, false);
         }
 		

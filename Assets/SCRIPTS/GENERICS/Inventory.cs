@@ -46,13 +46,13 @@ public class Inventory : MonoBehaviour
 		if (use && shootTimer <= 0 && useTimer <= 0)
 		{
 			UseBehaviour useBehaviour;
-			if (inventory[CurrentItem] && inventory[CurrentItem].TryGetComponent(out useBehaviour))
+			if (GetCurrent() && GetCurrent().TryGetComponent(out useBehaviour))
 			{
-				useBehaviour.TryUse(entity);
+				useBehaviour.TryUse(entity, entity);
 			}
 			else
 			{
-				hand.GetComponent<UseBehaviour>().TryUse(entity);
+				hand.GetComponent<UseBehaviour>().TryUse(entity, entity);
 			}
 		}
 
@@ -94,9 +94,9 @@ public class Inventory : MonoBehaviour
 		else return null;
 	}
 
-	public void Drop(int slot, int amount, bool directed)
+	public GameObject Drop(int slot, int amount, bool directed)
 	{
-		if (!inventory[slot]) return;
+		if (!inventory[slot]) return null;
 		if(amount < 0)
 		{
 			amount = inventory[slot].amt;
@@ -114,6 +114,7 @@ public class Inventory : MonoBehaviour
 
 		if (directed) newPickup.GetComponent<Rigidbody>().AddForce(entity.look.cam.transform.forward * 5 + entity.rb.linearVelocity, ForceMode.Impulse);
 		else newPickup.GetComponent<Rigidbody>().AddForce(Random.insideUnitCircle.xz(0) * 5 + entity.rb.linearVelocity, ForceMode.Impulse);
+		return newPickup;
     }
 
 	public bool TryPickUp(GameObject obj)

@@ -5,10 +5,15 @@ using UnityEngine;
 public class MGR_entity : MonoBehaviour
 {
     public GameObject pickupPrefab;
+    public GameObject npcPrefab;
+
+
+
     public List<ENTITY> entities = new();
     public float recalcPathsTime = .1f;
     float recalcPathsTimer = 0;
     public LayerMask pickupLayer;
+    public LayerMask entityLayers;
     public Transform itemParents;
 
     // Update is called once per frame

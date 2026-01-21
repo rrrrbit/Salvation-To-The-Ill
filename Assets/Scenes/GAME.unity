@@ -5240,6 +5240,9 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 4096
+  entityLayers:
+    serializedVersion: 2
+    m_Bits: 256
   itemParents: {fileID: 1284485665}
 --- !u!1 &1577030632
 GameObject:

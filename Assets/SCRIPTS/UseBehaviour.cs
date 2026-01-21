@@ -13,7 +13,7 @@ public class UseBehaviour : MonoBehaviour
         return (int)item.quality;
     }
 
-    public virtual bool TryUse(ENTITY entity)
+    public virtual bool TryUse(ENTITY user, ENTITY recipient)
 	{
 		return false;
 	}

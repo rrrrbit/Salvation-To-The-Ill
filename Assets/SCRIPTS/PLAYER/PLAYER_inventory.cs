@@ -22,6 +22,16 @@ public class PLAYER_inventory : Inventory
         drop = actions.drop.WasPressedThisFrame();
 		base.Update();
 
+        if (Physics.Raycast(new Ray(entity.look.cam.position, entity.look.cam.forward), out var hit, 2.5f, MGR.entities.entityLayers) && drop)
+        {
+            if (GetCurrent() && hit.collider.GetComponent<Inventory>().GetNextEmptySlot() != -1)
+            {
+                if(GetCurrent().TryGetComponent(out WEAPON i))
+                {
+                    hit.collider.GetComponent<Inventory>().TryPickUp(Drop(CurrentItem, -1, true));
+                }
+            }
+        }
 
         if (actions.scrollForward.WasPerformedThisFrame())
 		{
