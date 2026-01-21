@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
 				{
 					if(GetNextEmptySlot() == -1)
 					{
-						Drop(i, inventory[i].amt - inventory[i].maxStack, true);
+						Drop(i, inventory[i].amt - inventory[i].maxStack, false);
 					}
 					else
 					{
@@ -103,7 +103,7 @@ public class Inventory : MonoBehaviour
 		}
 
 		var newPickup = Instantiate(MGR.entities.pickupPrefab);
-		newPickup.transform.position = transform.position;
+		newPickup.transform.position = entity.look.cam.position;
 
         var newItem = Instantiate(inventory[slot].gameObject, newPickup.transform);
         newItem.GetComponent<ItemData>().amt = amount;
@@ -111,6 +111,9 @@ public class Inventory : MonoBehaviour
 		newPickup.GetComponent<OBJ_pickup>().item = newItem;
 
 		inventory[slot].amt -= amount;
+
+		if (directed) newPickup.GetComponent<Rigidbody>().AddForce(entity.look.cam.transform.forward * 5 + entity.rb.linearVelocity, ForceMode.Impulse);
+		else newPickup.GetComponent<Rigidbody>().AddForce(Random.insideUnitCircle.xz(0) * 5 + entity.rb.linearVelocity, ForceMode.Impulse);
     }
 
 	public bool TryPickUp(GameObject obj)
@@ -131,7 +134,7 @@ public class Inventory : MonoBehaviour
 				inventory[i].amt += addAmt;
 				item.amt -= addAmt;
 			}
-			else
+			else if (!inventory[i])
 			{
 				var addAmt = Mathf.Min(item.amt, item.maxStack);
                 var newItem = Instantiate(item.gameObject, MGR.entities.itemParents.transform);
@@ -141,12 +144,7 @@ public class Inventory : MonoBehaviour
 				item.amt -= addAmt;
             }
 		}
-
-        item.transform.parent = MGR.entities.itemParents;
-		inventory[GetNextEmptySlot()] = item;
-        Destroy(obj);
         return true;
-		
 	}
 
 	public int GetNextEmptySlot()

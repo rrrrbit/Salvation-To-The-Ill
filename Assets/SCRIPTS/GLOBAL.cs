@@ -103,6 +103,8 @@ public static class GLOBAL
     }
     public static Vector2 xz(this Vector3 v) => new(v.x, v.z);
 
+    public static Vector3 xz(this Vector2 v, float y) => new(v.x, y, v.y);
+
     public static Vector2 Scaled(this Vector2 v, Vector2 other)
     {
         v.Scale(other);

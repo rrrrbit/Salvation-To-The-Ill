@@ -17,9 +17,12 @@ public class OBJ_Projectile : MonoBehaviour
 	public WeaponStats originStats;
 	public int originQuality;
 
+	public ENTITY.Teams originTeam;
+
     void Start()
     {
 		penetrationLeft = originStats.penetration[originQuality];
+		originTeam = origin.GetComponent<ENTITY>().team;
     }
 
     void Update()
@@ -47,7 +50,7 @@ public class OBJ_Projectile : MonoBehaviour
             OnDie();
             Destroy(gameObject);
         }
-		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != origin.GetComponent<ENTITY>().team) || originStats.heal) && other.gameObject != origin) OnHit(other);
+		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != originTeam) || originStats.heal) && other.gameObject != origin) OnHit(other);
 	}
 
     public virtual void OnHit(Collider other)

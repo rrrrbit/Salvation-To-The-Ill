@@ -210,6 +210,7 @@ MonoBehaviour:
   origin: {fileID: 0}
   originStats: {fileID: 0}
   originQuality: 0
+  originTeam: 0
   explosionSize: 10
 --- !u!114 &6407876572133215854
 MonoBehaviour:

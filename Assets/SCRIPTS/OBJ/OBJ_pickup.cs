@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class OBJ_pickup : MonoBehaviour
@@ -12,6 +13,9 @@ public class OBJ_pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(item.GetComponent<ItemData>().amt == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

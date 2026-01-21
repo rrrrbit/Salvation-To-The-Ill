@@ -17,4 +17,13 @@ public class NPC_stats : Stats
         base.Update();
         ammo = maxAmmo;
     }
+
+    public override void Die(AttackContext ctx)
+    {
+        for (int i = 0; i < entity.inventory.inventory.Length; i++)
+        {
+            entity.inventory.Drop(i, -1, false);
+        }
+            base.Die(ctx);
+    }
 }
