@@ -48,7 +48,7 @@ public class NPC : ENTITY
         if (isHealingWeapon)
         {
             if(enemies.Count > 0) targets = enemies;
-            else targets = MGR.entities.entities.Where(x=>x.stats.health < x.stats.maxHealth || x.stats.conversion > 0).ToList();
+            else targets = MGR.entities.entities.Where(x=>x.stats.health < x.stats.maxHealth * 0.9f || x.stats.conversion > 0).ToList();
         }
         else targets = MGR.entities.entities.Where(x => x.team != team).ToList();
         targets.Remove(this);
