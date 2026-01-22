@@ -7,6 +7,7 @@ public class HUD : MonoBehaviour
 {
 	public GameObject health;
 	public GameObject ammo;
+    public GameObject convert;
     public Image[] itemSprites;
     public Transform itemSelect;
     public Sprite placeholderSprite;
@@ -21,6 +22,7 @@ public class HUD : MonoBehaviour
     {
 		health.GetComponent<Slider>().value = PLYR.player.stats.health / PLYR.player.stats.maxHealth;
 		ammo.GetComponent<Slider>().value = PLYR.player.stats.ammo / PLYR.player.stats.maxAmmo;
+        convert.GetComponent<Slider>().value = PLYR.player.stats.conversion / PLYR.player.stats.maxConversion;
 
         for(int i = 0; i < PLYR.player.inventory.inventory.Length; i++)
         {

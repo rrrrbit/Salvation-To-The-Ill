@@ -45,12 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e581970267cd0c74081cc076bace500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 7bf93634aa115e84d8f346e82e44585f, type: 3}
+  itemSprite: {fileID: 21300000, guid: 84361e7f59a6cd34387fe03d17974d08, type: 3}
   itemModel: {fileID: 0}
   itemName: heal grenade
   defaultRange: 0
   quality: 1
   amt: 1
+  maxStack: 8
 --- !u!114 &-4100775909567386826
 MonoBehaviour:
   m_ObjectHideFlags: 0

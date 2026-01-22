@@ -7,13 +7,12 @@ using static UnityEngine.Rendering.DebugUI;
 public class PLAYER_inventory : Inventory
 {
 	InpActions.PlayerActions actions;
-    public override void Start()
+    void Start()
     {
 		var inp = new InpActions();
 		inp.Enable();
 		actions = inp.Player;
 		actions.Enable();
-		base.Start();
 	}
     public override void Update()
     {

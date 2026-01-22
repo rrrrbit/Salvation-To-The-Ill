@@ -12,7 +12,9 @@ public class MGR_vfx : MonoBehaviour
     public void DmgText(AttackContext ctx, Vector3 position, bool flash)
 	{
 		if ((ctx.heal ? ctx.finalConv : ctx.finalDmg) <= 0) return;
-		
+
+		print(ctx.heal ? "heal" : "dmg" + (ctx.heal ? ctx.finalConv : ctx.finalDmg).ToString());
+
 		var t = dmgTexts.Where(x =>
 			x.ctx.attackGroup.Equals(ctx.attackGroup) &&
 			x.ctx.target == ctx.target && 

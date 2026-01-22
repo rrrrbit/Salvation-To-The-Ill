@@ -62,9 +62,17 @@ public class NPC : ENTITY
     {
         var isHealingWeapon = inventory.GetCurrent() && inventory.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
         List<ENTITY> targets = new();
+        var enemies = targets = MGR.entities.entities.Where(x => x.team != team).ToList();
         if (isHealingWeapon)
         {
-            targets = MGR.entities.entities.ToList();
+            if(enemies.Count > 0)
+            {
+                targets = enemies;
+            }
+            else
+            {
+                targets = MGR.entities.entities.ToList();
+            }
         }
         else
         {

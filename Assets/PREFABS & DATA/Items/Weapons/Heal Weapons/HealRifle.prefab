@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e581970267cd0c74081cc076bace500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 3c71f3d242d0b814cb08ad8ff38cce30, type: 3}
+  itemSprite: {fileID: 21300000, guid: c455ee9e49e67a64888b9cd4edd2f584, type: 3}
   itemModel: {fileID: 0}
   itemName: heal rifle
   defaultRange: 0

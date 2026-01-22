@@ -1,17 +1,39 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MGR_game : MonoBehaviour
 {
     public float difficulty;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public float timer;
+
+    public float replenishTimer;
+
+    public List<WORLD_pickupSpawn> pickupSpawns;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        timer -= Time.deltaTime;
+        replenishTimer -= Time.deltaTime;
+        if(timer < 0)
+        {
+            MGR.entities.createRandomNpc();
+            timer = 5;
+        }
+
+        if (replenishTimer < 0)
+        {
+            foreach(var p in pickupSpawns)
+            {
+                p.Replenish();
+            }
+            replenishTimer = 10f;
+        }
     }
+
 }

@@ -17,7 +17,7 @@ public class OBJ_Grenade : OBJ_Projectile
                     baseDmg = Random.Range(originStats.dmgRange[originQuality].x, originStats.dmgRange[originQuality].y),
                     baseConv = Random.Range(originStats.conversionRange[originQuality].x, originStats.conversionRange[originQuality].y),
                     heal = originStats.heal,
-                    attackerTeam = origin.GetComponent<ENTITY>().team,
+                    attackerTeam = originTeam,
                 };
                 a.Attack(ctx);
                 if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, other.transform.position, false);

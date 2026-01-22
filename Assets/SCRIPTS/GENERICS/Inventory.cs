@@ -25,11 +25,10 @@ public class Inventory : MonoBehaviour
 	public bool drop;
 	public ENTITY entity;
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	
-    public virtual void Start()
-    {
+	public void InitInventory()
+	{
 		inventory = new ItemData[invSize];
+
 	}
 
     // Update is called once per frame

@@ -11,6 +11,7 @@ public class MGR_entity : MonoBehaviour
     public GameObject npcPrefab;
 
     public RandomEntitySettings spawnSettings;
+    public RandomPickupSettings pickupSpawnSettings;
 
     public List<ENTITY> entities = new();
     public float recalcPathsTime = .1f;
@@ -39,11 +40,25 @@ public class MGR_entity : MonoBehaviour
         thisNpc.transform.position = new(0,3,0);
     }
 
-    GameObject RandomNPC()
+    public GameObject RandomPickup()
+    {
+        var thisPickup = Instantiate(pickupPrefab);
+        var p = thisPickup.GetComponent <OBJ_pickup>();
+
+        var item = pickupSpawnSettings.items[RandomIndex(pickupSpawnSettings.itemChances.Select(x => x.Evaluate(MGR.game.difficulty)).ToList())];
+        var thisItem = Instantiate(item, MGR.entities.itemParents);
+        p.item = thisItem;
+
+        return thisPickup;
+    }
+
+    public GameObject RandomNPC()
     {
         var thisNpc = Instantiate(npcPrefab);
         var chanceOfArmed = MGR.game.difficulty * CountTeam(ENTITY.Teams.HUMAN) / 
             (Mathf.Sqrt(CountTeam(ENTITY.Teams.ZOMBIE) + 1) + MGR.game.difficulty * CountTeam(ENTITY.Teams.HUMAN));
+
+        print(chanceOfArmed);
         var health = RandAttrOverDiff(spawnSettings.minHealth, spawnSettings.maxHealth, spawnSettings.healthSkew);
         var size = RandAttrOverDiff(spawnSettings.minSize, spawnSettings.maxSize, spawnSettings.sizeSkew);
         var speed = RandAttrOverDiff(spawnSettings.minSpeed, spawnSettings.maxSpeed, spawnSettings.speedSkew);
@@ -61,7 +76,7 @@ public class MGR_entity : MonoBehaviour
         stats.speed = speed;
         stats.size = size;
         var inv = thisNpc.GetComponent<Inventory>();
-
+        inv.InitInventory();
         if(Random.value <= chanceOfArmed)
         {
             var thisItem = Instantiate(item, MGR.entities.itemParents);

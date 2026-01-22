@@ -45,12 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e581970267cd0c74081cc076bace500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 27c5301f30aa08c418927e370b4c0dab, type: 3}
+  itemSprite: {fileID: 21300000, guid: 187d7a3ac45672643a653a448594ec19, type: 3}
   itemModel: {fileID: 0}
   itemName: heal shotgun
   defaultRange: 0
   quality: 1
   amt: 1
+  maxStack: 1
 --- !u!114 &-3328410107639793659
 MonoBehaviour:
   m_ObjectHideFlags: 0
