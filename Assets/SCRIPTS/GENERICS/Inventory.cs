@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
@@ -37,23 +38,21 @@ public class Inventory : MonoBehaviour
 		shootTimer = Mathf.Max(0, shootTimer - Time.deltaTime);
 		useTimer = Mathf.Max(0, useTimer - Time.deltaTime);
 
-		if (drop)
-		{
-			Drop(CurrentItem, -1, true);
-		}
+		if (drop) Drop(CurrentItem, -1, true);
 
-		if (use && shootTimer <= 0 && useTimer <= 0)
+		if (use)
 		{
-			UseBehaviour useBehaviour;
-			if (GetCurrent() && GetCurrent().TryGetComponent(out useBehaviour))
-			{
-				useBehaviour.TryUse(entity, entity);
-			}
-			else
-			{
-				hand.GetComponent<UseBehaviour>().TryUse(entity, entity);
-			}
-		}
+			var checkTimer = 0f;
+			if (GetCurrent().TryGetComponent(out UseBehaviour useBehaviour))
+            {
+				if (useBehaviour as WEAPON)
+				{
+					checkTimer = shootTimer;
+                }
+                else checkTimer = useTimer;
+				if (checkTimer <= 0f) useBehaviour.TryUse(entity,entity);
+            }
+        }
 
 
 		for (int i = 0; i < inventory.Length; i++)
@@ -61,11 +60,8 @@ public class Inventory : MonoBehaviour
 			if (inventory[i])
 			{
 				if (inventory[i].amt > inventory[i].maxStack)
-				{
-					if(GetNextEmptySlot() == -1)
-					{
-						Drop(i, inventory[i].amt - inventory[i].maxStack, false);
-					}
+                {
+					if(GetNextEmptySlot() == -1) Drop(i, inventory[i].amt - inventory[i].maxStack, false);
 					else
 					{
 						var newStack = Instantiate(inventory[i].gameObject, MGR.entities.itemParents);
@@ -90,16 +86,13 @@ public class Inventory : MonoBehaviour
 	public ItemData GetCurrent()
 	{
         if (inventory[CurrentItem]) return inventory[CurrentItem];
-		else return null;
+		else return hand.GetComponent<ItemData>();
 	}
 
 	public GameObject Drop(int slot, int amount, bool directed)
 	{
 		if (!inventory[slot]) return null;
-		if(amount < 0)
-		{
-			amount = inventory[slot].amt;
-		}
+		if(amount < 0) amount = inventory[slot].amt;
 
 		var newPickup = Instantiate(MGR.entities.pickupPrefab);
 		newPickup.transform.position = entity.look.cam.position;
@@ -121,29 +114,26 @@ public class Inventory : MonoBehaviour
 		if(!obj.TryGetComponent(out OBJ_pickup pickup) || 
 			!pickup.item.TryGetComponent(out ItemData item)) return false;
 
-		if(GetNextEmptySlot() == -1 && !inventory.Any(x => x.amt < x.maxStack))
-		{
-			Drop(CurrentItem, -1, false);
-		}
+		if(GetNextEmptySlot() == -1 && !inventory.Any(x => x.amt < x.maxStack)) Drop(CurrentItem, -1, false);
 
         for (int i = 0; i < inventory.Length; i++)
 		{
-			if (inventory[i] && inventory[i].itemName == item.itemName)
-			{
-				var addAmt = Mathf.Min(item.amt, inventory[i].maxStack - inventory[i].amt);
-				inventory[i].amt += addAmt;
-				item.amt -= addAmt;
-			}
-			else if (!inventory[i])
-			{
-				var addAmt = Mathf.Min(item.amt, item.maxStack);
+            if (inventory[i] && inventory[i].itemName == item.itemName)
+            {
+                var addAmt = Mathf.Min(item.amt, inventory[i].maxStack - inventory[i].amt);
+                inventory[i].amt += addAmt;
+                item.amt -= addAmt;
+            }
+            else if (!inventory[i])
+            {
+                var addAmt = Mathf.Min(item.amt, item.maxStack);
                 var newItem = Instantiate(item.gameObject, MGR.entities.itemParents.transform);
 
                 newItem.GetComponent<ItemData>().amt = addAmt;
-				inventory[i] = newItem.GetComponent<ItemData>();
-				item.amt -= addAmt;
+                inventory[i] = newItem.GetComponent<ItemData>();
+                item.amt -= addAmt;
             }
-		}
+        }
         return true;
 	}
 
@@ -151,10 +141,7 @@ public class Inventory : MonoBehaviour
 	{
         for (int i = 0; i < inventory.Length; i++)
         {
-            if (!inventory[i])
-            {
-				return i;
-            }
+            if (!inventory[i]) return i;
         }
 		return -1;
     }

@@ -19,36 +19,18 @@ public class NPC : ENTITY
     public override void Update()
     {
         base.Update();
+
+        if(team == Teams.HUMAN) GetComponent<MeshRenderer>().material.color = Color.blue;
+        else GetComponent<MeshRenderer>().material.color = Color.red;
+
+        if (inventory.GetCurrent().TryGetComponent(out WEAPON w)) useRange = w.stats.effectiveRange[w.Quality()];
+        else useRange = inventory.GetCurrent().defaultRange;
         RecalculateTarget();
 
-        if(team == Teams.HUMAN)
-        {
-            GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
-        else
-        {
-            GetComponent<MeshRenderer>().material.color = Color.red;
-        }
-
-        if (inventory.GetCurrent())
-        {
-            if (inventory.GetCurrent().TryGetComponent(out WEAPON w))
-            {
-                useRange = w.stats.effectiveRange[w.Quality()];
-            }
-            else
-            {
-                useRange = inventory.GetCurrent().defaultRange;
-            }
-		}
-		else
-		{
-			useRange = defaultStopRange;
-		}
 		if (currentTarget)
 		{
 			targetPosD = currentTarget.transform.position - transform.position;
-			((NPC_movement)movement).sufficientRange = useRange - 1;
+			((NPC_movement)movement).sufficientRange = useRange * 0.9f;
 			inventory.use = targetPosD.sqrMagnitude <= useRange * useRange;
 		}
 		else
@@ -62,36 +44,22 @@ public class NPC : ENTITY
     {
         var isHealingWeapon = inventory.GetCurrent() && inventory.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
         List<ENTITY> targets = new();
-        var enemies = targets = MGR.entities.entities.Where(x => x.team != team).ToList();
+        var enemies = MGR.entities.entities.Where(x => x.team != team).ToList();
         if (isHealingWeapon)
         {
-            if(enemies.Count > 0)
-            {
-                targets = enemies;
-            }
-            else
-            {
-                targets = MGR.entities.entities.ToList();
-            }
+            if(enemies.Count > 0) targets = enemies;
+            else targets = MGR.entities.entities.Where(x=>x.stats.health < x.stats.maxHealth || x.stats.conversion > 0).ToList();
         }
-        else
-        {
-            targets = MGR.entities.entities.Where(x => x.team != team).ToList();
-        }
+        else targets = MGR.entities.entities.Where(x => x.team != team).ToList();
         targets.Remove(this);
         if (targets.Count <= 0)
         {
             currentTarget = null;
+            if (team == Teams.HUMAN) currentTarget = PLYR.player.gameObject;
+            useRange = defaultStopRange;
             return;
         }
         List<ENTITY> lineOfSight = targets.Where(x => !Physics.Linecast(transform.position, x.transform.position, walls)).ToList();
-        if(lineOfSight.Count > 0)
-        {
-            currentTarget = lineOfSight.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First().obj;
-        }
-        else
-        {
-            currentTarget = targets.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First().obj;
-        }
+        if(lineOfSight.Count > 0) currentTarget = lineOfSight.OrderBy(x => (x.transform.position - transform.position).sqrMagnitude).First().obj;
     }
 }

@@ -58,7 +58,6 @@ public class MGR_entity : MonoBehaviour
         var chanceOfArmed = MGR.game.difficulty * CountTeam(ENTITY.Teams.HUMAN) / 
             (Mathf.Sqrt(CountTeam(ENTITY.Teams.ZOMBIE) + 1) + MGR.game.difficulty * CountTeam(ENTITY.Teams.HUMAN));
 
-        print(chanceOfArmed);
         var health = RandAttrOverDiff(spawnSettings.minHealth, spawnSettings.maxHealth, spawnSettings.healthSkew);
         var size = RandAttrOverDiff(spawnSettings.minSize, spawnSettings.maxSize, spawnSettings.sizeSkew);
         var speed = RandAttrOverDiff(spawnSettings.minSpeed, spawnSettings.maxSpeed, spawnSettings.speedSkew);
@@ -71,6 +70,7 @@ public class MGR_entity : MonoBehaviour
         var stats = thisNpc.GetComponent<Stats>();
         stats.maxHealth = health;
         stats.health = health;
+        stats.maxConversion = health;
         stats.defense = defense;
         stats.convResistance = convResistance;
         stats.speed = speed;
