@@ -19,7 +19,6 @@ public class PLAYER_inventory : Inventory
 		use = actions.shoot.IsPressed();
         interact = actions.interact.WasPressedThisFrame();
         drop = actions.drop.WasPressedThisFrame();
-		base.Update();
 
         if (Physics.Raycast(new Ray(entity.look.cam.position, entity.look.cam.forward), out var hit, 2.5f, MGR.entities.entityLayers) && drop)
         {
@@ -31,6 +30,7 @@ public class PLAYER_inventory : Inventory
                 }
             }
         }
+		base.Update();
 
         if (actions.scrollForward.WasPerformedThisFrame())
 		{

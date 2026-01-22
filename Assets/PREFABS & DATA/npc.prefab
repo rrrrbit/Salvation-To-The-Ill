@@ -67,7 +67,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   targetPosD: {x: 0, y: 0, z: 0}
   useRange: 0
-  defaultStopRange: 3
+  defaultStopRange: 15
   walls:
     serializedVersion: 2
     m_Bits: 1024

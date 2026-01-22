@@ -3,13 +3,19 @@ using UnityEngine;
 
 public class MGR_game : MonoBehaviour
 {
+    public float baseDifficulty;
+    public float gameDifficulty;
     public float difficulty;
 
     public float timer;
 
     public float replenishTimer;
+    public float waveTimer;
+    public int wave;
 
     public List<WORLD_pickupSpawn> pickupSpawns;
+    public List<Transform> spawns;
+
 
     void Start()
     {
@@ -18,22 +24,15 @@ public class MGR_game : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        replenishTimer -= Time.deltaTime;
-        if(timer < 0)
-        {
-            MGR.entities.createRandomNpc();
-            timer = 5;
-        }
+        timer += Time.deltaTime;
+        baseDifficulty = (Mathf.Sqrt(timer / 30 + 0.25f) - 0.5f);
+        difficulty = gameDifficulty * baseDifficulty;
+    }
 
-        if (replenishTimer < 0)
-        {
-            foreach(var p in pickupSpawns)
-            {
-                p.Replenish();
-            }
-            replenishTimer = 10f;
-        }
+    void StartNewWave()
+    {
+        wave++;
+        waveTimer = 60 + baseDifficulty;
     }
 
 }
