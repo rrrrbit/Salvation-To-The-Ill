@@ -1,9 +1,11 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class OBJ_pickup : MonoBehaviour
 {
     public GameObject item;
+    public TextMeshPro text;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,5 +19,7 @@ public class OBJ_pickup : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        text.text = item.GetComponent<ItemData>().itemName;
+        text.transform.forward = PLYR.player.look.cam.transform.forward;
     }
 }

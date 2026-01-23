@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +10,7 @@ public class HUD : MonoBehaviour
 	public GameObject health;
 	public GameObject ammo;
     public GameObject convert;
+    public TextMeshProUGUI infoText;
     public Image[] itemSprites;
     public Transform itemSelect;
     public Sprite placeholderSprite;
@@ -50,5 +53,11 @@ public class HUD : MonoBehaviour
             }
         }
         itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.inventory.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
-	}
+
+        infoText.text = "wave " + MGR.game.wave.ToString() +
+            "\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
+            "\n" + MGR.entities.entities.Where(x => x.team == ENTITY.Teams.ZOMBIE).Count() + " zombies left" +
+            "\n" + MGR.entities.entities.Where(x => x.team == ENTITY.Teams.HUMAN).Count() + " allies";
+
+    }
 }

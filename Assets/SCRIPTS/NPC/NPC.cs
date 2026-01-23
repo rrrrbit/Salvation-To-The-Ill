@@ -20,8 +20,8 @@ public class NPC : ENTITY
     {
         base.Update();
 
-        if(team == Teams.HUMAN) GetComponent<MeshRenderer>().material.color = Color.blue;
-        else GetComponent<MeshRenderer>().material.color = Color.red;
+        if(team == Teams.HUMAN) GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+        else GetComponentInChildren<MeshRenderer>().material.color = Color.red;
 
         if (inventory.GetCurrent().TryGetComponent(out WEAPON w)) useRange = w.stats.effectiveRange[w.Quality()];
         else useRange = inventory.GetCurrent().defaultRange;
