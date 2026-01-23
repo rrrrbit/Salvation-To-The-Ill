@@ -15,7 +15,7 @@ public class MGR_game : MonoBehaviour
     public int spawnCount;
 
     public List<WORLD_pickupSpawn> pickupSpawns;
-    public List<Transform> spawns;
+    public List<WORLD_npcSpawn> spawns;
 
 
     void Start()
@@ -41,10 +41,11 @@ public class MGR_game : MonoBehaviour
         wave++;
         waveTimer = 15 + baseDifficulty;
         spawnCount = Mathf.FloorToInt(10 * (baseDifficulty+1));
-
-        for (int i = 0; i < spawnCount; i++)
+        var leftToSpawn = spawnCount;
+        while(leftToSpawn > 0)
         {
-            MGR.entities.RandomNPC().transform.position = spawns[Random.Range(0, spawns.Count - 1)].position;
+            spawns[Random.Range(0, spawns.Count - 1)].leftToSpawn++;
+            leftToSpawn--;
         }
 
         foreach(var p in pickupSpawns)
@@ -52,5 +53,4 @@ public class MGR_game : MonoBehaviour
             p.Replenish();
         }
     }
-
 }
