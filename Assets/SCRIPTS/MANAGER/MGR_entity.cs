@@ -34,12 +34,6 @@ public class MGR_entity : MonoBehaviour
         }
     }
 
-    public void createRandomNpc()
-    {
-        var thisNpc = RandomNPC();
-        thisNpc.transform.position = new(0,3,0);
-    }
-
     public GameObject RandomPickup()
     {
         var thisPickup = Instantiate(pickupPrefab);
@@ -55,8 +49,8 @@ public class MGR_entity : MonoBehaviour
     public GameObject RandomNPC()
     {
         var thisNpc = Instantiate(npcPrefab);
-        var chanceOfArmed = MGR.game.difficulty * CountTeam(ENTITY.Teams.HUMAN) / 
-            (Mathf.Sqrt(CountTeam(ENTITY.Teams.ZOMBIE) + 1) + MGR.game.difficulty * CountTeam(ENTITY.Teams.HUMAN));
+        var chanceOfArmed = (MGR.game.wave / 10f) * CountTeam(ENTITY.Teams.HUMAN) / 
+            (Mathf.Sqrt(CountTeam(ENTITY.Teams.ZOMBIE)) + 2 * (MGR.game.wave / 10f) * CountTeam(ENTITY.Teams.HUMAN));
 
         var health = RandAttrOverDiff(spawnSettings.minHealth, spawnSettings.maxHealth, spawnSettings.healthSkew);
         var size = RandAttrOverDiff(spawnSettings.minSize, spawnSettings.maxSize, spawnSettings.sizeSkew);
@@ -88,7 +82,7 @@ public class MGR_entity : MonoBehaviour
     }
 
     float RandAttrOverDiff(AnimationCurve min, AnimationCurve max, AnimationCurve curve) => Mathf.Lerp(min.Evaluate(MGR.game.difficulty), max.Evaluate(MGR.game.difficulty), curve.Evaluate(Random.value));
-    int CountTeam(ENTITY.Teams team) => entities.Where(x => x.team == team).Count();
+    int CountTeam(ENTITY.Teams team) => entities.Count(x => x.team == team);
     int RandomIndex(List<float> chances)
     {
         var val = Random.Range(0, chances.Sum());
@@ -100,20 +94,5 @@ public class MGR_entity : MonoBehaviour
             if (place >= val) break;
         }
         return i;
-    }
-}
-
-[CustomEditor(typeof(MGR_entity))]
-public class FAWK : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        MGR_entity myScript = (MGR_entity)target;
-        if (GUILayout.Button("Build Object"))
-        {
-            myScript.createRandomNpc();
-        }
     }
 }

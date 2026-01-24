@@ -17,7 +17,7 @@ public class WORLD_npcSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer = Mathf.Max(timer, timer - Time.deltaTime);
+        timer = Mathf.Max(0, timer - Time.deltaTime);
 
         if(timer <= 0)
         {
@@ -31,7 +31,8 @@ public class WORLD_npcSpawn : MonoBehaviour
 
     void Spawn()
     {
-        MGR.entities.RandomNPC().transform.position = transform.position;
+        var thisNpc = MGR.entities.RandomNPC();
+		thisNpc.transform.position = transform.position;
         leftToSpawn--;
     }
 }

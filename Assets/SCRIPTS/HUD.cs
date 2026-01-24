@@ -56,8 +56,8 @@ public class HUD : MonoBehaviour
 
         infoText.text = "wave " + MGR.game.wave.ToString() +
             "\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
-            "\n" + MGR.entities.entities.Where(x => x.team == ENTITY.Teams.ZOMBIE).Count() + " zombies left" +
-            "\n" + MGR.entities.entities.Where(x => x.team == ENTITY.Teams.HUMAN).Count() + " allies";
+            "\n" + MGR.entities.entities.Count(x => x.team == ENTITY.Teams.ZOMBIE) + " zombies left" +
+            "\n" + MGR.entities.entities.Count(x => x.team == ENTITY.Teams.HUMAN) + " allies";
 
     }
 }
