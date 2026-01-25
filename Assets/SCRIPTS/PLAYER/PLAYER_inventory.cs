@@ -2,11 +2,13 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PLAYER_inventory : Inventory
 {
 	InpActions.PlayerActions actions;
+	public Image scope;
     void Start()
     {
 		var inp = new InpActions();
@@ -17,6 +19,7 @@ public class PLAYER_inventory : Inventory
     public override void Update()
     {
 		use = actions.shoot.IsPressed();
+		aim = actions.aim.IsPressed();
         interact = actions.interact.WasPressedThisFrame();
         drop = actions.drop.WasPressedThisFrame();
 
@@ -24,7 +27,7 @@ public class PLAYER_inventory : Inventory
         {
             if (GetCurrent() && hit.collider.GetComponent<Inventory>().GetNextEmptySlot() != -1)
             {
-                if(GetCurrent().TryGetComponent(out WEAPON i))
+                if(GetCurrent().TryGetComponent(out WEAPON _))
                 {
                     hit.collider.GetComponent<Inventory>().TryPickUp(Drop(CurrentItem, -1, true));
                 }
@@ -32,14 +35,29 @@ public class PLAYER_inventory : Inventory
         }
 		base.Update();
 
-        if (actions.scrollForward.WasPerformedThisFrame())
+		var look = ((PLAYER_look)entity.look);
+		if (aim && GetCurrent().TryGetComponent(out WEAPON i))
 		{
-            if(actions.swapItem.IsPressed())
-            {
+			look.targetFov = i.stats.aimFov;
+			look.mouseSensitivityMult = i.stats.aimSensMult;
+			scope.sprite = i.stats.scopeSprite;
+			scope.enabled = i.stats.scope;
+		}
+		else
+		{
+			look.targetFov = 90;
+			look.mouseSensitivityMult = 1;
+			scope.enabled = false;
+		}
+
+		if (actions.scrollForward.WasPerformedThisFrame())
+		{
+			if (actions.swapItem.IsPressed())
+			{
 				inventory.TrySwap(CurrentItem, (CurrentItem - 1 + inventory.Length) % inventory.Length, out _);
 			}
 			CurrentItem--;
-        }
+		}
 		if (actions.scrollBackward.WasPerformedThisFrame())
 		{
             if (actions.swapItem.IsPressed())

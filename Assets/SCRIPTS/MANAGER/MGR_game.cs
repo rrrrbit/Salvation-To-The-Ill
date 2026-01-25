@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MGR_game : MonoBehaviour
 {
-	public float baseDifficulty;
 	public float gameDifficulty;
 	public float difficulty;
 
@@ -13,6 +12,8 @@ public class MGR_game : MonoBehaviour
 
 	public float replenishTimer;
 	public float waveTimer;
+	public float graceTimer;
+	public bool grace;
 	public int wave;
 	public int spawnCount;
 
@@ -27,13 +28,14 @@ public class MGR_game : MonoBehaviour
 
 	void Update()
 	{
-		timer += Time.deltaTime;
-		if (MGR.entities.entities.Count(x => x.team == ENTITY.Teams.ZOMBIE) <= 0) timer += Time.deltaTime;
 		waveTimer -= Time.deltaTime;
-		baseDifficulty = (Mathf.Sqrt(timer / 30 + 0.25f) - 0.5f);
+		if(waveTimer <= 0) graceTimer -= Time.deltaTime;
+
 		difficulty = gameDifficulty * wave;
 
-		if (waveTimer < 0)
+		grace = waveTimer <= 0 && graceTimer > 0;
+
+		if (waveTimer <= 0 && graceTimer <= 0)
 		{
 			StartNewWave();
 		}
@@ -49,7 +51,7 @@ public class MGR_game : MonoBehaviour
 			n => Mathf.Sqrt(10 * n) + 20 * halfPerDifficulty,
 			n => 6 * Mathf.Sqrt(10 * n) + 100 * halfPerDifficulty,
 			9 + gameDifficulty, 1.5f);
-
+		if (wave % 10 == 0) graceTimer = 60;
 		spawnCount = BoundedCycle(wave,
 			n => doublePerDifficulty * 3 * Mathf.Sqrt(n) + 1,
 			n => doublePerDifficulty * 6 * Mathf.Pow(n, 0.75f), 

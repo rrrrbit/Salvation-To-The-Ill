@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
     }
 	int currentItem;
 
+	public bool aim;
 	public bool use;
 	public bool interact;
 	public bool drop;

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d51082e057a09464fbf8ed5dab3c0233, type: 3}
-  m_Name: DmgRifle
+  m_Name: DmgSniper
   m_EditorClassIdentifier: 
   dmgRange:
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
-  - {x: 3, y: 5}
+  - {x: 20, y: 50}
+  - {x: 20, y: 50}
+  - {x: 20, y: 50}
+  - {x: 20, y: 50}
+  - {x: 20, y: 50}
   conversionRange:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
@@ -25,18 +25,18 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   spread:
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 1}
-  penetration: 0100000001000000010000000100000001000000
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  penetration: 0300000003000000030000000300000003000000
   costAmmo:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
   costHealth:
   - 0
   - 0
@@ -44,40 +44,40 @@ MonoBehaviour:
   - 0
   - 0
   shootInterval:
-  - 0.15
-  - 0.15
-  - 0.15
-  - 0.15
-  - 0.15
+  - 2.5
+  - 2.5
+  - 2.5
+  - 2.5
+  - 2.5
   bulletSpeed:
-  - 30
-  - 30
-  - 30
-  - 30
-  - 30
+  - 75
+  - 75
+  - 75
+  - 75
+  - 75
   bullets: 0100000001000000010000000100000001000000
   effectiveRange:
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
   gravity: 0
   targetOriginLayer: 0
   heal: 0
-  scope: 0
-  aimFov: 45
-  aimSensMult: 0.3
-  scopeSprite: {fileID: 0}
+  scope: 1
+  aimFov: 10
+  aimSensMult: 0.075
+  scopeSprite: {fileID: 21300000, guid: f252ed7b1885a9645892129acca0f131, type: 3}
   recoilRange:
-  - {x: -1, y: 1, z: 1, w: 2}
-  - {x: -1, y: 1, z: 1, w: 2}
-  - {x: -1, y: 1, z: 1, w: 2}
-  - {x: -1, y: 1, z: 1, w: 2}
-  - {x: -1, y: 1, z: 1, w: 2}
+  - {x: -10, y: 10, z: 10, w: 20}
+  - {x: -10, y: 10, z: 10, w: 20}
+  - {x: -10, y: 10, z: 10, w: 20}
+  - {x: -10, y: 10, z: 10, w: 20}
+  - {x: -10, y: 10, z: 10, w: 20}
   aimRecoilRange:
-  - {x: -0.5, y: 0.5, z: 0.5, w: 1}
-  - {x: -0.5, y: 0.5, z: 0.5, w: 1}
-  - {x: -0.5, y: 0.5, z: 0.5, w: 1}
-  - {x: -0.5, y: 0.5, z: 0.5, w: 1}
-  - {x: -0.5, y: 0.5, z: 0.5, w: 1}
+  - {x: -1, y: 1, z: 1, w: 2}
+  - {x: -1, y: 1, z: 1, w: 2}
+  - {x: -1, y: 1, z: 1, w: 2}
+  - {x: -1, y: 1, z: 1, w: 2}
+  - {x: -1, y: 1, z: 1, w: 2}

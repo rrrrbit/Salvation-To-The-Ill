@@ -21,5 +21,6 @@ public class OBJ_pickup : MonoBehaviour
         }
         text.text = item.GetComponent<ItemData>().itemName;
         text.transform.forward = PLYR.player.look.cam.transform.forward;
+		text.color = HUD.hud.qualityColours[(int)item.GetComponent<ItemData>().quality];
     }
 }

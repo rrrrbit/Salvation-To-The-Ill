@@ -17,7 +17,7 @@ public class NPC_movement : Movement
         if (path.status != NavMeshPathStatus.PathInvalid)
         {
             
-            if(((NPC)entity).targetPosD.sqrMagnitude > Mathf.Pow(sufficientRange, 2))
+            if(((NPC)entity).targetPosD.sqrMagnitude > Mathf.Pow(sufficientRange, 2) && path.corners.Length > 1)
             {
                 mvtIn = (Quaternion.Inverse(transform.rotation) * (path.corners[1] - transform.position)).xz().normalized;
             }

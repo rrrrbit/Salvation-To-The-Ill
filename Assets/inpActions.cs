@@ -119,6 +119,15 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""30da5ac7-5463-486f-8d33-cbecdfdf413e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""scrollForward"",
                     ""type"": ""Value"",
                     ""id"": ""386432e3-05e8-4997-854d-c39ab01dcae7"",
@@ -294,6 +303,17 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""521e3e3c-864b-4aad-ad12-01c30aca2cdb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -884,6 +904,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
         m_Player_move = m_Player.FindAction("move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_shoot = m_Player.FindAction("shoot", throwIfNotFound: true);
+        m_Player_aim = m_Player.FindAction("aim", throwIfNotFound: true);
         m_Player_scrollForward = m_Player.FindAction("scrollForward", throwIfNotFound: true);
         m_Player_scrollBackward = m_Player.FindAction("scrollBackward", throwIfNotFound: true);
         m_Player_swapItem = m_Player.FindAction("swapItem", throwIfNotFound: true);
@@ -985,6 +1006,7 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_shoot;
+    private readonly InputAction m_Player_aim;
     private readonly InputAction m_Player_scrollForward;
     private readonly InputAction m_Player_scrollBackward;
     private readonly InputAction m_Player_swapItem;
@@ -1013,6 +1035,10 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/shoot".
         /// </summary>
         public InputAction @shoot => m_Wrapper.m_Player_shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/aim".
+        /// </summary>
+        public InputAction @aim => m_Wrapper.m_Player_aim;
         /// <summary>
         /// Provides access to the underlying input action "Player/scrollForward".
         /// </summary>
@@ -1068,6 +1094,9 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
             @shoot.started += instance.OnShoot;
             @shoot.performed += instance.OnShoot;
             @shoot.canceled += instance.OnShoot;
+            @aim.started += instance.OnAim;
+            @aim.performed += instance.OnAim;
+            @aim.canceled += instance.OnAim;
             @scrollForward.started += instance.OnScrollForward;
             @scrollForward.performed += instance.OnScrollForward;
             @scrollForward.canceled += instance.OnScrollForward;
@@ -1103,6 +1132,9 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
             @shoot.started -= instance.OnShoot;
             @shoot.performed -= instance.OnShoot;
             @shoot.canceled -= instance.OnShoot;
+            @aim.started -= instance.OnAim;
+            @aim.performed -= instance.OnAim;
+            @aim.canceled -= instance.OnAim;
             @scrollForward.started -= instance.OnScrollForward;
             @scrollForward.performed -= instance.OnScrollForward;
             @scrollForward.canceled -= instance.OnScrollForward;
@@ -1439,6 +1471,13 @@ public partial class @InpActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "aim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAim(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "scrollForward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

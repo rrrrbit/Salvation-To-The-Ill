@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "aim",
+                    "type": "Button",
+                    "id": "30da5ac7-5463-486f-8d33-cbecdfdf413e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "scrollForward",
                     "type": "Value",
                     "id": "386432e3-05e8-4997-854d-c39ab01dcae7",
@@ -208,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "521e3e3c-864b-4aad-ad12-01c30aca2cdb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

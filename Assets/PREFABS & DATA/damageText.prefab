@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bed3a8d3cd2dad41add67a82df1a29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 0
+  wasHit: {fileID: 0}
   flashing: 0
   fadeTime: 0.5
   c1: {r: 1, g: 0, b: 0, a: 1}
@@ -58,6 +60,8 @@ MonoBehaviour:
   flashInterval: 0.03
   destroyAfter: 1
   lifetime: 0.1
+  fadeTimer: 0
+  sizeByDistance: 0.2
 --- !u!23 &5291683360258294828
 MeshRenderer:
   m_ObjectHideFlags: 0

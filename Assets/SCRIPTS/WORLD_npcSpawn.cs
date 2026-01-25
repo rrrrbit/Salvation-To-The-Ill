@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ public class WORLD_npcSpawn : MonoBehaviour
 
     public float timer;
     public float spawnInterval;
+	public float spawnRange;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,8 +31,12 @@ public class WORLD_npcSpawn : MonoBehaviour
 
     void Spawn()
     {
-        var thisNpc = MGR.entities.RandomNPC();
-		thisNpc.transform.position = transform.position;
+        var thisNpc = MGR.entities.RandomNPC(transform.position + (Random.insideUnitCircle * spawnRange).xz(0));
         leftToSpawn--;
     }
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.DrawWireSphere(transform.position, spawnRange);
+	}
 }

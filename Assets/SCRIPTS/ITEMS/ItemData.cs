@@ -9,11 +9,11 @@ public class ItemData : MonoBehaviour
     public float defaultRange;
     public enum Qualities
     {
-        shoddy,
-        average,
-        decent,
-        pristine,
-        advanced        
+        shoddy = 0,
+        average = 1,
+        decent = 2,
+        pristine = 3,
+        advanced = 4,
     }
     public Qualities quality = Qualities.average;
     public int amt = 1;

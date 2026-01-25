@@ -21,7 +21,55 @@ MonoBehaviour:
   - {fileID: 7455337122672803234, guid: 8f9d0e63f540d124695b28659ed70fff, type: 3}
   - {fileID: 7455337122672803234, guid: 11d5c29a2097aa9418bf5de02a005313, type: 3}
   - {fileID: 7455337122672803234, guid: 54c8d617e57fa6c419ecee8649e42d8b, type: 3}
+  - {fileID: 7455337122672803234, guid: 9df08e763ee29b642aa19c545aeb4d65, type: 3}
+  - {fileID: 7455337122672803234, guid: 26ff6884524453140a1959710263bab7, type: 3}
   itemChances:
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   - serializedVersion: 2
     m_Curve:
     - serializedVersion: 3

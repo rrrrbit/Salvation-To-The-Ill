@@ -15,6 +15,7 @@ public class VFX_dmgText : MonoBehaviour
 	public float lifetime;
 	public AttackContext ctx;
 	public float fadeTimer;
+	public float sizeByDistance;
 
 	float flashTimer;
 	bool c;
@@ -51,6 +52,7 @@ public class VFX_dmgText : MonoBehaviour
 		var C = c ? c1 : c2;
 		tmp.color = new(C.r, C.g, C.b, fadeTimer / fadeTime);
 
-		transform.forward = PLYR.player.look.cam.transform.forward;
+		transform.forward = PLYR.player.look.cam.forward;
+		transform.localScale = Vector3.one * (PLYR.player.look.cam.position - transform.position).magnitude * sizeByDistance;
     }
 }

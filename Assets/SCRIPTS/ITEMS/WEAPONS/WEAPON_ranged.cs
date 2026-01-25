@@ -36,6 +36,25 @@ public class WEAPON_ranged : WEAPON
 				p.originQuality = Quality();
             }
 		}
+
+		user.look.look += user.look.displacement.Scaled(new(1,-1));
+		var recoil = Vector2.zero;
+		if (user.inventory.aim)
+		{
+			recoil = new(
+				Random.Range(stats.aimRecoilRange[Quality()].x, stats.aimRecoilRange[Quality()].z),
+				Random.Range(stats.aimRecoilRange[Quality()].y, stats.aimRecoilRange[Quality()].w)
+				);
+		}
+		else
+		{
+			recoil = new(
+				Random.Range(stats.recoilRange[Quality()].x, stats.recoilRange[Quality()].z),
+				Random.Range(stats.recoilRange[Quality()].y, stats.recoilRange[Quality()].w)
+				);
+		}
+		user.look.displacement = recoil;
+
 		
 		return true;
 	}

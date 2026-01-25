@@ -65,3 +65,6 @@ MonoBehaviour:
   gravity: 1
   targetOriginLayer: 0
   heal: 0
+  scope: 0
+  aimFov: 90
+  aimSensMult: 1

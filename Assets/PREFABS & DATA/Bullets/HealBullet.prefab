@@ -206,9 +206,10 @@ MonoBehaviour:
   lifetime: 5
   penetrationLeft: 0
   targetOriginLayer: 0
-  originLayer: 0
+  origin: {fileID: 0}
   originStats: {fileID: 0}
   originQuality: 0
+  originTeam: 0
 --- !u!33 &7404381645702883373
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -309,4 +310,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1

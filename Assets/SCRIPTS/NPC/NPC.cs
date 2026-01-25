@@ -15,13 +15,14 @@ public class NPC : ENTITY
 	public float defaultStopRange;
 
     public LayerMask walls;
+	public MeshRenderer mesh;
 
     public override void Update()
     {
         base.Update();
 
-        if(team == Teams.HUMAN) GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
-        else GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+        if(team == Teams.HUMAN) mesh.material.color = Color.blue;
+        else mesh.material.color = Color.red;
 
         if (inventory.GetCurrent().TryGetComponent(out WEAPON w)) useRange = w.stats.effectiveRange[w.Quality()];
         else useRange = inventory.GetCurrent().defaultRange;

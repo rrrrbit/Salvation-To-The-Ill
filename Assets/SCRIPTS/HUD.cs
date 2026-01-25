@@ -14,10 +14,12 @@ public class HUD : MonoBehaviour
     public Image[] itemSprites;
     public Transform itemSelect;
     public Sprite placeholderSprite;
+	public Color[] qualityColours;
+	public static HUD hud;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+		hud = this;
     }
 
     // Update is called once per frame
@@ -33,14 +35,11 @@ public class HUD : MonoBehaviour
             if(PLYR.player.inventory.inventory[i])
             {
                 var thisItem = PLYR.player.inventory.inventory[i];
-                if (thisItem.itemSprite)
-                {
-                    itemSprites[i].sprite = thisItem.itemSprite;
-                }
-                else
-                {
-                    itemSprites[i].sprite = placeholderSprite;
-                }
+
+                if (thisItem.itemSprite) itemSprites[i].sprite = thisItem.itemSprite;
+                else itemSprites[i].sprite = placeholderSprite;
+
+				itemSprites[i].color = qualityColours[(int)thisItem.quality];
                 if (thisItem.amt > 1)
                 {
                     itemSprites[i].GetComponentInChildren<TextMeshProUGUI>().enabled = true;
@@ -50,14 +49,26 @@ public class HUD : MonoBehaviour
             else
             {
                 itemSprites[i].sprite = null;
-            }
+				itemSprites[i].color = Color.white;
+			}
         }
         itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.inventory.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
 
-        infoText.text = "wave " + MGR.game.wave.ToString() +
-            "\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
-            "\n" + MGR.entities.entities.Count(x => x.team == ENTITY.Teams.ZOMBIE) + " zombies left" +
-            "\n" + MGR.entities.entities.Count(x => x.team == ENTITY.Teams.HUMAN) + " allies";
-
+		if (MGR.game.grace)
+		{
+			infoText.text = "grace period" +
+				"\n" + (Mathf.Round(MGR.game.graceTimer * 100f) / 100f).ToString();
+		}
+		else if(MGR.entities.CountTeam(ENTITY.Teams.ZOMBIE) <= 0)
+		{
+			infoText.text = "wave cleared" +
+				"\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString();
+		}
+		else
+		{
+			infoText.text = "wave " + MGR.game.wave.ToString() +
+				"\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
+				"\n" + MGR.entities.CountTeam(ENTITY.Teams.ZOMBIE) + " zombies left";
+		}
     }
 }

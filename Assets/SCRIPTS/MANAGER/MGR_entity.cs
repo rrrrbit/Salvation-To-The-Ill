@@ -46,12 +46,11 @@ public class MGR_entity : MonoBehaviour
         return thisPickup;
     }
 
-    public GameObject RandomNPC()
+    public GameObject RandomNPC(Vector3? pos)
     {
-        var thisNpc = Instantiate(npcPrefab);
-        var chanceOfArmed = (MGR.game.wave / 10f) * CountTeam(ENTITY.Teams.HUMAN) / 
-            (Mathf.Sqrt(CountTeam(ENTITY.Teams.ZOMBIE)) + 2 * (MGR.game.wave / 10f) * CountTeam(ENTITY.Teams.HUMAN));
-
+        var thisNpc = Instantiate(npcPrefab, pos ?? Vector3.zero, new());
+        var chanceOfArmed = MGR.game.wave / 10f * CountTeam(ENTITY.Teams.HUMAN) / 
+            (Mathf.Sqrt(CountTeam(ENTITY.Teams.ZOMBIE)+1) + 2 * (MGR.game.wave / 10f) * CountTeam(ENTITY.Teams.HUMAN));
         var health = RandAttrOverDiff(spawnSettings.minHealth, spawnSettings.maxHealth, spawnSettings.healthSkew);
         var size = RandAttrOverDiff(spawnSettings.minSize, spawnSettings.maxSize, spawnSettings.sizeSkew);
         var speed = RandAttrOverDiff(spawnSettings.minSpeed, spawnSettings.maxSpeed, spawnSettings.speedSkew);
@@ -82,7 +81,7 @@ public class MGR_entity : MonoBehaviour
     }
 
     float RandAttrOverDiff(AnimationCurve min, AnimationCurve max, AnimationCurve curve) => Mathf.Lerp(min.Evaluate(MGR.game.difficulty), max.Evaluate(MGR.game.difficulty), curve.Evaluate(Random.value));
-    int CountTeam(ENTITY.Teams team) => entities.Count(x => x.team == team);
+    public int CountTeam(ENTITY.Teams team) => entities.Count(x => x.team == team);
     int RandomIndex(List<float> chances)
     {
         var val = Random.Range(0, chances.Sum());

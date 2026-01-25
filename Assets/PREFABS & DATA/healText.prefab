@@ -61,6 +61,7 @@ MonoBehaviour:
   destroyAfter: 1
   lifetime: 0.1
   fadeTimer: 0
+  sizeByDistance: 0.2
 --- !u!23 &5291683360258294828
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -71,6 +71,7 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 1024
+  mesh: {fileID: 7999355616547577644}
 --- !u!114 &7872349048514272357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
   invSize: 1
   inventory:
   - {fileID: 0}
+  aim: 0
   use: 0
   interact: 0
   drop: 0
@@ -159,8 +161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look: {x: 0, y: 0}
+  displacement: {x: 0, y: 0}
+  shake: {x: 0, y: 0}
   pitchClamp: {x: -90, y: 90}
-  targetPitch: 0
   cam: {fileID: 2726052605696043692}
   entity: {fileID: 0}
 --- !u!54 &8383496456749841449
@@ -483,6 +486,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edfbee1c6df80db448aeb557056bb163, type: 3}
+--- !u!23 &7999355616547577644 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: edfbee1c6df80db448aeb557056bb163, type: 3}
+  m_PrefabInstance: {fileID: 8701796898571977640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9171659057181221955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: edfbee1c6df80db448aeb557056bb163, type: 3}

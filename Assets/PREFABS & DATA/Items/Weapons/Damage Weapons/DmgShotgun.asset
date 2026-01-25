@@ -25,11 +25,11 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   spread:
-  - {x: 5, y: 5}
-  - {x: 5, y: 5}
-  - {x: 5, y: 5}
-  - {x: 5, y: 5}
-  - {x: 5, y: 5}
+  - {x: 10, y: 10}
+  - {x: 10, y: 10}
+  - {x: 10, y: 10}
+  - {x: 10, y: 10}
+  - {x: 10, y: 10}
   penetration: 0100000001000000010000000100000001000000
   costAmmo:
   - 5
@@ -44,11 +44,11 @@ MonoBehaviour:
   - 0
   - 0
   shootInterval:
-  - 0.75
-  - 0.75
-  - 0.75
-  - 0.75
-  - 0.75
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   bulletSpeed:
   - 30
   - 30
@@ -65,3 +65,9 @@ MonoBehaviour:
   gravity: 0
   targetOriginLayer: 0
   heal: 0
+  scope: 0
+  aimFov: 60
+  aimSensMult: 0.4
+  scopeSprite: {fileID: 0}
+  recoilRange: []
+  aimRecoilRange: []
