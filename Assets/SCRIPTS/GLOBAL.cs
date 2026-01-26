@@ -117,6 +117,10 @@ public static class GLOBAL
         return v;
     }
 
+    public static Vector3 DivideBy(this Vector3 v, Vector3 other) => new(v.x / other.x, v.y / other.y, v.z / other.z);
+    public static Vector2 DivideBy(this Vector2 v, Vector2 other) => new(v.x / other.x, v.y / other.y);
+
+
     public static bool IsEmpty<T>(this T[] self)
 	{
 		if (self.Length == 0) return true;

@@ -4,8 +4,10 @@ public class OBJ_Grenade : OBJ_Projectile
 {
     public float explosionSize;
     public AnimationCurve shake;
+    public GameObject rangeIndicator;
     public override void OnDie()
     {
+        Destroy(rangeIndicator);
         foreach(Collider other in Physics.OverlapSphere(transform.position, explosionSize, collideWith))
         {
             if (other.TryGetComponent(out IAttackable a) && ((other.gameObject != origin) || originStats.heal) && other.gameObject != gameObject)
@@ -27,5 +29,13 @@ public class OBJ_Grenade : OBJ_Projectile
                 look.shake += Vector2.one * shake.Evaluate((transform.position - other.transform.position).magnitude);
             }
         }
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        Material mat = rangeIndicator.GetComponent<Renderer>().material;
+        mat.color = GetComponent<Renderer>().material.color;
+        rangeIndicator.transform.localScale = GLOBAL.Lerpd(rangeIndicator.transform.localScale, new Vector3(explosionSize, explosionSize, explosionSize).DivideBy(transform.localScale) * 2, 0.2f, 0.05f, Time.deltaTime);
     }
 }

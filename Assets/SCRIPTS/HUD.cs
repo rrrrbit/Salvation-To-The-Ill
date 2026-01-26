@@ -16,6 +16,9 @@ public class HUD : MonoBehaviour
     public Sprite placeholderSprite;
 	public Color[] qualityColours;
 	public static HUD hud;
+    public Image overlay;
+    public Sprite dmgOverlay;
+    public Sprite healOverlay;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +31,10 @@ public class HUD : MonoBehaviour
 		health.GetComponent<Slider>().value = PLYR.player.stats.health / PLYR.player.stats.maxHealth;
 		ammo.GetComponent<Slider>().value = PLYR.player.stats.ammo / PLYR.player.stats.maxAmmo;
         convert.GetComponent<Slider>().value = PLYR.player.stats.conversion / PLYR.player.stats.maxConversion;
+
+        var c = overlay.color;
+        c.a = Mathf.Max(0, c.a - Time.deltaTime);
+        overlay.color = c;
 
         for(int i = 0; i < PLYR.player.inventory.inventory.Length; i++)
         {
@@ -70,5 +77,13 @@ public class HUD : MonoBehaviour
 				"\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
 				"\n" + MGR.entities.CountTeam(ENTITY.Teams.ZOMBIE) + " zombies left";
 		}
+    }
+
+    public void Overlay(bool heal)
+    {
+        var c = overlay.color;
+        c.a = 0.5f;
+        overlay.sprite = heal ? healOverlay : dmgOverlay;
+        overlay.color = c;
     }
 }

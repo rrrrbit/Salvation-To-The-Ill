@@ -25,7 +25,7 @@ public class OBJ_Projectile : MonoBehaviour
 		originTeam = origin.GetComponent<ENTITY>().team;
     }
 
-    void Update()
+    public virtual void Update()
     {
         lifetime -= Time.deltaTime;
 		if (lifetime <= 0)

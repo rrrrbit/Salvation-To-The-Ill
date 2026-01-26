@@ -13,8 +13,7 @@ public class Stats : MonoBehaviour, IAttackable
 	public float size;
 	public float defense;
 	public float convResistance;
-	public float attackSpeedMult;
-	public float ammoCnsmpMult;
+	public AnimationCurve damageShake;
 	[Space]
     public ENTITY entity;
     public virtual void Start()
@@ -35,6 +34,7 @@ public class Stats : MonoBehaviour, IAttackable
 		if (ctx.attackerTeam == entity.team) ctx.finalDmg = 0;
         else ctx.finalDmg = ctx.baseDmg * DefenseMult(defense);
         health -= ctx.finalDmg;
+		if (!ctx.heal) HUD.hud.Overlay(true);
 
         ctx.finalConv = ctx.baseConv * DefenseMult(convResistance);
 
@@ -42,8 +42,15 @@ public class Stats : MonoBehaviour, IAttackable
         {
             Heal(ctx.baseConv);
             conversion -= ctx.finalConv;
+            if (entity == PLYR.player) HUD.hud.Overlay(true);
         }
-        else conversion += ctx.finalConv;
+        else
+		{
+			conversion += ctx.finalConv;
+            if (entity == PLYR.player) HUD.hud.Overlay(false);
+        }
+
+		entity.look.shake += Vector2.one * damageShake.Evaluate(ctx.finalDmg / maxHealth);
 
 		if(health <= 0) Die(ctx);
         if (conversion >= maxConversion) Convert(ctx);
