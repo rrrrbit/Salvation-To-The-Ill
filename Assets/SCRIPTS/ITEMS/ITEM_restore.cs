@@ -9,7 +9,7 @@ public class ITEM_restore : UseBehaviour
     {
         recipient.stats.health += healthRes;
         recipient.stats.ammo += ammoRes;
-        user.inventory.useTimer = cooldown;
+        user.inventory.cooldowns[user.inventory.CurrentItem] = cooldown;
         item.amt--;
         return true;
 

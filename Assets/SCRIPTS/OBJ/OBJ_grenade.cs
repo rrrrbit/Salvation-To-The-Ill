@@ -3,7 +3,7 @@ using UnityEngine;
 public class OBJ_Grenade : OBJ_Projectile
 {
     public float explosionSize;
-
+    public AnimationCurve shake;
     public override void OnDie()
     {
         foreach(Collider other in Physics.OverlapSphere(transform.position, explosionSize, collideWith))
@@ -21,6 +21,10 @@ public class OBJ_Grenade : OBJ_Projectile
                 };
                 a.Attack(ctx);
                 if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, other.transform.position, false);
+            }
+            if(other.TryGetComponent(out Look look))
+            {
+                look.shake += Vector2.one * shake.Evaluate((transform.position - other.transform.position).magnitude);
             }
         }
     }

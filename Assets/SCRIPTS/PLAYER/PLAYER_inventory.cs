@@ -1,4 +1,4 @@
-using TMPro;
+ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -15,6 +15,7 @@ public class PLAYER_inventory : Inventory
 		inp.Enable();
 		actions = inp.Player;
 		actions.Enable();
+		InitInventory();
 	}
     public override void Update()
     {

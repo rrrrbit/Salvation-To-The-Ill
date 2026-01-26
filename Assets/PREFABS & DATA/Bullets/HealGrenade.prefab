@@ -203,14 +203,38 @@ MonoBehaviour:
   instakill:
     serializedVersion: 2
     m_Bits: 0
-  lifetime: 5
+  lifetime: 3
   penetrationLeft: 0
   targetOriginLayer: 0
   origin: {fileID: 0}
   originStats: {fileID: 0}
   originQuality: 0
-  gravityMult: 3
+  originTeam: 0
   explosionSize: 10
+  shake:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 15
+      inSlope: -1.4385707
+      outSlope: -1.4385707
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.23484924
+    - serializedVersion: 3
+      time: 20
+      value: 0
+      inSlope: -0.0044875774
+      outSlope: -0.0044875774
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4894774
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!33 &7404381645702883373
 MeshFilter:
   m_ObjectHideFlags: 0
