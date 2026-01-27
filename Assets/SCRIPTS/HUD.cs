@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -17,12 +16,15 @@ public class HUD : MonoBehaviour
 	public Color[] qualityColours;
 	public static HUD hud;
     public Image overlay;
-    public Sprite dmgOverlay;
-    public Sprite healOverlay;
+	public Sprite[] overlays;
+
+	public float healthShake;
+	Vector3 initHealthPos;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 		hud = this;
+		initHealthPos = health.transform.position;
     }
 
     // Update is called once per frame
@@ -32,11 +34,17 @@ public class HUD : MonoBehaviour
 		ammo.GetComponent<Slider>().value = PLYR.player.stats.ammo / PLYR.player.stats.maxAmmo;
         convert.GetComponent<Slider>().value = PLYR.player.stats.conversion / PLYR.player.stats.maxConversion;
 
-        var c = overlay.color;
-        c.a = Mathf.Max(0, c.a - Time.deltaTime);
-        overlay.color = c;
+		healthShake = GLOBAL.Lerpd(healthShake, 0, 0.5f, 0.1f, Time.deltaTime);
 
-        for(int i = 0; i < PLYR.player.inventory.inventory.Length; i++)
+		var p = health.transform.position;
+		p.x = initHealthPos.x + Random.Range(-1, 1) * healthShake;
+		health.transform.position = p;
+
+		var c = overlay.color;
+		c.a = Mathf.Max(0, c.a - Time.deltaTime);
+		overlay.color = c;
+
+		for (int i = 0; i < PLYR.player.inventory.inventory.Length; i++)
         {
             itemSprites[i].GetComponentInChildren<TextMeshProUGUI>().enabled = false;
             if(PLYR.player.inventory.inventory[i])
@@ -59,6 +67,7 @@ public class HUD : MonoBehaviour
 				itemSprites[i].color = Color.white;
 			}
         }
+
         itemSelect.transform.position = GLOBAL.Lerpd(itemSelect.transform.position, itemSprites[PLYR.player.inventory.CurrentItem].transform.position, 0.75f, 0.02f, Time.deltaTime);
 
 		if (MGR.game.grace)
@@ -79,11 +88,18 @@ public class HUD : MonoBehaviour
 		}
     }
 
-    public void Overlay(bool heal)
+	public enum OverlayType
+	{
+		damage = 0,
+		heal = 1,
+		infect = 2,
+	}
+
+    public void Overlay(OverlayType overlayType)
     {
-        var c = overlay.color;
-        c.a = 0.5f;
-        overlay.sprite = heal ? healOverlay : dmgOverlay;
-        overlay.color = c;
+		var c = overlay.color;
+		c.a = 0.5f;
+		overlay.color = c;
+		overlay.sprite = overlays[(int)overlayType];
     }
 }

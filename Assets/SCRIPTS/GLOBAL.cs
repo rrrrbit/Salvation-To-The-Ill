@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 public static class GLOBAL
@@ -126,5 +128,12 @@ public static class GLOBAL
 		if (self.Length == 0) return true;
 		foreach (T item in self) if (item != null) return false;
 		return true;
+	}
+
+	public static void As<T>(this T thing, Action<T> lambda)
+	{
+		T clone = thing;
+		lambda(clone);
+		thing = clone;
 	}
 }
