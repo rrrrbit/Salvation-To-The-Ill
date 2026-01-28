@@ -24,11 +24,15 @@ public class OBJ_Grenade : OBJ_Projectile
                 a.Attack(ctx);
                 if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, other.transform.position, false);
             }
-            if(other.TryGetComponent(out Look look))
+        }
+        foreach (Collider other in Physics.OverlapSphere(transform.position, shake.keys[shake.keys.Length-1].time))
+        {
+            if (other.TryGetComponent(out Look look))
             {
                 look.shake += Vector2.one * shake.Evaluate((transform.position - other.transform.position).magnitude);
             }
         }
+        MGR.vfx.Explosion(originStats.heal, explosionSize, transform);
     }
 
     public override void Update()

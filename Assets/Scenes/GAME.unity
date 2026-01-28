@@ -4541,6 +4541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmgText: {fileID: 2387962869840751042, guid: d46e6146236d1f945a10694636dc496c, type: 3}
   healText: {fileID: 2387962869840751042, guid: 4e81cb6f34055c54a910b19efdbc5ef0, type: 3}
+  explosion: {fileID: 5516369976256314600, guid: 2fbdfb176c917814fafdf12653eff4b3, type: 3}
+  healExplosion: {fileID: 5516369976256314600, guid: 4f20029274af4e546a5c90aeb89c751a, type: 3}
   dmgTexts: []
 --- !u!114 &1559355783
 MonoBehaviour:

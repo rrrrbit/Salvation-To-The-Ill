@@ -3,40 +3,26 @@ using UnityEngine;
 public class VFX_explosion : MonoBehaviour
 {
     ParticleSystem particle;
-    Color color;
 
-    float range;
-    float speed;
+    public float range;
+    public float speed;
 
-    float innerLifetime;
-    float innerSpeed;
+    public float innerLifetime;
+    public float innerSpeed;
 
-    private void Awake()
-    {
-        
 
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         particle = GetComponent<ParticleSystem>();
         var outerLifetime = range / speed;
 
-        var ptclLifetime = particle.main.startLifetime;
-        ptclLifetime.constantMin = innerLifetime;
-        ptclLifetime.constantMax = outerLifetime;
+        innerLifetime = outerLifetime * 0.1f;
+        innerSpeed = speed * 0.9f;
 
-        var ptclSpeed = particle.main.startSpeed;
-        ptclSpeed.constantMin = innerSpeed;
-        ptclLifetime.constantMax = speed;
+        var ptcl = particle.main;
 
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        ptcl.startLifetime = new(innerLifetime, outerLifetime);
+        ptcl.startSpeed = new(innerSpeed, speed);
         
     }
 }

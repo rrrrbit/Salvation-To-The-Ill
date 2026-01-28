@@ -7,7 +7,9 @@ public class MGR_vfx : MonoBehaviour
 {
 	public GameObject dmgText;
 	public GameObject healText;
-	public List<VFX_dmgText> dmgTexts;
+	public GameObject explosion;
+    public GameObject healExplosion;
+    public List<VFX_dmgText> dmgTexts;
 
     public void DmgText(AttackContext ctx, Vector3 position, bool flash)
 	{
@@ -38,5 +40,13 @@ public class MGR_vfx : MonoBehaviour
 
 		thisText.GetComponent<Rigidbody>().AddForce(d, ForceMode.VelocityChange);
 		dmgTexts.Add(thisText.GetComponent<VFX_dmgText>());
+	}
+
+	public void Explosion(bool heal, float range, Transform pos)
+	{
+		var thisExpl = Instantiate(heal?healExplosion:explosion, pos.position, new());
+		VFX_explosion expl = thisExpl.GetComponent<VFX_explosion>();
+		expl.range = range*4;
+		expl.speed = 15;
 	}
 }
