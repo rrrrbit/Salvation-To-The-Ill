@@ -47,6 +47,6 @@ public class MGR_vfx : MonoBehaviour
 		var thisExpl = Instantiate(heal?healExplosion:explosion, pos.position, new());
 		VFX_explosion expl = thisExpl.GetComponent<VFX_explosion>();
 		expl.range = range*4;
-		expl.speed = 15;
+		expl.speed = 20;
 	}
 }
