@@ -66,8 +66,18 @@ MonoBehaviour:
   targetOriginLayer: 0
   heal: 1
   scope: 0
-  aimFov: 0
-  aimSensMult: 0
+  aimFov: 75
+  aimSensMult: 0.6
   scopeSprite: {fileID: 0}
-  recoilRange: []
-  aimRecoilRange: []
+  recoilRange:
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  aimRecoilRange:
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}
+  - {x: -2, y: 2, z: 2, w: 4}

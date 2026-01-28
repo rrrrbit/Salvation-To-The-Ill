@@ -5,6 +5,9 @@ public class OBJ_Grenade : OBJ_Projectile
     public float explosionSize;
     public AnimationCurve shake;
     public GameObject rangeIndicator;
+	public AnimationCurve flashSpeed;
+
+	public float flashTimer;
     public override void OnDie()
     {
         Destroy(rangeIndicator);
@@ -38,8 +41,9 @@ public class OBJ_Grenade : OBJ_Projectile
     public override void Update()
     {
         base.Update();
+		flashTimer += Time.deltaTime * flashSpeed.Evaluate(lifetime);
         Material mat = rangeIndicator.GetComponent<Renderer>().material;
-        mat.color = GetComponent<Renderer>().material.color;
+        mat.color = GetComponent<Renderer>().material.color * (1 - flashTimer % 1);
         rangeIndicator.transform.localScale = GLOBAL.Lerpd(rangeIndicator.transform.localScale, new Vector3(explosionSize, explosionSize, explosionSize).DivideBy(transform.localScale) * 2, 0.2f, 0.05f, Time.deltaTime);
     }
 }

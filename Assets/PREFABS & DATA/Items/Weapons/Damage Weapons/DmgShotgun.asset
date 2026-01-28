@@ -69,5 +69,15 @@ MonoBehaviour:
   aimFov: 60
   aimSensMult: 0.4
   scopeSprite: {fileID: 0}
-  recoilRange: []
-  aimRecoilRange: []
+  recoilRange:
+  - {x: -5, y: 5, z: 5, w: 10}
+  - {x: -5, y: 5, z: 5, w: 10}
+  - {x: -5, y: 5, z: 5, w: 10}
+  - {x: -5, y: 5, z: 5, w: 10}
+  - {x: -5, y: 5, z: 5, w: 10}
+  aimRecoilRange:
+  - {x: -2.5, y: 2.5, z: 2.5, w: 5}
+  - {x: -2.5, y: 2.5, z: 2.5, w: 5}
+  - {x: -2.5, y: 2.5, z: 2.5, w: 5}
+  - {x: -2.5, y: 2.5, z: 2.5, w: 5}
+  - {x: -2.5, y: 2.5, z: 2.5, w: 5}

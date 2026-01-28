@@ -18,12 +18,9 @@ public class WEAPON_ranged : WEAPON
 
 		for (int i = 0; i < bullets; i++)
 		{
-			GameObject thisBullet = Instantiate(bullet);
-			thisBullet.transform.position = user.inventory.useOrigin.position;
-
 			Vector2 angle = Random.insideUnitCircle.Scaled(new(spread.x / 2, spread.y / 2));
+			GameObject thisBullet = Instantiate(bullet, user.inventory.useOrigin.position, Quaternion.LookRotation(Quaternion.AngleAxis(angle.x, user.inventory.useOrigin.up) * Quaternion.AngleAxis(angle.y, user.inventory.useOrigin.right) * user.inventory.useOrigin.forward));
 
-            thisBullet.transform.forward = Quaternion.AngleAxis(angle.x, user.inventory.useOrigin.up) * Quaternion.AngleAxis(angle.y, user.inventory.useOrigin.right) * user.inventory.useOrigin.forward;
 			if (thisBullet.TryGetComponent(out Rigidbody r))
 			{
 				r.AddForce(speed * thisBullet.transform.forward, ForceMode.VelocityChange);

@@ -2,9 +2,17 @@ using UnityEngine;
 
 public class OBJ_bullet : OBJ_Projectile
 {
-    public override void OnHit(Collider other)
+    public override void OnHit(Collider other, bool instakill)
     {
-        if (other.TryGetComponent(out IAttackable a))
+		MGR.vfx.BulletPtcl(originStats.heal, other.ClosestPoint(transform.position-GetComponent<Rigidbody>().linearVelocity*Time.fixedDeltaTime), GetComponent<Rigidbody>().linearVelocity);
+		if (instakill)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		
+		
+		if (other.TryGetComponent(out IAttackable a))
         {
             AttackContext ctx = new()
             {

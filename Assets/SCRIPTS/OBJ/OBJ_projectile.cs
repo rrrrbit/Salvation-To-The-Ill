@@ -47,13 +47,12 @@ public class OBJ_Projectile : MonoBehaviour
 	{
 		if (instakill.Contains(other.gameObject))
         {
-            OnDie();
-            Destroy(gameObject);
+            OnHit(other, true);
         }
-		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != originTeam) || originStats.heal) && other.gameObject != origin) OnHit(other);
+		else if (collideWith.Contains(other.gameObject) && ((other.GetComponent<ENTITY>().team != originTeam) || originStats.heal) && other.gameObject != origin) OnHit(other, false);
 	}
 
-    public virtual void OnHit(Collider other)
+    public virtual void OnHit(Collider other, bool instakill)
 	{
 
 	}

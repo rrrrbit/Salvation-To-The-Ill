@@ -113,7 +113,7 @@ public static class GLOBAL
         return v;
     }
 
-    public static Vector3 Scaled(this Vector3 v, Vector2 other)
+    public static Vector3 Scaled(this Vector3 v, Vector3 other)
     {
         v.Scale(other);
         return v;
@@ -128,12 +128,5 @@ public static class GLOBAL
 		if (self.Length == 0) return true;
 		foreach (T item in self) if (item != null) return false;
 		return true;
-	}
-
-	public static void As<T>(this T thing, Action<T> lambda)
-	{
-		T clone = thing;
-		lambda(clone);
-		thing = clone;
 	}
 }
