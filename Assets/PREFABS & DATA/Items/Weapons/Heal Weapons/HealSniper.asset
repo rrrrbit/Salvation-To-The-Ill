@@ -50,11 +50,11 @@ MonoBehaviour:
   - 2.5
   - 2.5
   bulletSpeed:
-  - 75
-  - 75
-  - 75
-  - 75
-  - 75
+  - 60
+  - 60
+  - 60
+  - 60
+  - 60
   bullets: 0100000001000000010000000100000001000000
   effectiveRange:
   - 100
@@ -69,3 +69,5 @@ MonoBehaviour:
   aimFov: 10
   aimSensMult: 0.075
   scopeSprite: {fileID: 21300000, guid: f252ed7b1885a9645892129acca0f131, type: 3}
+  recoilRange: []
+  aimRecoilRange: []
