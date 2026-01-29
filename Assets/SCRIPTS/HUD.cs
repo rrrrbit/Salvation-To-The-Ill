@@ -9,7 +9,8 @@ public class HUD : MonoBehaviour
 	public GameObject health;
 	public GameObject ammo;
     public GameObject convert;
-    public TextMeshProUGUI infoText;
+    public TextMeshProUGUI waveTitle;
+	public TextMeshProUGUI waveInfo;
     public Image[] itemSprites;
     public Transform itemSelect;
     public Sprite placeholderSprite;
@@ -72,19 +73,19 @@ public class HUD : MonoBehaviour
 
 		if (MGR.game.grace)
 		{
-			infoText.text = "grace period" +
-				"\n" + (Mathf.Round(MGR.game.graceTimer * 100f) / 100f).ToString();
-		}
+			waveTitle.text = "GRACE PERIOD";
+			waveInfo.text = (Mathf.Round(MGR.game.graceTimer * 100f) / 100f).ToString();
+        }
 		else if(MGR.entities.CountTeam(ENTITY.Teams.ZOMBIE) <= 0)
 		{
-			infoText.text = "wave cleared" +
-				"\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString();
+			waveTitle.text = "WAVE CLEARED";
+            waveInfo.text = (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString();
 		}
 		else
 		{
-			infoText.text = "wave " + MGR.game.wave.ToString() +
-				"\n" + (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
-				"\n" + MGR.entities.CountTeam(ENTITY.Teams.ZOMBIE) + " zombies left";
+			waveTitle.text = "WAVE " + MGR.game.wave.ToString();
+			waveInfo.text = (Mathf.Round(MGR.game.waveTimer * 100f) / 100f).ToString() +
+				"\n" + MGR.entities.CountTeam(ENTITY.Teams.ZOMBIE) + " LEFT";
 		}
     }
 
