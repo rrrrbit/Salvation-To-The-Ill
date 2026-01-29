@@ -15,8 +15,7 @@ public class UI_gradient : MonoBehaviour
     public Vector2 lastDirection;
     public void Awake()
     {
-        lastGradient = gradient;
-        lastDirection = direction;
+        Reload();
     }
 
     private void Update()
@@ -33,6 +32,15 @@ public class UI_gradient : MonoBehaviour
         GetComponent<UnityEngine.UI.Image>().material.SetTexture("_Texture2D", tex);
         GetComponent<UnityEngine.UI.Image>().material.SetVector("_Direction", direction);
     }
+
+    public void Reload()
+    {
+        lastGradient = gradient;
+        lastDirection = direction;
+        GetComponent<UnityEngine.UI.Image>().material = new Material(GetComponent<UnityEngine.UI.Image>().material);
+        UpdateTex();
+        print("reload");
+    }
 }
 
 [CustomEditor(typeof(UI_gradient))]
@@ -45,12 +53,17 @@ public class LevelScriptEditor : Editor
         var newGradient = EditorGUILayout.GradientField("Gradient", myTarget.gradient);
         var newDirection = EditorGUILayout.Vector2Field("Direction", myTarget.direction);
 
-        if(!newGradient.Equals(newGradient) || newDirection != myTarget.direction)
+        if(newGradient.alphaKeys != myTarget.gradient.alphaKeys || newGradient.colorKeys != myTarget.gradient.colorKeys || newGradient.mode != myTarget.gradient.mode || newDirection != myTarget.direction)
         {
             myTarget.gradient = newGradient;
             myTarget.direction = newDirection;
             
             myTarget.UpdateTex();
+        }
+
+        if (GUILayout.Button("reload"))
+        {
+            myTarget.Reload();
         }
     }
 }
