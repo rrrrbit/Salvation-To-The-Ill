@@ -28,6 +28,7 @@ public class WEAPON_melee : WEAPON
 				baseConv = Random.Range(convRange.x, convRange.y),
 				heal = stats.heal,
                 attackerTeam = user.team,
+				fromPlayer = user == PLYR.player
             };
             a.Attack(ctx);
 			Consume(user);

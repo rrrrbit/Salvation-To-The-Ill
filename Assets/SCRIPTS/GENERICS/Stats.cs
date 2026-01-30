@@ -5,7 +5,7 @@ public class Stats : MonoBehaviour, IAttackable
 	public float health;
     public float ammo;
 	public float conversion;
-	[Space]
+	[Header("")]
 	public float maxHealth;
     public float maxAmmo;
 	public float maxConversion;
@@ -13,7 +13,7 @@ public class Stats : MonoBehaviour, IAttackable
 	public float size;
 	public float defense;
 	public float convResistance;
-	[Space]
+	[Header("")]
     public ENTITY entity;
     public virtual void Start()
 	{

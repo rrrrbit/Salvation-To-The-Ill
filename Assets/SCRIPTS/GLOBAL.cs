@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,30 +24,6 @@ public static class GLOBAL
                 d / t));
     }
 
-    public static Vector2 Lerpd(Vector2 a, Vector2 b, float k, float t, float d)
-    {
-        return Vector2.Lerp(
-            a, b,
-            1 - Mathf.Pow(
-                1 - k,
-                d / t));
-    }
-    public static Vector3 Lerpd(Vector3 a, Vector3 b, float k, float t, float d)
-    {
-        return Vector3.Lerp(
-            a, b,
-            1 - Mathf.Pow(
-                1 - k,
-                d / t));
-    }
-    public static Vector3 Slerpd(Vector3 a, Vector3 b, float k, float t, float d)
-    {
-        return Vector3.SlerpUnclamped(
-            a, b,
-            1 - Mathf.Pow(
-                1 - k,
-                d / t));
-    }
     public static float Lerpd(float a, float b, float f, float d)
     {
         return Mathf.Lerp(
@@ -56,24 +33,6 @@ public static class GLOBAL
     public static float LerpAngleD(float a, float b, float f, float d)
     {
         return Mathf.LerpAngle(
-            a, b,
-            1 - Mathf.Pow(f, d));
-    }
-    public static Vector2 Lerpd(Vector2 a, Vector2 b, float f, float d)
-    {
-        return Vector2.Lerp(
-            a, b,
-            1 - Mathf.Pow(f, d));
-    }
-    public static Vector3 Lerpd(Vector3 a, Vector3 b, float f, float d)
-    {
-        return Vector3.Lerp(
-            a, b,
-            1 - Mathf.Pow(f, d));
-    }
-    public static Vector3 Slerpd(Vector3 a, Vector3 b, float f, float d)
-    {
-        return Vector3.SlerpUnclamped(
             a, b,
             1 - Mathf.Pow(f, d));
     }
@@ -138,71 +97,121 @@ public static class GLOBAL
             callback();
         }
     }
+
+	/// <summary>
+	/// https://discussions.unity.com/t/lerp-from-one-gradient-to-another/590382/3
+	/// </summary>
+	public static UnityEngine.Gradient LerpWith(this Gradient a, Gradient b, float t, bool noAlpha = false, bool noColor = false)
+	{
+		return Lerp(a, b, t, noAlpha, noColor);
+	}
+
+	/// <summary>
+	/// https://discussions.unity.com/t/lerp-from-one-gradient-to-another/590382/3
+	/// </summary>
+	public static UnityEngine.Gradient Lerp(UnityEngine.Gradient a, UnityEngine.Gradient b, float t, bool noAlpha = false, bool noColor = false)
+	{
+		//list of all the unique key times
+		var keysTimes = new List<float>();
+
+		if (!noColor)
+		{
+			for (int i = 0; i < a.colorKeys.Length; i++)
+			{
+				float k = a.colorKeys[i].time;
+				if (!keysTimes.Contains(k))
+					keysTimes.Add(k);
+			}
+
+			for (int i = 0; i < b.colorKeys.Length; i++)
+			{
+				float k = b.colorKeys[i].time;
+				if (!keysTimes.Contains(k))
+					keysTimes.Add(k);
+			}
+		}
+
+		if (!noAlpha)
+		{
+			for (int i = 0; i < a.alphaKeys.Length; i++)
+			{
+				float k = a.alphaKeys[i].time;
+				if (!keysTimes.Contains(k))
+					keysTimes.Add(k);
+			}
+
+			for (int i = 0; i < b.alphaKeys.Length; i++)
+			{
+				float k = b.alphaKeys[i].time;
+				if (!keysTimes.Contains(k))
+					keysTimes.Add(k);
+			}
+		}
+
+		GradientColorKey[] clrs = new GradientColorKey[keysTimes.Count];
+		GradientAlphaKey[] alphas = new GradientAlphaKey[keysTimes.Count];
+
+		//Pick colors of both gradients at key times and lerp them
+		for (int i = 0; i < keysTimes.Count; i++)
+		{
+			float key = keysTimes[i];
+			var clr = Color.Lerp(a.Evaluate(key), b.Evaluate(key), t);
+			clrs[i] = new GradientColorKey(clr, key);
+			alphas[i] = new GradientAlphaKey(clr.a, key);
+		}
+
+		var g = new UnityEngine.Gradient();
+		g.SetKeys(clrs, alphas);
+
+		return g;
+	}
 }
 
 public static class Mathv
 {
     public static Vector2Int RoundToInt(Vector2 v) => new(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y));
-}
 
-public static class TextureScaler
-{
+	public static Vector2 Lerpd(Vector2 a, Vector2 b, float f, float d)
+	{
+		return Vector2.Lerp(
+			a, b,
+			1 - Mathf.Pow(f, d));
+	}
+	public static Vector3 Lerpd(Vector3 a, Vector3 b, float f, float d)
+	{
+		return Vector3.Lerp(
+			a, b,
+			1 - Mathf.Pow(f, d));
+	}
+	public static Vector3 Slerpd(Vector3 a, Vector3 b, float f, float d)
+	{
+		return Vector3.SlerpUnclamped(
+			a, b,
+			1 - Mathf.Pow(f, d));
+	}
 
-    /// <summary>
-    /// Returns a scaled copy of given texture. 
-    /// </summary>
-    /// <param name="tex">Source texure to scale</param>
-    /// <param name="width">Destination texture width</param>
-    /// <param name="height">Destination texture height</param>
-    /// <param name="mode">Filtering mode</param>
-    public static Texture2D scaled(this Texture2D src, int width, int height, FilterMode mode = FilterMode.Trilinear)
-    {
-        Rect texR = new Rect(0, 0, width, height);
-        _gpu_scale(src, width, height, mode);
-
-        //Get rendered data back to a new texture
-        Texture2D result = new Texture2D(width, height, TextureFormat.ARGB32, true);
-        result.Reinitialize(width, height);
-        result.ReadPixels(texR, 0, 0, true);
-        return result;
-    }
-
-    /// <summary>
-    /// Scales the texture data of the given texture.
-    /// </summary>
-    /// <param name="tex">Texure to scale</param>
-    /// <param name="width">New width</param>
-    /// <param name="height">New height</param>
-    /// <param name="mode">Filtering mode</param>
-    public static void scale(Texture2D tex, int width, int height, FilterMode mode = FilterMode.Trilinear)
-    {
-        Rect texR = new Rect(0, 0, width, height);
-        _gpu_scale(tex, width, height, mode);
-
-        // Update new texture
-        tex.Reinitialize(width, height);
-        tex.ReadPixels(texR, 0, 0, true);
-        tex.Apply(true);    //Remove this if you hate us applying textures for you :)
-    }
-
-    // Internal unility that renders the source texture into the RTT - the scaling method itself.
-    static void _gpu_scale(Texture2D src, int width, int height, FilterMode fmode)
-    {
-        //We need the source texture in VRAM because we render with it
-        src.filterMode = fmode;
-        src.Apply(true);
-
-        //Using RTT for best quality and performance. Thanks, Unity 5
-        RenderTexture rtt = new RenderTexture(width, height, 32);
-
-        //Set the RTT in order to render to it
-        Graphics.SetRenderTarget(rtt);
-
-        //Setup 2D matrix in range 0..1, so nobody needs to care about sized
-        GL.LoadPixelMatrix(0, 1, 1, 0);
-
-        //Then clear & draw the texture to fill the entire RTT.
-        GL.Clear(true, true, new Color(0, 0, 0, 0));
-        Graphics.DrawTexture(new Rect(0, 0, 1, 1), src);
-    }
+	public static Vector2 Lerpd(Vector2 a, Vector2 b, float k, float t, float d)
+	{
+		return Vector2.Lerp(
+			a, b,
+			1 - Mathf.Pow(
+				1 - k,
+				d / t));
+	}
+	public static Vector3 Lerpd(Vector3 a, Vector3 b, float k, float t, float d)
+	{
+		return Vector3.Lerp(
+			a, b,
+			1 - Mathf.Pow(
+				1 - k,
+				d / t));
+	}
+	public static Vector3 Slerpd(Vector3 a, Vector3 b, float k, float t, float d)
+	{
+		return Vector3.SlerpUnclamped(
+			a, b,
+			1 - Mathf.Pow(
+				1 - k,
+				d / t));
+	}
 }

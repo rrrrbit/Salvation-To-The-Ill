@@ -22,6 +22,7 @@ public class OBJ_bullet : OBJ_Projectile
                 baseConv = Random.Range(originStats.conversionRange[originQuality].x, originStats.conversionRange[originQuality].y),
                 heal = originStats.heal,
                 attackerTeam = origin.GetComponent<ENTITY>().team,
+				fromPlayer = fromPlayer
             };
             a.Attack(ctx);
             if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, transform.position, false);

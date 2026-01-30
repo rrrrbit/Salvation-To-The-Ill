@@ -23,6 +23,7 @@ public class OBJ_Grenade : OBJ_Projectile
                     baseConv = Random.Range(originStats.conversionRange[originQuality].x, originStats.conversionRange[originQuality].y),
                     heal = originStats.heal,
                     attackerTeam = originTeam,
+					fromPlayer = fromPlayer
                 };
                 a.Attack(ctx);
                 if (!other.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, other.transform.position, false);
@@ -44,6 +45,6 @@ public class OBJ_Grenade : OBJ_Projectile
 		flashTimer += Time.deltaTime * flashSpeed.Evaluate(lifetime);
         Material mat = rangeIndicator.GetComponent<Renderer>().material;
         mat.color = GetComponent<Renderer>().material.color * (1 - flashTimer % 1);
-        rangeIndicator.transform.localScale = GLOBAL.Lerpd(rangeIndicator.transform.localScale, new Vector3(explosionSize, explosionSize, explosionSize).DivideBy(transform.localScale) * 2, 0.2f, 0.05f, Time.deltaTime);
+        rangeIndicator.transform.localScale = Mathv.Lerpd(rangeIndicator.transform.localScale, new Vector3(explosionSize, explosionSize, explosionSize).DivideBy(transform.localScale) * 2, 0.2f, 0.05f, Time.deltaTime);
     }
 }

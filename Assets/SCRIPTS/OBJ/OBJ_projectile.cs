@@ -15,6 +15,7 @@ public class OBJ_Projectile : MonoBehaviour
 
 	public GameObject origin;
 	public WeaponStats originStats;
+	public bool fromPlayer;
 	public int originQuality;
 
 	public ENTITY.Teams originTeam;
@@ -23,7 +24,9 @@ public class OBJ_Projectile : MonoBehaviour
     {
 		penetrationLeft = originStats.penetration[originQuality];
 		originTeam = origin.GetComponent<ENTITY>().team;
-    }
+		fromPlayer = origin.GetComponent<ENTITY>() == PLYR.player;
+
+	}
 
     public virtual void Update()
     {

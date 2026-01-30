@@ -16,8 +16,8 @@ public class Look : MonoBehaviour
     {
         look.y = Mathf.Clamp(look.y, pitchClamp.x, pitchClamp.y) % 360;
 
-		displacement = GLOBAL.Lerpd(displacement, Vector2.zero, 0.5f, 0.1f, Time.deltaTime);
-		shake = GLOBAL.Lerpd(shake, Vector2.zero, 0.5f, 0.1f, Time.deltaTime);
+		displacement = Mathv.Lerpd(displacement, Vector2.zero, 0.5f, 0.1f, Time.deltaTime);
+		shake = Mathv.Lerpd(shake, Vector2.zero, 0.5f, 0.1f, Time.deltaTime);
 		
 		var shakeNow = Random.insideUnitCircle.Scaled(shake);
 		var total = look + displacement.Scaled(new(1,-1)) + shakeNow;

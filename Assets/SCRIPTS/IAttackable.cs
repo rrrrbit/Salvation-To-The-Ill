@@ -11,6 +11,7 @@ public class AttackContext
 	public ENTITY.Teams attackerTeam;
 	public ENTITY.Teams targetTeam;
 	public GameObject target;
+	public bool fromPlayer;
 	public float baseDmg;
 	public float finalDmg;
 	public float baseConv;

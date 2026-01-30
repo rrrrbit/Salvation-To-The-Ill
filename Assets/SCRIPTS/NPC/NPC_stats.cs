@@ -23,6 +23,10 @@ public class NPC_stats : Stats
         {
             entity.inventory.Drop(i, -1, false);
         }
-            base.Die(ctx);
+		if (ctx.fromPlayer)
+		{
+			PLYR.player.kills++;
+		}
+        base.Die(ctx);
     }
 }
