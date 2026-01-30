@@ -13,7 +13,7 @@ public class OBJ_Grenade : OBJ_Projectile
         Destroy(rangeIndicator);
         foreach(Collider other in Physics.OverlapSphere(transform.position, explosionSize, collideWith))
         {
-            if (other.TryGetComponent(out IAttackable a) && ((other.gameObject != origin) || originStats.heal) && other.gameObject != gameObject)
+            if (other.TryGetComponent(out IAttackable a) && other.gameObject != origin && (other.GetComponent<ENTITY>().team != originTeam || originStats.heal) && other.gameObject != gameObject)
             {
                 AttackContext ctx = new()
                 {
