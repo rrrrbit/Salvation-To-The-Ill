@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb5d336c4df3ef428f08b40ac5d5922, type: 3}
+  m_Name: Asset Aliases
+  m_EditorClassIdentifier: 
+  groups:
+  - name: audio
+    assetAliases:
+    - alias: grenadeLauncher
+      asset: {fileID: 8300000, guid: 3760fde65e6c513459e5a23d8f17766c, type: 3}
+    - alias: rifle
+      asset: {fileID: 8300000, guid: d0a61290c11c4724a8df5557db16c70a, type: 3}
+    - alias: shotgun
+      asset: {fileID: 8300000, guid: 424531740302e3647b08873b0424d950, type: 3}
+    - alias: sniper
+      asset: {fileID: 8300000, guid: 3c075c1b55c8bce44a32b7a7e19952aa, type: 3}

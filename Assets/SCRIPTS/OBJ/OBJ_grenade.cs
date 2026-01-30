@@ -8,6 +8,8 @@ public class OBJ_Grenade : OBJ_Projectile
 	public AnimationCurve flashSpeed;
 
 	public float flashTimer;
+
+    public AudioClip explosion;
     public override void OnDie()
     {
         Destroy(rangeIndicator);
@@ -37,6 +39,7 @@ public class OBJ_Grenade : OBJ_Projectile
             }
         }
         MGR.vfx.Explosion(originStats.heal, explosionSize, transform);
+        MGR.audio.PlayAtPos(explosion, transform.position);
     }
 
     public override void Update()

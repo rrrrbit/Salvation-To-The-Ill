@@ -81,3 +81,4 @@ MonoBehaviour:
   - {x: -2, y: 2, z: 2, w: 4}
   - {x: -2, y: 2, z: 2, w: 4}
   - {x: -2, y: 2, z: 2, w: 4}
+  shootAudio: {fileID: 8300000, guid: 3760fde65e6c513459e5a23d8f17766c, type: 3}

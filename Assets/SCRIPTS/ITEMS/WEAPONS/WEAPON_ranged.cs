@@ -50,6 +50,7 @@ public class WEAPON_ranged : WEAPON
 				Random.Range(stats.recoilRange[Quality()].y, stats.recoilRange[Quality()].w)
 				);
 		}
+		user.audio.Play(stats.shootAudio);
 		user.look.displacement = recoil;
 
 		

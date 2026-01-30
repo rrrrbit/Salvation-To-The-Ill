@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class OBJ_bullet : OBJ_Projectile
 {
+    public AudioClip hitSound;
     public override void OnHit(Collider other, bool instakill)
     {
 		MGR.vfx.BulletPtcl(originStats.heal, other.ClosestPoint(transform.position-GetComponent<Rigidbody>().linearVelocity*Time.fixedDeltaTime), GetComponent<Rigidbody>().linearVelocity);
@@ -32,6 +33,7 @@ public class OBJ_bullet : OBJ_Projectile
 
         }
         penetrationLeft--;
+        MGR.audio.PlaySoundOmnipresent(hitSound);
         if (penetrationLeft == 0) Destroy(gameObject);
     }
 }
