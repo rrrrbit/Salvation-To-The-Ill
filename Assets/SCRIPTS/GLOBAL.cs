@@ -7,7 +7,8 @@ public static class GLOBAL
 {
     public static float SQRT2OVER2 = Mathf.Sqrt(2) / 2;
 
-    public static float Lerpd(float a, float b, float k, float t, float d)
+    public static float Lerpd(
+		float a, float b, float k, float t, float d)
     {
         return Mathf.Lerp(
             a, b,
@@ -66,7 +67,8 @@ public static class GLOBAL
 
     public static Vector3 xz(this Vector2 v, float y) => new(v.x, y, v.y);
 
-    public static Vector2 Scaled(this Vector2 v, Vector2 other)
+    public static Vector2 Scaled(
+		this Vector2 v, Vector2 other)
     {
         v.Scale(other);
         return v;
@@ -89,7 +91,8 @@ public static class GLOBAL
 		return true;
 	}
 
-    public static void CheckChange<T>(this T self, ref T other, Action callback)
+    public static void CheckChange<T>(
+		this T self, ref T other, Action callback)
     {
         if(!self.Equals(other))
         {
@@ -101,7 +104,8 @@ public static class GLOBAL
 	/// <summary>
 	/// https://discussions.unity.com/t/lerp-from-one-gradient-to-another/590382/3
 	/// </summary>
-	public static UnityEngine.Gradient LerpWith(this Gradient a, Gradient b, float t, bool noAlpha = false, bool noColor = false)
+	public static UnityEngine.Gradient LerpWith(
+		this Gradient a, Gradient b, float t, bool noAlpha = false, bool noColor = false)
 	{
 		return Lerp(a, b, t, noAlpha, noColor);
 	}
@@ -109,9 +113,10 @@ public static class GLOBAL
 	/// <summary>
 	/// https://discussions.unity.com/t/lerp-from-one-gradient-to-another/590382/3
 	/// </summary>
-	public static UnityEngine.Gradient Lerp(UnityEngine.Gradient a, UnityEngine.Gradient b, float t, bool noAlpha = false, bool noColor = false)
+	public static UnityEngine.Gradient Lerp(
+		UnityEngine.Gradient a, UnityEngine.Gradient b, float t, bool noAlpha = false, bool noColor = false)
 	{
-		//list of all the unique key times
+		//list of all the unique key timesS
 		var keysTimes = new List<float>();
 
 		if (!noColor)

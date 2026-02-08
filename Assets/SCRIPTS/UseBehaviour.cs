@@ -3,6 +3,10 @@ using UnityEngine;
 public class UseBehaviour : MonoBehaviour 
 {
 	public ItemData item;
+    public virtual bool TryUse(ENTITY user, ENTITY recipient)
+	{
+		return false;
+	}
     private void Start()
     {
         item = GetComponent<ItemData>();
@@ -12,9 +16,4 @@ public class UseBehaviour : MonoBehaviour
     {
         return (int)item.quality;
     }
-
-    public virtual bool TryUse(ENTITY user, ENTITY recipient)
-	{
-		return false;
-	}
 }

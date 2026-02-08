@@ -1,8 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class OBJ_Projectile : MonoBehaviour
 {

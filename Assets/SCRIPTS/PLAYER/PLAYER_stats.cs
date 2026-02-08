@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PLAYER_stats : Stats
 {
@@ -6,8 +7,13 @@ public class PLAYER_stats : Stats
 	public AnimationCurve shakeDamageBar;
 	public override void Convert(AttackContext ctx)
     {
-        Destroy(gameObject);
+		SceneManager.LoadScene(0);
     }
+
+	public override void Die(AttackContext ctx)
+	{
+		SceneManager.LoadScene(0);
+	}
 
 	public override void Attack(AttackContext ctx)
 	{
