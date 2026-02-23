@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
+using UnityEngine.AI;
 
 public class NPC : ENTITY
 {
@@ -15,13 +14,39 @@ public class NPC : ENTITY
 	public float defaultStopRange;
 
     public LayerMask walls;
-	public MeshRenderer mesh;
+	public Renderer mesh;
 
-    public override void Update()
+	public NavMeshAgent agent;
+	public Animator anim;
+
+	public AnimationCurve legMvtOverSpeed;
+
+	public enum State
+	{
+		idle,
+		target,
+		retreat
+	}
+
+	public State state;
+
+	public override void Start()
+	{
+		base.Start();
+		agent = GetComponent<NavMeshAgent>();
+		agent.updatePosition = false;
+		agent.updateRotation = false;
+		agent.updateUpAxis = false;
+	}
+
+	public override void Update()
     {
         base.Update();
+		UpdateAnim();
 
-        if(team == Teams.HUMAN) mesh.material.color = Color.blue;
+
+
+		if (team == Teams.HUMAN) mesh.material.color = Color.blue;
         else mesh.material.color = Color.red;
 
         if (inventory.GetCurrent().TryGetComponent(out WEAPON w)) useRange = w.stats.effectiveRange[w.Quality()];
@@ -31,17 +56,44 @@ public class NPC : ENTITY
 		if (currentTarget)
 		{
 			targetPosD = currentTarget.transform.position - transform.position;
-			((NPC_movement)movement).sufficientRange = useRange * 0.9f;
+			//((NPC_movement)movement).sufficientRange = useRange * 0.9f;
+			agent.stoppingDistance = useRange*0.9f+0.5f;
 			inventory.use = targetPosD.sqrMagnitude <= useRange * useRange;
+
+			agent.destination = currentTarget.transform.position;
 		}
 		else
 		{
+			agent.destination = transform.position;
+			
 			targetPosD = Vector3.zero;
 			inventory.use = false;
 		}
-    }
 
-    void RecalculateTarget()
+
+
+		movement.mvtIn = agent.nextPosition - transform.position;
+		//agent.nextPosition = transform.position;
+		agent.speed = movement.xSpeed;
+
+		for (int i = 0; i < agent.path.corners.Length - 1; i++)
+		{
+			Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], Color.red);
+			Debug.DrawLine(agent.path.corners[i] + Vector3.up * 2, agent.path.corners[i] - Vector3.up * 2, Color.red);
+		}
+	}
+
+	void UpdateAnim()
+	{
+		anim.SetFloat("moving", legMvtOverSpeed.Evaluate(Vector3.Project(movement.mvtIn.xz(), rb.linearVelocity.xz()).magnitude));
+	}
+
+	void UpdateState()
+	{
+		var isHealingWeapon = inventory.GetCurrent() && inventory.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
+	}
+
+	void RecalculateTarget()
     {
         var isHealingWeapon = inventory.GetCurrent() && inventory.GetCurrent().TryGetComponent(out WEAPON w) && w.stats.heal;
         List<ENTITY> targets = new();

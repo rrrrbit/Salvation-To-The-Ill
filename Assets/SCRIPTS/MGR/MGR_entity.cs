@@ -29,7 +29,7 @@ public class MGR_entity : MonoBehaviour
             recalcPathsTimer = recalcPathsTime;
             foreach(NPC npc in entities.Where(x => x.GetType() == typeof(NPC)))
             {
-                ((NPC_movement)npc.movement).RecalcPath();
+                //((NPC_movement)npc.movement).RecalcPath();
             }
         }
     }

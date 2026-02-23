@@ -6,9 +6,9 @@ public class WEAPON_ranged : WEAPON
 {
 	public GameObject bullet;
 
-	public override bool TryUse(ENTITY user, ENTITY recipient)
+	public override bool TryUse(ENTITY user, ENTITY recipient, bool asHand = false)
 	{
-		if(!Consume(user)) return false;
+		if(!Consume(user, asHand)) return false;
 
 		var spread = stats.spread[Quality()];
 		var speed = stats.bulletSpeed[Quality()];

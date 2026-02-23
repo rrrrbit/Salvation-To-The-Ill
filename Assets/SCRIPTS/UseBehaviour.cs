@@ -3,7 +3,7 @@ using UnityEngine;
 public class UseBehaviour : MonoBehaviour 
 {
 	public ItemData item;
-    public virtual bool TryUse(ENTITY user, ENTITY recipient)
+    public virtual bool TryUse(ENTITY user, ENTITY recipient, bool asHand = false)
 	{
 		return false;
 	}

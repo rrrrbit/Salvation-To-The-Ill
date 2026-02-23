@@ -1,9 +1,5 @@
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
@@ -13,6 +9,7 @@ public class Inventory : MonoBehaviour
 	public int invSize;
 	public ItemData[] inventory;
 	public float[] cooldowns;
+	public float handCooldown;
 	public int CurrentItem
 	{
 		get { return currentItem; }
@@ -24,6 +21,7 @@ public class Inventory : MonoBehaviour
 	public bool use;
 	public bool interact;
 	public bool drop;
+	public bool currentEmpty;
 	public ENTITY entity;
 
 	public void InitInventory()
@@ -39,12 +37,16 @@ public class Inventory : MonoBehaviour
 		{
             cooldowns[i] = Mathf.Max(cooldowns[i] - Time.deltaTime, 0);
         }
+		handCooldown = Mathf.Max(handCooldown - Time.deltaTime, 0);
+
+		currentEmpty = !inventory[CurrentItem];
 
 		if (drop) Drop(CurrentItem, -1, true);
 
-		if (use && GetCurrent().TryGetComponent(out UseBehaviour ub) && cooldowns[currentItem] <= 0f)
+		var cooldown = currentEmpty ? handCooldown : cooldowns[CurrentItem];
+		if (use && GetCurrent().TryGetComponent(out UseBehaviour ub) && cooldown <= 0f)
 		{
-			ub.TryUse(entity,entity);
+			ub.TryUse(entity, entity, currentEmpty);
         }
 
 

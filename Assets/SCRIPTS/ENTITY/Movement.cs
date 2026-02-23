@@ -22,21 +22,24 @@ public class Movement : MonoBehaviour
 	public bool stairSnap;
 	public bool enterCollisionTrigger;
     Vector3 horizontalVel;
-	[SerializeField] protected Vector2 mvtIn;
-	protected bool jump;
+	public Vector3 mvtIn;
+	public bool jump;
     public ENTITY entity;
+
+	[SerializeField] bool showIn;
 	#endregion
-	public virtual void Start()
+	void Start()
     {
 		jumpForce = 4f / jumpTime * jumpHeight;
 		grav = -8f / jumpTime / jumpTime * jumpHeight;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
     }
-    public virtual void FixedUpdate()
+    void FixedUpdate()
     {
 		rb.AddForce(Vector3.up * grav, ForceMode.Force);
-        var targetVel = transform.rotation * new Vector3(mvtIn.x, 0, mvtIn.y) * xSpeed;
+		
+        var targetVel = mvtIn.normalized * xSpeed;
         horizontalVel = Mathv.Lerpd(horizontalVel, targetVel, xMvtLerpK, xMvtLerpT, Time.deltaTime) ;
         rb.linearVelocity = new Vector3(horizontalVel.x, rb.linearVelocity.y, horizontalVel.z);
 
@@ -60,7 +63,16 @@ public class Movement : MonoBehaviour
         }
 		if(!lastFrameGrounded && grounded)stairSnap = true;
 
+		
     }
+
+	void Update()
+	{
+		if (showIn)
+		{
+			Debug.DrawRay(transform.position, mvtIn*2, Color.purple);
+		}
+	}
 
 	void StairSnapDown()
 	{
@@ -77,7 +89,7 @@ public class Movement : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	void OnCollisionEnter(Collision collision)
 	{
 		List<ContactPoint> points = new();
 		collision.GetContacts(points);

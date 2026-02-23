@@ -7,7 +7,7 @@ public class WEAPON_melee : WEAPON
 {
 	public LayerMask target;
 	public LayerMask collideWith;
-	public override bool TryUse(ENTITY user, ENTITY recipient)
+	public override bool TryUse(ENTITY user, ENTITY recipient, bool asHand = false)
 	{
 		//if(!Consume(entity)) return false;
 
@@ -31,7 +31,7 @@ public class WEAPON_melee : WEAPON
 				fromPlayer = user == PLYR.player
             };
             a.Attack(ctx);
-			Consume(user);
+			Consume(user, asHand);
             if (!hit.collider.TryGetComponent<PLYR>(out _)) MGR.vfx.DmgText(ctx, hit.point, false);
         }
 		
